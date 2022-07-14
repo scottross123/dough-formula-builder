@@ -28,7 +28,7 @@ Think some more -> designs in Figma and sketches on whiteboard -> list requireme
 * UI component library? Tailwind CSS? SASS? (preferable no component library unless it takes too much time without)
   * Most likely CSS/SCSS modules 
 * React hook form? Or might not be necessary.
-* No CRA. Vite or Rollup.js config.
+* No CRA. Vite most likely.
 * Yup or some other library for validation.
 
 ## Future features/stories
@@ -47,4 +47,7 @@ Think some more -> designs in Figma and sketches on whiteboard -> list requireme
 ## Future requirements
 * hosting
 * backend services (recipe saving and maybe log in)
+
+## Backend tech stack
+* Java or Kotlin. Or maybe Go???
 
