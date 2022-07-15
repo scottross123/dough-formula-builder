@@ -1,35 +1,42 @@
 import styles from './table.module.css';
 import { percentFormat, metricFormat } from "../../utils/numberFormats";
-
-type Entry = {
-    ingredient: string,
-    metric: number,
-    percent: number,
-}
+import { useState } from "react";
+import {TableEntry} from "./types";
+import TableFooter from "./TableFooter";
 
 const Table = () => {
-    const entries: Entry[] = [
+    const [tableEntries, setTableEntries] = useState<TableEntry[]>(
+        [
+            {
+                ingredient: 'Flour',
+                metric: 500,
+                percent: 1,
+            },
+            {
+                ingredient: 'Water',
+                metric: 375,
+                percent: .75,
+            },
+            {
+                ingredient: 'Salt',
+                metric: 9,
+                percent: .018,
+            },
+            {
+                ingredient: 'Yeast',
+                metric: 5,
+                percent: .01,
+            },
+        ]
+    );
+
+    const [tableFooter, setTableFooter] = useState<TableEntry>(
         {
-            ingredient: 'Flour',
-            metric: 500,
-            percent: 1,
+            ingredient: 'Total',
+            metric: 889,
+            percent: 177.8,
         },
-        {
-            ingredient: 'Water',
-            metric: 375,
-            percent: .75,
-        },
-        {
-            ingredient: 'Salt',
-            metric: 9,
-            percent: .018,
-        },
-        {
-            ingredient: 'Yeast',
-            metric: 5,
-            percent: .01,
-        },
-    ];
+    )
 
     return (
         <table className={styles.table}>
@@ -42,7 +49,7 @@ const Table = () => {
             </thead>
             <tbody>
             {
-                entries.map(({ingredient, metric, percent}) => {
+                tableEntries.map(({ingredient, metric, percent}) => {
                     return (
                         <tr>
                             <td>{ingredient}</td>
@@ -53,13 +60,7 @@ const Table = () => {
                 })
             }
             </tbody>
-            <tfoot>
-                <tr>
-                    <td>Total</td>
-                    <td>889g</td>
-                    <td>177.8%</td>
-                </tr>
-            </tfoot>
+            <TableFooter tableEntries={tableEntries} />
         </table>
     )
 }
