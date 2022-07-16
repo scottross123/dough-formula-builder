@@ -1,4 +1,4 @@
-const CalculatorInputs = () => {
+const BuilderInputs = () => {
     return (
         <table>
             <thead>
@@ -17,4 +17,4 @@ const CalculatorInputs = () => {
     );
 }
 
-export default CalculatorInputs;
+export default BuilderInputs;

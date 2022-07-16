@@ -1,13 +1,15 @@
-import './App.css';
-import Table from './components/table/Table';
-import CalculatorInputs from "./components/inputs/CalculatorInputs";
+import styles from './App.module.css';
+import { Fragment } from "react";
+import Builder from "./pages/builder/Builder";
+import Header from "./components/header/Header";
 
 const App = () => {
   return (
-      <div>
-          <CalculatorInputs />
-          <Table />
-      </div>
+      <Fragment>
+          <Header />
+
+          <Builder />
+      </Fragment>
   );
 }
 
