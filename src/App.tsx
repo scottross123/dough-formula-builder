@@ -1,15 +1,16 @@
 import styles from './App.module.css';
 import { Fragment } from "react";
-import Builder from "./pages/builder/Builder";
-import Header from "./components/header/Header";
+import ViewFormula from "./pages/builder/ViewFormula";
+import Header from "./layout/header/Header";
+import Main from "./layout/main/Main";
+import Sidenav from "./layout/sidenav/Sidenav";
 
 const App = () => {
   return (
-      <Fragment>
-          <Header />
-
-          <Builder />
-      </Fragment>
+    <div className={styles.app}>
+        <Sidenav />
+        <Main />
+    </div>
   );
 }
 

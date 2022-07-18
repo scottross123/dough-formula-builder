@@ -1,0 +1,17 @@
+.app {
+    display: flex;
+    height: 100%;
+
+    /*
+    grid-template-columns: repeat(9, 1fr);
+
+
+    grid-template-areas:
+      "sidenav  content  content  content  content"
+      "sidenav   content  content  content  content"
+      "sidenav   content  content  content  content"*/
+}
+
+.grid-item {
+    background-color: blue;
+}

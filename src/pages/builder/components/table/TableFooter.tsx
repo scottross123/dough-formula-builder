@@ -1,5 +1,5 @@
 import { TableEntry } from "./types";
-import { metricFormat, percentFormat } from "../../utils/numberFormats";
+import { metricFormat, percentFormat } from "../../../../utils/numberFormats";
 
 
 type TableFooterProps = {
