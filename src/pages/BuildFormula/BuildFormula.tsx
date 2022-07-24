@@ -1,18 +1,18 @@
 import styles from './BuildFormula.module.css';
-import TableInputs from "./components/Inputs/TableInputs";
-import Table from "./components/Table/Table";
+import Inputs from  "./components/Inputs";
+import Table from "./components/Table";
 import TableControls from "./components/Controls/TableControls";
 
 
 const BuildFormula = () => {
     return (
-        <div className={styles.buildFormula}>
-            <TableInputs />
+        <section className={styles.buildFormula}>
+            <Inputs />
 
             <Table />
 
             <TableControls deletable={false}/>
-        </div>
+        </section>
     )
 }
 
