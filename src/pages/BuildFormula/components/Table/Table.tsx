@@ -10,7 +10,7 @@ const Table = () => {
             {
                 ingredient: 'Flour',
                 metric: 500,
-                percent: 1,
+                percent: 1.0,
             },
             {
                 ingredient: 'Water',

@@ -1,12 +1,12 @@
 import { TableEntry } from "../types";
-import { metricFormat, percentFormat } from "../../../../../utils/numberFormats";
+import { metricFormat, percentFormat } from "../../../utils/numberFormats";
 
 
-type TableFooterProps = {
+type FooterProps = {
     tableEntries: TableEntry[]
 }
 
-const Footer = (props: TableFooterProps) => {
+const Footer = (props: FooterProps) => {
     const { tableEntries } = props;
     const { ingredient, metric, percent } = tableEntries.reduce<TableEntry>(
         ({metric: prevMetric, percent: prevPercent},
@@ -14,7 +14,7 @@ const Footer = (props: TableFooterProps) => {
         ({
             ingredient: 'Total',
             metric: prevMetric + currMetric,
-            percent: prevPercent + currPercent
+            percent: prevPercent + currPercent,
         }),
         {
             ingredient: 'Total',

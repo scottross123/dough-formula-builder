@@ -1,17 +1,17 @@
 import { TableEntry } from "../types";
 import Row from "./Row";
 
-type TableBodyProps = {
+type BodyProps = {
     tableEntries: TableEntry[]
 }
 
-const Body = (props: TableBodyProps) => {
+const Body = (props: BodyProps) => {
     const { tableEntries } = props;
 
     return (
         <tbody>
         {
-            tableEntries.map((tableEntry, rowIndex) => (
+            tableEntries.map((tableEntry) => (
                 <Row tableEntry={tableEntry} />
             ))
         }

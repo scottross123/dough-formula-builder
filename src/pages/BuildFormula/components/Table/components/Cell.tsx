@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import { metricFormat , percentFormat } from "../../../utils/numberFormats";
 
 type CellProps  = {
     content: number | string,
+    columnIndex: number
 }
 
 const Cell = (props: CellProps) => {
-    const { content } = props;
+    const { content, columnIndex } = props;
     const [editable, setEditable] = useState<boolean>(false)
     const ref = useRef<HTMLTableCellElement>(null);
+
+    let formattedContent = content.toString();
+    switch (columnIndex) {
+        case 1:
+            formattedContent = metricFormat(content as number);
+            break;
+        case 2:
+            formattedContent = percentFormat(content as number);
+            break;
+    }
 
     const handleClick = () => {
         setEditable(true);
@@ -32,7 +43,7 @@ const Cell = (props: CellProps) => {
         return (
             <td ref={ref}>
                 <input
-                    type="number"
+                    type={typeof content === "number" ? "number" : "text"}
                     min="0"
                     max="100"
                     value={content}
@@ -43,7 +54,7 @@ const Cell = (props: CellProps) => {
 
     return (
         <td onClick={handleClick}>
-            {content}
+            {formattedContent}
         </td>
     )
 }

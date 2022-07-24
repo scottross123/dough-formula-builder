@@ -11,8 +11,8 @@ const Row = (props: TableRowProps) => {
     return (
       <tr>
           {
-              Object.values(tableEntry).map((content) => (
-                  <Cell content={content} />
+              Object.values(tableEntry).map((content, columnIndex) => (
+                  <Cell content={content} columnIndex={columnIndex} />
               ))
           }
       </tr>

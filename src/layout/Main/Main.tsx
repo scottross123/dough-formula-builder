@@ -1,13 +1,10 @@
 import styles from './Main.module.css'
-import BuildFormula from "../../pages/BuildFormula/BuildFormula";
-import ViewFormula from "../../pages/ViewFormula/ViewFormula";
+import BuildFormula from "../../pages/BuildFormula";
 
 const Main = () => {
     return (
         <main className={styles.main}>
             <BuildFormula />
-
-            {/*<ViewFormula />*/}
         </main>
     );
 }
