@@ -1,20 +1,36 @@
-import {useState} from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom";
 
-type ReadOnlyCellProps  = {
+type CellProps  = {
     content: number | string,
 }
 
-const ReadOnlyCell = (props: ReadOnlyCellProps) => {
+const Cell = (props: CellProps) => {
     const { content } = props;
     const [editable, setEditable] = useState<boolean>(false)
+    const ref = useRef<HTMLTableCellElement>(null);
 
     const handleClick = () => {
-        setEditable(true)
+        setEditable(true);
     }
+
+    const handleClickOutside = (e: Event) => {
+        if (!ref.current?.contains(e.target as Node)) {
+            setEditable(false);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside, true);
+        return () => {
+            document.removeEventListener('click', handleClickOutside, true)
+        }
+
+    }, []);
 
     if (editable) {
         return (
-            <td>
+            <td ref={ref}>
                 <input
                     type="number"
                     min="0"
@@ -32,4 +48,4 @@ const ReadOnlyCell = (props: ReadOnlyCellProps) => {
     )
 }
 
-export default ReadOnlyCell;
+export default Cell;

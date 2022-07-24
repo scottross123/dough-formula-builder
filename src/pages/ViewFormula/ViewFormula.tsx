@@ -1,5 +1,5 @@
 import styles from './ViewFormula.module.css'
-import Vitals from "./components/vitals/Vitals";
+import Vitals from "./components/Vitals/Vitals";
 
 const ViewFormula = () => {
     return (

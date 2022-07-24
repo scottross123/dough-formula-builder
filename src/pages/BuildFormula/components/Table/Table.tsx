@@ -1,9 +1,8 @@
 import styles from './table.module.css';
-import { percentFormat, metricFormat } from "../../../../utils/numberFormats";
 import { useState } from "react";
 import {TableEntry} from "./types";
-import TableFooter from "./TableFooter";
-import TableBody from "./TableBody";
+import Footer from "./components/Footer";
+import Body from "./components/Body";
 
 const Table = () => {
     const [tableEntries, setTableEntries] = useState<TableEntry[]>(
@@ -48,8 +47,8 @@ const Table = () => {
                     <th>Baker's %</th>
                 </tr>
             </thead>
-            <TableBody tableEntries={tableEntries} />
-            <TableFooter tableEntries={tableEntries} />
+            <Body tableEntries={tableEntries} />
+            <Footer tableEntries={tableEntries} />
         </table>
     )
 }

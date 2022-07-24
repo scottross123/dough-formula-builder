@@ -1,4 +1,4 @@
 .header {
-    grid-area: header;
+    height: 5%;
     background-color: hsl(100, 75%, 75%);
 }

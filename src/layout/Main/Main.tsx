@@ -1,13 +1,13 @@
 import styles from './Main.module.css'
-import EditFormula from "../../pages/editformula/EditFormula";
-import ViewFormula from "../../pages/builder/ViewFormula";
+import BuildFormula from "../../pages/BuildFormula/BuildFormula";
+import ViewFormula from "../../pages/ViewFormula/ViewFormula";
 
 const Main = () => {
     return (
         <main className={styles.main}>
-            <EditFormula />
+            <BuildFormula />
 
-            <ViewFormula />
+            {/*<ViewFormula />*/}
         </main>
     );
 }

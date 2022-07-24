@@ -1,23 +1,22 @@
-import { ReadOnlyCell, EditCell } from './Cell';
-import { TableEntry } from "./types";
-import { useState } from "react";
+import Cell from './Cell';
+import { TableEntry } from "../types";
 
 type TableRowProps = {
     tableEntry: TableEntry
 }
 
-const TableRow = (props: TableRowProps) => {
+const Row = (props: TableRowProps) => {
     const { tableEntry } = props;
 
     return (
       <tr>
           {
-              Object.values(tableEntry).map((content, index) => (
-                  <ReadOnlyCell content={content} />
+              Object.values(tableEntry).map((content) => (
+                  <Cell content={content} />
               ))
           }
       </tr>
     );
 }
 
-export default TableRow;
+export default Row;

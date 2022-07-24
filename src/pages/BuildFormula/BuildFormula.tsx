@@ -1,16 +1,19 @@
-import styles from './EditFormula.module.css';
-import BuilderInputs from "./components/inputs/BuilderInputs";
-import InputIngredients from "./components/ingredients/InputIngredients";
+import styles from './BuildFormula.module.css';
+import TableInputs from "./components/Inputs/TableInputs";
+import Table from "./components/Table/Table";
+import TableControls from "./components/Controls/TableControls";
 
 
-const EditFormula = () => {
+const BuildFormula = () => {
     return (
-        <section>
-            <BuilderInputs />
+        <div className={styles.buildFormula}>
+            <TableInputs />
 
-            <InputIngredients />
-        </section>
+            <Table />
+
+            <TableControls deletable={false}/>
+        </div>
     )
 }
 
-export default EditFormula;
+export default BuildFormula;
