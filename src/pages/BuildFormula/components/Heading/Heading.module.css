@@ -1,0 +1,13 @@
+.heading {
+    display: flex;
+    width: auto;
+}
+
+.description {
+    text-align: center;
+}
+
+.vitals {
+    margin-left: 1rem;
+}
+

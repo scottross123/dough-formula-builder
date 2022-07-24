@@ -1,8 +1,8 @@
-type TableControlsProps = {
+type ControlsProps = {
     deletable: boolean
 }
 
-const TableControls = (props: TableControlsProps) => {
+const Controls = (props: ControlsProps) => {
     const { deletable } = props;
 
     return (
@@ -13,4 +13,4 @@ const TableControls = (props: TableControlsProps) => {
     );
 }
 
-export default TableControls;
+export default Controls;
