@@ -1,10 +1,10 @@
-import Table from "./components/table/Table";
 import styles from './ViewFormula.module.css'
+import Vitals from "./components/vitals/Vitals";
 
 const ViewFormula = () => {
     return (
         <section className={styles.main}>
-            <Table />
+            <Vitals breadName={'Sourdough Baguettes'}/>
         </section>
     );
 }
