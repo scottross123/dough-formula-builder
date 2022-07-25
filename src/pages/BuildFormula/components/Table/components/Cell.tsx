@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { metricFormat , percentFormat } from "../../../utils/numberFormats";
+import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
 
 type CellProps  = {
     content: number | string,
@@ -11,6 +12,16 @@ const Cell = (props: CellProps) => {
     const [editable, setEditable] = useState<boolean>(false)
     const ref = useRef<HTMLTableCellElement>(null);
 
+    const handleOutsideClick = () => {
+        setEditable(false);
+    }
+
+    useOnOutsideClick(ref, () => handleOutsideClick())
+
+    const handleClick = () => {
+        setEditable(true);
+    }
+
     let formattedContent = content.toString();
     switch (columnIndex) {
         case 1:
@@ -20,24 +31,6 @@ const Cell = (props: CellProps) => {
             formattedContent = percentFormat(content as number);
             break;
     }
-
-    const handleClick = () => {
-        setEditable(true);
-    }
-
-    const handleClickOutside = (e: Event) => {
-        if (!ref.current?.contains(e.target as Node)) {
-            setEditable(false);
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener('click', handleClickOutside, true);
-        return () => {
-            document.removeEventListener('click', handleClickOutside, true)
-        }
-
-    }, []);
 
     if (editable) {
         return (
