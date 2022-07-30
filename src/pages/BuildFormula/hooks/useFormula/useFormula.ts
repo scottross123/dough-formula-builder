@@ -114,7 +114,7 @@ const useFormula = () =>  {
     }
 
     const getTotalRatio = (): number => {
-        const {formula } = state;
+        const { formula } = state;
         return calcTotalRatio(formula);
     }
 
