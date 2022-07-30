@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState} from "react";
 import { metricFormat , percentFormat } from "../../../utils/numberFormats";
 import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
 
@@ -11,25 +11,22 @@ const Cell = (props: CellProps) => {
     const { content, columnIndex } = props;
     const [editable, setEditable] = useState<boolean>(false)
     const ref = useRef<HTMLTableCellElement>(null);
+    useOnOutsideClick(ref, () => setEditable(false))
 
-    const handleOutsideClick = () => {
-        setEditable(false);
+    const handleChange = (e: FormEvent<HTMLInputElement>) => {
+        console.log(e.currentTarget.value);
+        // dispatch function to update table
+
     }
 
-    useOnOutsideClick(ref, () => handleOutsideClick())
-
-    const handleClick = () => {
-        setEditable(true);
-    }
-
-    let formattedContent = content.toString();
-    switch (columnIndex) {
-        case 1:
-            formattedContent = metricFormat(content as number);
-            break;
-        case 2:
-            formattedContent = percentFormat(content as number);
-            break;
+    const formatContent = (content: string | number) => {
+        switch (columnIndex) {
+            case 1:
+                return metricFormat(content as number);
+            case 2:
+                return percentFormat(content as number);
+        }
+        return content.toString();
     }
 
     if (editable) {
@@ -37,17 +34,16 @@ const Cell = (props: CellProps) => {
             <td ref={ref}>
                 <input
                     type={typeof content === "number" ? "number" : "text"}
-                    min="0"
-                    max="100"
                     value={content}
+                    onChange={handleChange}
                 />
             </td>
         )
     }
 
     return (
-        <td onClick={handleClick}>
-            {formattedContent}
+        <td onClick={() => setEditable(true)}>
+            {formatContent(content)}
         </td>
     )
 }

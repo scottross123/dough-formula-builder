@@ -1,17 +1,18 @@
 import Cell from './Cell';
-import { TableEntry } from "../types";
+import { formulaRow } from "../../../hooks/useFormula/useFormula";
 
 type TableRowProps = {
-    tableEntry: TableEntry
+    row: formulaRow,
 }
 
 const Row = (props: TableRowProps) => {
-    const { tableEntry } = props;
+    const { row: { ingredient, metric, ratio } } = props;
+    const tableEntry: [string, number, number] = [ingredient, metric, ratio]
 
     return (
       <tr>
           {
-              Object.values(tableEntry).map((content, columnIndex) => (
+              tableEntry.map((content, columnIndex) => (
                   <Cell content={content} columnIndex={columnIndex} />
               ))
           }

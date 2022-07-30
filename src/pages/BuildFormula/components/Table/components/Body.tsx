@@ -1,18 +1,18 @@
-import { TableEntry } from "../types";
+import {formulaRow} from "../../../hooks/useFormula/useFormula";
 import Row from "./Row";
 
 type BodyProps = {
-    tableEntries: TableEntry[]
+    formula: formulaRow[]
 }
 
 const Body = (props: BodyProps) => {
-    const { tableEntries } = props;
+    const { formula } = props;
 
     return (
         <tbody>
         {
-            tableEntries.map((tableEntry) => (
-                <Row tableEntry={tableEntry} />
+            formula.map((row) => (
+                <Row row={row} />
             ))
         }
         </tbody>

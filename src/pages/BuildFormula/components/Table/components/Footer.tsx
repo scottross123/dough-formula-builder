@@ -3,32 +3,19 @@ import { metricFormat, percentFormat } from "../../../utils/numberFormats";
 
 
 type FooterProps = {
-    tableEntries: TableEntry[]
+    totalMetric: number,
+    totalRatio: number,
 }
 
 const Footer = (props: FooterProps) => {
-    const { tableEntries } = props;
-    const { ingredient, metric, percent } = tableEntries.reduce<TableEntry>(
-        ({metric: prevMetric, percent: prevPercent},
-         {metric: currMetric, percent: currPercent}) =>
-        ({
-            ingredient: 'Total',
-            metric: prevMetric + currMetric,
-            percent: prevPercent + currPercent,
-        }),
-        {
-            ingredient: 'Total',
-            metric: 0,
-            percent: 0,
-        }
-    );
+    const { totalMetric, totalRatio } = props;
 
     return (
         <tfoot>
             <tr>
-                <td>{ingredient}</td>
-                <td>{metricFormat(metric)}</td>
-                <td>{percentFormat(percent)}</td>
+                <td>Total</td>
+                <td>{metricFormat(totalMetric)}</td>
+                <td>{percentFormat(totalRatio)}</td>
             </tr>
         </tfoot>
     )
