@@ -1,4 +1,4 @@
-import {formulaRow} from "../../../hooks/useFormula/useFormula";
+import { formulaRow } from "../../../hooks/useFormula/useFormula";
 import Row from "./Row";
 
 type BodyProps = {
