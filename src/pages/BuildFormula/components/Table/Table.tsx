@@ -1,11 +1,11 @@
 import styles from './table.module.css';
-import { useState } from "react";
+import { useContext } from "react";
 import Footer from "./components/Footer";
 import Body from "./components/Body";
-import useFormula, { formulaRow } from "../../hooks/useFormula/useFormula";
+import { FormulaContext } from "../../contexts";
 
 const Table = () => {
-    const { state: { formula }, getTotalMetric, getTotalRatio } = useFormula();
+    const ctx = useContext(FormulaContext);
 
     return (
         <table className={styles.table}>
@@ -16,8 +16,8 @@ const Table = () => {
                     <th>Baker's %</th>
                 </tr>
             </thead>
-            <Body formula={formula} />
-            <Footer totalMetric={getTotalMetric()} totalRatio={getTotalRatio()} />
+            <Body formula={ctx!.state.formula} />
+            <Footer totalMetric={ctx!.getTotalMetric()} totalRatio={ctx!.getTotalRatio()} />
         </table>
     )
 }

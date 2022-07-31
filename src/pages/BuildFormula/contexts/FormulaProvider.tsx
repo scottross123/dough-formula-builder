@@ -1,4 +1,67 @@
-import { createContext } from "react";
-import useFormula, { formulaRow } from "../hooks/useFormula/useFormula";
+import { createContext, useMemo, ReactNode, FC, ComponentType } from "react";
+import useFormula, {formulaRow, formulaState} from "../hooks/useFormula/useFormula";
 
-export const FormulaContext = createContext(null);
+const defaultFormula: formulaRow[] = [
+    {
+        id: 1,
+        ingredient: 'Bread Flour',
+        isFlour: true,
+        metric: 500,
+        ratio: 1.0,
+    },
+    {
+        id: 2,
+        ingredient: 'Water',
+        metric: 375,
+        ratio: .75,
+    },
+    {
+        id: 3,
+        ingredient: 'Salt',
+        metric: 9,
+        ratio: .018,
+    },
+    {
+        id: 4,
+        ingredient: 'Yeast',
+        metric: 5,
+        ratio: .01,
+    },
+];
+
+type FormulaContextType = {
+    state: formulaState,
+    updateMetric: (id: number, newMetric: number) => void,
+    updateRatio: (id: number, newRatio: number) => void,
+    getTotalMetric: () => number,
+    getTotalRatio: () => number,
+}
+
+export const FormulaContext = createContext<FormulaContextType | null>(null);
+
+type FormulaProviderProps = {
+    children?: ReactNode
+}
+
+export const FormulaProvider = ( props: FormulaProviderProps ) => {
+    const { children } = props;
+
+    const {
+        state,
+        updateMetric,
+        updateRatio,
+        getTotalMetric,
+        getTotalRatio
+    } = useFormula({formula: defaultFormula});
+    const value = useMemo(() => ({
+        state, updateMetric, updateRatio, getTotalMetric, getTotalRatio
+    }), []);
+
+    return (
+        <FormulaContext.Provider value={value}>
+            {children}
+        </FormulaContext.Provider>
+    );
+}
+
+export default FormulaProvider;

@@ -18,46 +18,16 @@ export type formulaRow = {
     ratio: number,
 }
 
-type formulaState = { formula: formulaRow[] };
+export type formulaState = { formula: formulaRow[] };
 
-const useFormula = () =>  {
-    const initialFormula: formulaState = {
-        formula: [
-            {
-                id: 1,
-                ingredient: 'Bread Flour',
-                isFlour: true,
-                metric: 500,
-                ratio: 1.0,
-            },
-            {
-                id: 2,
-                ingredient: 'Water',
-                metric: 375,
-                ratio: .75,
-            },
-            {
-                id: 3,
-                ingredient: 'Salt',
-                metric: 9,
-                ratio: .018,
-            },
-            {
-                id: 4,
-                ingredient: 'Yeast',
-                metric: 5,
-                ratio: .01,
-            },
-        ]
-    };
-
+const useFormula = (initialFormula: formulaState) =>  {
     const reducer = (state: formulaState, action: Action): formulaState => {
         const { type, payload } = action;
 
         switch (type) {
             case ACTIONS.UPDATE_METRIC: {
-                const {id, metric} = payload;
-                const {formula} = state;
+                const { id, metric } = payload;
+                const { formula } = state;
                 const index = formula.findIndex(formulaRow => formulaRow.id === id);
                 return {
                     formula:
@@ -98,13 +68,11 @@ const useFormula = () =>  {
 
     const [state, dispatch] = useReducer(reducer, initialFormula);
 
-    const updateMetric = (row: formulaRow): void => {
-        const { id, metric } = row;
+    const updateMetric = (id: number, metric: number): void => {
         dispatch({ type: ACTIONS.UPDATE_METRIC, payload: { id, metric } });
     }
 
-    const updateRatio = (row: formulaRow): void => {
-        const { id, ratio } = row;
+    const updateRatio = (id: number, ratio: number): void => {
         dispatch({ type: ACTIONS.UPDATE_RATIO, payload: { id, ratio } });
     }
 

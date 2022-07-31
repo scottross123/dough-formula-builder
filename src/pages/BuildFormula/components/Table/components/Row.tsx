@@ -6,14 +6,14 @@ type TableRowProps = {
 }
 
 const Row = (props: TableRowProps) => {
-    const { row: { ingredient, metric, ratio } } = props;
+    const { row: { id, ingredient, metric, ratio } } = props;
     const tableEntry: [string, number, number] = [ingredient, metric, ratio]
 
     return (
       <tr>
           {
               tableEntry.map((content, columnIndex) => (
-                  <Cell content={content} columnIndex={columnIndex} />
+                  <Cell rowId={id} content={content} columnIndex={columnIndex} />
               ))
           }
       </tr>
