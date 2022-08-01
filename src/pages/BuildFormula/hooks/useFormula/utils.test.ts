@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { formulaRow } from "./useFormula";
-import { sumFlourMetric, sumFlourRatio } from "./utils";
+import { sumFlourMetric, sumFlourRatio } from "../../../../app/utils";
 
 const formula: formulaRow[] = [
     {

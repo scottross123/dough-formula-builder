@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { sumFlourRatio, sumFlourMetric, calcMetric, calcRatio, calcTotalRatio, calcTotalMetric } from "./utils";
+import { sumFlourRatio, sumFlourMetric, calcMetric, calcRatio, calcTotalRatio, calcTotalMetric } from "../../../../app/utils";
 
 enum ACTIONS {
     UPDATE_METRIC = 'update-metric',

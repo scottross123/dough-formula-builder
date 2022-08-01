@@ -1,8 +1,9 @@
 import Cell from './Cell';
 import { formulaRow } from "../../../hooks/useFormula/useFormula";
+import {FormulaRow} from "../../../../../app/formulaSlice";
 
 type TableRowProps = {
-    row: formulaRow,
+    row: FormulaRow,
 }
 
 const Row = (props: TableRowProps) => {
