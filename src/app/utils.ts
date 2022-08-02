@@ -14,7 +14,7 @@ export const sumFlourMetric = (formula: FormulaRow[]): number  => {
         );
 }
 
-export const calcRatio = (formula: FormulaRow[], metric: number): number => {
+export const calcRatio = (formula: FormulaRow[] | WritableDraft<F>, metric: number): number => {
     return metric / sumFlourMetric(formula);
 }
 

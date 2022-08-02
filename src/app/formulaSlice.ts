@@ -47,19 +47,33 @@ const formulaSlice = createSlice({
         addIngredient: (state, action) => {
           state.push(action.payload)
         },
+        removeIngredient: (state, action) => {
+          state.push(action.payload)
+        },
         updateMetric: (state, action: PayloadAction<{ id: number, newMetric: number }>) => {
             const { id, newMetric } = action.payload;
-            const formulaRow = state.find((formulaRow) => formulaRow.id === id)
+            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
             formulaRow!.metric = newMetric;
-            //state[1].ratio = calcRatio(state[1], action.payload.metric);
         },
-        testReducer: (state) => {
-            state[1].metric += 100;
-        }
+        calcRatioFromMetric: (state, action: PayloadAction<{ id: number, metric: number }>) => {
+            const { id, metric } = action.payload;
+            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
+            //formulaRow!.ratio = calcRatio(formulaRow, metric)
+        },
+        updateRatio: (state, action: PayloadAction<{ id: number, newMetric: number }>) => {
+            const { id, newMetric } = action.payload;
+            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
+            formulaRow!.metric = newMetric;
+        },
+        calcMetricFromRatio: (state, action: PayloadAction<{ id: number, metric: number }>) => {
+            const { id, metric } = action.payload;
+            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
+            //formulaRow!.ratio = calcRatio(formulaRow, metric)
+        },
 
     }
 });
-export const selectFormula = (state: RootState) => state.formula;
-export const { addIngredient, updateMetric, testReducer } = formulaSlice.actions;
+
+export const { addIngredient, updateMetric } = formulaSlice.actions;
 export default formulaSlice.reducer;
 
