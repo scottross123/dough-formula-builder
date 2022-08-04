@@ -1,5 +1,6 @@
-import {useAppDispatch} from "../../../../app/hooks";
-import {addIngredient, testReducer, updateMetric} from "../../../../app/formulaSlice";
+import {useAppDispatch, useAppSelector} from "../../../../app/hooks";
+import {addIngredient, calcRatioFromMetric, updateMetric} from "../../../../app/formulaSlice";
+import {selectFlourWeight, selectFormula} from "../../../../app/selectors";
 
 type ControlsProps = {
     deletable: boolean
@@ -8,18 +9,19 @@ type ControlsProps = {
 const Controls = (props: ControlsProps) => {
     const { deletable } = props;
     const dispatch = useAppDispatch();
+    const formula = useAppSelector(selectFormula);
 
     const handleClick = () => {
         dispatch(addIngredient({
             id: 40,
             ingredient: 'Egg',
-            metric: 5,
-            ratio: .01,
+            metric: 400,
+            ratio: .7,
         },))
     }
 
     const handleClickTwo = () => {
-        dispatch(updateMetric({id: 40, newMetric: 500}))
+        dispatch(calcRatioFromMetric({id: 40, metric: 400}))
     }
 
     return (

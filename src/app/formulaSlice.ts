@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {calcMetric, calcRatio} from "./utils";
 import {RootState} from "./store";
+import {selectFlourWeight} from "./selectors";
 
 export type FormulaRow = {
     id: number,
@@ -58,7 +59,10 @@ const formulaSlice = createSlice({
         calcRatioFromMetric: (state, action: PayloadAction<{ id: number, metric: number }>) => {
             const { id, metric } = action.payload;
             const formulaRow = state.find((formulaRow) => formulaRow.id === id);
-            //formulaRow!.ratio = calcRatio(formulaRow, metric)
+            const flourRows = state.filter(row => row.isFlour);
+            const flourMetric = flourRows.reduce((sum, formulaRow) => sum + formulaRow.metric, 0);
+            console.log({"metric": metric, "flourRows": flourRows, "flourMetric": flourMetric, "calc": metric/flourMetric})
+            formulaRow!.ratio = metric / flourMetric;
         },
         updateRatio: (state, action: PayloadAction<{ id: number, newMetric: number }>) => {
             const { id, newMetric } = action.payload;
@@ -70,10 +74,9 @@ const formulaSlice = createSlice({
             const formulaRow = state.find((formulaRow) => formulaRow.id === id);
             //formulaRow!.ratio = calcRatio(formulaRow, metric)
         },
-
     }
 });
 
-export const { addIngredient, updateMetric } = formulaSlice.actions;
+export const { addIngredient, updateMetric, calcRatioFromMetric } = formulaSlice.actions;
 export default formulaSlice.reducer;
 

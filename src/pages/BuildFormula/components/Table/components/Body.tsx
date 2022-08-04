@@ -21,3 +21,5 @@ const Body = (props: BodyProps) => {
 }
 
 export default Body;
+
+// fix key prop warning in console

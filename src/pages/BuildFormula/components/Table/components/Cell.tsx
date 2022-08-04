@@ -4,9 +4,10 @@ import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
 import { FormulaContext } from "../../../contexts";
 import {formulaRow} from "../../../hooks/useFormula/useFormula";
 import useInput from "../../../hooks/useInput";
-import {useAppDispatch} from "../../../../../app/hooks";
-import {testReducer, updateMetric} from "../../../../../app/formulaSlice";
+import {useAppDispatch, useAppSelector} from "../../../../../app/hooks";
+import {calcRatioFromMetric, updateMetric} from "../../../../../app/formulaSlice";
 import row from "./Row";
+import {selectFlourWeight, selectFormula} from "../../../../../app/selectors";
 
 type CellProps  = {
     rowId: number,
@@ -19,7 +20,7 @@ const Cell = (props: CellProps) => {
     const [editable, setEditable] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
-    const { value, handleValueChange } = useInput({initialValue: content.toString()})
+    //const { value, handleValueChange } = useInput({initialValue: content.toString()})
 
     const ref = useRef<HTMLTableCellElement>(null);
 
@@ -31,6 +32,7 @@ const Cell = (props: CellProps) => {
 
     const handleOutsideClick = () => {
         setEditable(false);
+        //dispatch(calcRatioFromMetric({id: rowId, metric: content as number}))
     }
     useOnOutsideClick(ref, () => handleOutsideClick());
 

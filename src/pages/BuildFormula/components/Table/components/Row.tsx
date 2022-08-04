@@ -22,3 +22,5 @@ const Row = (props: TableRowProps) => {
 }
 
 export default Row;
+
+// fix key prop warning in console

@@ -1,10 +1,10 @@
-import { createSelector } from '@reduxjs/toolkit';
+import {createDraftSafeSelector, createSelector} from '@reduxjs/toolkit';
 import {FormulaRow} from "./formulaSlice";
 import {RootState} from "./store";
 
 export const selectFormula = (state: RootState) => state.formula;
 
-const getFlours = (formula: FormulaRow[]) => {
+const getFlours = (formula: FormulaRow[]): FormulaRow[] => {
     return formula.filter(row => row.isFlour);
 }
 
@@ -13,9 +13,17 @@ export const selectFlours = createSelector(
     getFlours
 );
 
-const getFlourWeight = (formula: FormulaRow[]) => {
-
+const getTotalMetric = (formula: FormulaRow[]): number => {
+    return formula.reduce(
+        (sum, formulaRow) =>
+            sum + formulaRow.metric, 0
+    );
 }
+
+export const selectFlourWeight = createDraftSafeSelector(
+    selectFlours,
+    getTotalMetric,
+)
 
 const exampleState: { formula: FormulaRow[] } = {
     formula: [
@@ -56,3 +64,4 @@ const exampleState: { formula: FormulaRow[] } = {
 
 console.log(selectFormula(exampleState));
 console.log(selectFlours(exampleState));
+console.log(selectFlourWeight(exampleState));
