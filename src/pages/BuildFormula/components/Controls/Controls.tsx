@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../../../../app/hooks";
-import {addIngredient, calcRatioFromMetric, updateMetric} from "../../../../app/formulaSlice";
+import {addIngredient, calcRatioFromMetric, updateMetric} from "../../../../app/recipeSlice";
 import {selectFlourWeight, selectFormula} from "../../../../app/selectors";
 
 type ControlsProps = {
@@ -14,7 +14,7 @@ const Controls = (props: ControlsProps) => {
     const handleClick = () => {
         dispatch(addIngredient({
             id: 40,
-            ingredient: 'Egg',
+            name: 'Egg',
             metric: 400,
             ratio: .7,
         },))
@@ -27,7 +27,7 @@ const Controls = (props: ControlsProps) => {
     return (
         <div>
             <button onClick={handleClick}>add ingredient</button>
-            <button onClick={handleClickTwo}>change egg to 500</button>
+            <button onClick={handleClickTwo}>change egg ratio</button>
             { deletable ? <button>delete table</button> : <></>}
         </div>
     );

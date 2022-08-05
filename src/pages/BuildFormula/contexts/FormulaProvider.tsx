@@ -4,26 +4,26 @@ import useFormula, {formulaRow, formulaState} from "../hooks/useFormula/useFormu
 const defaultFormula: formulaRow[] = [
     {
         id: 1,
-        ingredient: 'Bread Flour',
+        name: 'Bread Flour',
         isFlour: true,
         metric: 500,
         ratio: 1.0,
     },
     {
         id: 2,
-        ingredient: 'Water',
+        name: 'Water',
         metric: 375,
         ratio: .75,
     },
     {
         id: 3,
-        ingredient: 'Salt',
+        name: 'Salt',
         metric: 9,
         ratio: .018,
     },
     {
         id: 4,
-        ingredient: 'Yeast',
+        name: 'Yeast',
         metric: 5,
         ratio: .01,
     },

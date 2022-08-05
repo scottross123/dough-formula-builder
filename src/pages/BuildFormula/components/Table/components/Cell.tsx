@@ -1,67 +1,75 @@
-import {FormEvent, useContext, useEffect, useRef, useState} from "react";
-import { metricFormat , percentFormat } from "../../../utils/numberFormats";
+import {FormEvent, Fragment, useContext, useEffect, useRef, useState} from "react";
+import {formatContent, metricFormat, percentFormat} from "../../../utils/numberFormats";
 import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
 import { FormulaContext } from "../../../contexts";
 import {formulaRow} from "../../../hooks/useFormula/useFormula";
 import useInput from "../../../hooks/useInput";
 import {useAppDispatch, useAppSelector} from "../../../../../app/hooks";
-import {calcRatioFromMetric, updateMetric} from "../../../../../app/formulaSlice";
+import {updateIngredientRatio } from "../../../../../app/recipeSlice";
 import row from "./Row";
-import {selectFlourWeight, selectFormula} from "../../../../../app/selectors";
 
 type CellProps  = {
-    rowId: number,
+    ingredientId: string,
     content: number | string,
-    columnIndex: number
+    type: 'name' | 'metric' | 'ratio',
 }
 
 const Cell = (props: CellProps) => {
-    const { rowId, content, columnIndex } = props;
+    const { ingredientId, content, type } = props;
     const [editable, setEditable] = useState<boolean>(false);
     const dispatch = useAppDispatch();
-
-    //const { value, handleValueChange } = useInput({initialValue: content.toString()})
-
     const ref = useRef<HTMLTableCellElement>(null);
 
-
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
-        const updatedValue = parseInt(e.currentTarget.value);
-        dispatch(updateMetric({id: rowId, newMetric: updatedValue}))
+        const updatedValue = parseInt(e.currentTarget.value ) / 100;
+        dispatch(updateIngredientRatio({id: ingredientId, newRatio: updatedValue}))
     }
 
     const handleOutsideClick = () => {
         setEditable(false);
-        //dispatch(calcRatioFromMetric({id: rowId, metric: content as number}))
+        console.log("clicked outside")
     }
+
     useOnOutsideClick(ref, () => handleOutsideClick());
-
-    const formatContent = (content: string | number) => {
-        switch (columnIndex) {
-            case 1:
-                return metricFormat(content as number);
-            case 2:
-                return percentFormat(content as number);
-        }
-        return content.toString();
-    }
-
-   if (editable) {
-        return (
-            <td ref={ref}>
+    const inputs = {
+        "name":
+            <Fragment>
                 <input
-                    type={typeof content === "number" ? "number" : "text"}
+                    type="text"
                     value={content}
                     onChange={handleChange}
-                />
+                />,
+            </Fragment>,
+        "metric":
+            <Fragment>
+                <input
+                    type="number"
+                    value={content}
+                    onChange={handleChange}
+                />g,
+            </Fragment>,
+        "ratio":
+            <Fragment>
+                <input
+                    type="number"
+                    value={content as number * 100}
+                    onChange={handleChange}
+                />%
+            </Fragment>,
+    };
+
+   if (editable) {
+       return (
+            <td ref={ref}>
+                { inputs[type] }
             </td>
-        )
+       )
     }
 
 
     return (
         <td onClick={() => setEditable(true)}>
-            {formatContent(content)}
+            {formatContent(type, content)}
         </td>
     )
 }

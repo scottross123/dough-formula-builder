@@ -1,67 +1,36 @@
-import {createDraftSafeSelector, createSelector} from '@reduxjs/toolkit';
-import {FormulaRow} from "./formulaSlice";
+import { createSelector } from '@reduxjs/toolkit';
+import { createStructuredSelector } from 'reselect'
+import {Ingredient} from "./recipeSlice";
 import {RootState} from "./store";
 
-export const selectFormula = (state: RootState) => state.formula;
+export const selectRecipe = (state: RootState) => state.recipe;
+export const selectFormula = (state: RootState) => state.recipe.formula;
 
-const getFlours = (formula: FormulaRow[]): FormulaRow[] => {
-    return formula.filter(row => row.isFlour);
-}
+const selectFormulaIngredients = (state: RootState) => state.recipe.formula.ingredients;
 
-export const selectFlours = createSelector(
-    selectFormula,
-    getFlours
+const selectTotalRatio = createSelector(
+    selectFormulaIngredients, ingredients =>
+        ingredients.reduce((totalRatio, ingredient) => totalRatio + ingredient.ratio, 1)
 );
 
-const getTotalMetric = (formula: FormulaRow[]): number => {
-    return formula.reduce(
-        (sum, formulaRow) =>
-            sum + formulaRow.metric, 0
-    );
-}
+const selectUnitWeight = (state: RootState) => state.recipe.yields.unitWeight;
+const selectUnitQuantity = (state: RootState) => state.recipe.yields.unitQuantity;
+const selectWasteFactor = (state: RootState) => state.recipe.yields.wasteFactor;
 
-export const selectFlourWeight = createDraftSafeSelector(
-    selectFlours,
-    getTotalMetric,
+const selectTotalWeight = createSelector(
+    selectUnitWeight,
+    selectUnitQuantity,
+    selectWasteFactor,
+    ( unitWeight, unitQuantity, wasteFactor ) =>
+        unitWeight * unitQuantity * (1 + wasteFactor)
 )
 
-const exampleState: { formula: FormulaRow[] } = {
-    formula: [
-        {
-            id: 1,
-            ingredient: 'Bread Flour',
-            isFlour: true,
-            metric: 450,
-            ratio: .9,
-        },
-        {
-            id: 3,
-            ingredient: 'Rye Flour',
-            isFlour: true,
-            metric: 50,
-            ratio: .1,
-        },
-        {
-            id: 2,
-            ingredient: 'Water',
-            metric: 375,
-            ratio: .75,
-        },
-        {
-            id: 3,
-            ingredient: 'Salt',
-            metric: 9,
-            ratio: .018,
-        },
-        {
-            id: 4,
-            ingredient: 'Yeast',
-            metric: 5,
-            ratio: .01,
-        },
-    ]
-};
+export const selectTotals = createStructuredSelector({
+    totalRatio: selectTotalRatio,
+    totalWeight: selectTotalWeight,
+});
 
-console.log(selectFormula(exampleState));
-console.log(selectFlours(exampleState));
-console.log(selectFlourWeight(exampleState));
+
+import {initialState} from "./recipeSlice";
+
+alert(selectTotalWeight({recipe: initialState}));

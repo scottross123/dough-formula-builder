@@ -1,4 +1,4 @@
-import { FormulaRow } from "./formulaSlice";
+import { FormulaRow } from "./recipeSlice";
 
 export const sumFlourRatio = (formula: FormulaRow[]): number  => {
     return formula.filter(row => row.isFlour)

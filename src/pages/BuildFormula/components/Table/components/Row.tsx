@@ -1,20 +1,21 @@
 import Cell from './Cell';
-import { formulaRow } from "../../../hooks/useFormula/useFormula";
-import {FormulaRow} from "../../../../../app/formulaSlice";
+import { Ingredient } from "../../../../../app/recipeSlice";
 
 type TableRowProps = {
-    row: FormulaRow,
+    row: Ingredient,
+    type: 'flour' | 'ingredient',
 }
 
 const Row = (props: TableRowProps) => {
-    const { row: { id, ingredient, metric, ratio } } = props;
-    const tableEntry: [string, number, number] = [ingredient, metric, ratio]
+    const { row: { id, name, ratio } } = props;
+    const tableEntry: [string, number, number] = [name, ratio, ratio]
+    const types = ['name', 'metric', 'ratio']
 
     return (
       <tr>
           {
-              tableEntry.map((content, columnIndex) => (
-                  <Cell rowId={id} content={content} columnIndex={columnIndex} />
+              tableEntry.map((content, index) => (
+                  <Cell ingredientId={id} content={content} type={types[index]} />
               ))
           }
       </tr>
@@ -24,3 +25,5 @@ const Row = (props: TableRowProps) => {
 export default Row;
 
 // fix key prop warning in console
+
+// divide into flour row and ingredient row

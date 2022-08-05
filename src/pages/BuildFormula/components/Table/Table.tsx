@@ -8,8 +8,6 @@ import {selectFormula} from "../../../../app/selectors";
 import Row from "./components/Row";
 
 const Table = () => {
-    const formula = useAppSelector(selectFormula)
-
     return (
         <table className={styles.table}>
             <thead>
@@ -19,21 +17,11 @@ const Table = () => {
                 <th>Baker's %</th>
             </tr>
             </thead>
-            <Body formula={formula} />
+            <Body />
+            <Footer />
         </table>
     )
 
 }
 
 export default Table;
-
-/*<table className={styles.table}>
-            <thead>
-                <tr>
-                    <th>Ingredients</th>
-                    <th>Metric</th>
-                    <th>Baker's %</th>
-                </tr>
-            </thead>
-            <Body formula={formula} />
-        </table>*/
