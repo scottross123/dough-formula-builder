@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {calcMetric, calcRatio} from "./utils";
 import {RootState} from "./store";
-import {selectFlourWeight} from "./selectors";
 import { v4 as uuidv4 } from 'uuid';
 
 export type Ingredient = {

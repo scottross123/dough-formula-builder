@@ -1,8 +1,6 @@
-import { formulaRow } from "../../../hooks/useFormula/useFormula";
 import Row from "./Row";
-import { Formula } from "../../../../../app/recipeSlice";
-import {useAppSelector} from "../../../../../app/hooks";
-import {selectFormula} from "../../../../../app/selectors";
+import { useAppSelector } from "../../../../../app/hooks";
+import { selectFormula } from "../../../../../app/recipeSelectors";
 
 const Body = () => {
     const { flours, ingredients } = useAppSelector(selectFormula)

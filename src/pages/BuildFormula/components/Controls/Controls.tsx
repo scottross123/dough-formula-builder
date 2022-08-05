@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../../../../app/hooks";
-import {addIngredient, calcRatioFromMetric, updateMetric} from "../../../../app/recipeSlice";
-import {selectFlourWeight, selectFormula} from "../../../../app/selectors";
+import {addIngredient, } from "../../../../app/recipeSlice";
+import { selectFormula} from "../../../../app/recipeSelectors";
 
 type ControlsProps = {
     deletable: boolean
