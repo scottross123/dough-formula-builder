@@ -21,7 +21,7 @@ const Controls = (props: ControlsProps) => {
     }
 
     const handleClickTwo = () => {
-        dispatch(calcRatioFromMetric({id: 40, metric: 400}))
+        //dispatch(calcRatioFromMetric({id: 40, metric: 400}))
     }
 
     return (

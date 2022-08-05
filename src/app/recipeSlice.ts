@@ -107,28 +107,16 @@ const recipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient) => ingredient.id === id);
             ingredient!.ratio = newRatio;
         },
-        calcRatioFromMetric: (state, action: PayloadAction<{ id: number, metric: number }>) => {
-            const { id, metric } = action.payload;
-            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
-            const flourRows = state.filter(row => row.isFlour);
-            const flourMetric = flourRows.reduce((sum, formulaRow) => sum + formulaRow.metric, 0);
-            formulaRow!.ratio = metric / flourMetric;
-        },
-        updateRatio: (state, action: PayloadAction<{ id: number, newMetric: number }>) => {
-            const { id, newMetric } = action.payload;
-            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
-            formulaRow!.metric = newMetric;
-        },
-        calcMetricFromRatio: (state, action: PayloadAction<{ id: number, ratio: number }>) => {
-            const { id, ratio } = action.payload;
-            const formulaRow = state.find((formulaRow) => formulaRow.id === id);
-            const flourRows = state.filter(row => row.isFlour);
-            const flourMetric = flourRows.reduce((sum, formulaRow) => sum + formulaRow.metric, 0);
-            formulaRow!.ratio = ratio * flourMetric;
-        },
     }
 });
 
-export const { addIngredient, calcRatioFromMetric, updateIngredientRatio } = recipeSlice.actions;
+export const {
+    addFlour,
+    removeFlour,
+    addIngredient,
+    removeIngredient,
+    updateFlourRatio,
+    updateIngredientRatio
+} = recipeSlice.actions;
 export default recipeSlice.reducer;
 
