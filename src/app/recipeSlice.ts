@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "./store";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -97,14 +97,29 @@ const recipeSlice = createSlice({
         },
         updateFlourRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const flour = state.formula.flours.find((ingredient) => ingredient.id === id);
-            flour!.ratio = newRatio;
+            const difference = 1 - newRatio;
+            const flour = state.formula.flours.find((flour: Ingredient) => flour.id === id);
+            const largestFlour = state.formula.flours.reduce((prevFlour: Ingredient, currFlour: Ingredient) =>
+                (prevFlour.ratio > currFlour.ratio) ? prevFlour : currFlour);
+            flour!.ratio = parseFloat(newRatio.toFixed(3));
+            console.log(difference);
+            largestFlour.ratio += difference;
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const ingredient = state.formula.ingredients.find((ingredient) => ingredient.id === id);
-            ingredient!.ratio = newRatio;
+            const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
+            ingredient!.ratio = parseFloat(newRatio.toFixed(3));
         },
+        updateIngredientName: (state, action: PayloadAction<{id: string, newName: string}>) => {
+            const { id, newName } = action.payload;
+            const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
+            ingredient!.name = newName;
+        },
+        addToUnitWeight: (state, action: PayloadAction<{additionalWeight: number}>) => {
+            const { additionalWeight } = action.payload;
+            const additionalUnitWeight = additionalWeight / state.yields.unitQuantity;
+            state.yields.unitWeight += Math.round(additionalUnitWeight);
+        }
     }
 });
 
@@ -114,7 +129,9 @@ export const {
     addIngredient,
     removeIngredient,
     updateFlourRatio,
-    updateIngredientRatio
+    updateIngredientRatio,
+    updateIngredientName,
+    addToUnitWeight,
 } = recipeSlice.actions;
 export default recipeSlice.reducer;
 

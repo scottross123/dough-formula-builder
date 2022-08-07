@@ -3,19 +3,19 @@ import { useAppSelector } from "../../../../../app/hooks";
 import { selectFormula } from "../../../../../app/recipeSelectors";
 
 const Body = () => {
-    const { flours, ingredients } = useAppSelector(selectFormula)
+    const { flours, ingredients } = useAppSelector(selectFormula);
 
     return (
         <tbody>
         {
-            flours.map((row) => (
-                <Row type={'flour'} row={row}/>
+            flours.map((flour) => (
+                <Row type={'flour'} ingredient={flour}/>
             ))
         }
 
         {
-            ingredients.map((row) => (
-            <Row type={'ingredient'} row={row} />
+            ingredients.map((ingredient) => (
+            <Row type={'ingredient'} ingredient={ingredient} />
             ))
         }
         </tbody>

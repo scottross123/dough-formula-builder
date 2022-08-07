@@ -1,21 +1,34 @@
-import Cell from './Cell';
+import Cell from './Cell/Cell';
 import { Ingredient } from "../../../../../app/recipeSlice";
+import {useAppSelector} from "../../../../../app/hooks";
+import {selectIngredientWeight} from "../../../../../app/recipeSelectors";
+import NameCell from "./Cell/NameCell";
+import RatioCell from "./Cell/RatioCell";
+import WeightCell from "./Cell/WeightCell";
 
 type TableRowProps = {
-    row: Ingredient,
+    ingredient: Ingredient,
     type: 'flour' | 'ingredient',
 }
 
+type Entry = Ingredient & {
+    metric: number;
+}
+
 const Row = (props: TableRowProps) => {
-    const { row: { id, name, ratio } } = props;
-    const tableEntry: [string, number, number] = [name, ratio, ratio]
-    const types = ['name', 'metric', 'ratio']
+    const { ingredient: { id, name, ratio }, type } = props;
+    //const metric = useAppSelector((state) => selectIngredientWeight(state, id as never));
+    const entry = [
+        <NameCell ingredientId={id} name={name} type={type} />,
+        <WeightCell ingredientId={id} ratio={ratio} type={type} />,
+        <RatioCell ingredientId={id} ratio={ratio} type={type} />,
+    ];
 
     return (
       <tr>
           {
-              tableEntry.map((content, index) => (
-                  <Cell ingredientId={id} content={content} type={types[index]} />
+              entry.map((cell, index) => (
+                  cell
               ))
           }
       </tr>

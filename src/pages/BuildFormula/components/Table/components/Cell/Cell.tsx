@@ -1,22 +1,19 @@
 import {FormEvent, Fragment, useContext, useEffect, useRef, useState} from "react";
-import {formatContent, metricFormat, percentFormat} from "../../../utils/numberFormats";
-import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
-import { FormulaContext } from "../../../contexts";
-import {formulaRow} from "../../../hooks/useFormula/useFormula";
-import useInput from "../../../hooks/useInput";
-import {useAppDispatch, useAppSelector} from "../../../../../app/hooks";
-import {updateIngredientRatio } from "../../../../../app/recipeSlice";
-import row from "./Row";
+import {formatContent, metricFormat, percentFormat} from "../../../../utils/numberFormats";
+import { useOnOutsideClick } from "../../../../hooks/useOnOutsideClick";
+import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
+import {updateIngredientRatio } from "../../../../../../app/recipeSlice";
 
 type CellProps  = {
     ingredientId: string,
     content: number | string,
-    type: 'name' | 'metric' | 'ratio',
+    type: string,
 }
 
 const Cell = (props: CellProps) => {
     const { ingredientId, content, type } = props;
     const [editable, setEditable] = useState<boolean>(false);
+    const [metric, setMetric] = useState<number>()
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLTableCellElement>(null);
 
@@ -38,7 +35,7 @@ const Cell = (props: CellProps) => {
                     type="text"
                     value={content}
                     onChange={handleChange}
-                />,
+                />
             </Fragment>,
         "metric":
             <Fragment>
@@ -46,7 +43,7 @@ const Cell = (props: CellProps) => {
                     type="number"
                     value={content}
                     onChange={handleChange}
-                />g,
+                />g
             </Fragment>,
         "ratio":
             <Fragment>
@@ -61,11 +58,10 @@ const Cell = (props: CellProps) => {
    if (editable) {
        return (
             <td ref={ref}>
-                { inputs[type] }
+                { inputs[type as 'name' | 'metric' | 'ratio'] }
             </td>
        )
     }
-
 
     return (
         <td onClick={() => setEditable(true)}>

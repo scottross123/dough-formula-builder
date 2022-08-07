@@ -1,27 +1,34 @@
 import styles from './Heading.module.css';
+import {useAppSelector} from "../../../../app/hooks";
+import {selectFormula, selectRecipe, selectTotalWeight} from "../../../../app/recipeSelectors";
 
 const Heading = () => {
+    const { name, description, yields: { unitQuantity, unitWeight } } = useAppSelector(selectRecipe);
+    const totalWeight = useAppSelector(selectTotalWeight);
+
     return (
+
         <section className={styles.heading}>
             <div className={styles.description}>
-                <h1>Sourdough Baguettes</h1>
-                <p>Baguettes made with sourdough levain and fresh yeast.</p>
+                <h1>{name}</h1>
+                <p>{description}</p>
             </div>
 
             <table className={styles.vitals}>
+
                 <tr>
                     <td className={styles.info}>Yield</td>
-                    <td>3 Units</td>
+                    <td>{unitQuantity} units</td>
                 </tr>
 
                 <tr>
-                    <td>Weight</td>
-                    <td>1500g</td>
+                    <td>Unit Weight</td>
+                    <td>{unitWeight}g</td>
                 </tr>
 
                 <tr>
-                    <td>PFF</td>
-                    <td>15%</td>
+                    <td>Total Weight</td>
+                    <td>{totalWeight}g</td>
                 </tr>
             </table>
         </section>

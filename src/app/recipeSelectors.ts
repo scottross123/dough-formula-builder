@@ -13,15 +13,15 @@ const selectFormulaFlours = (state: RootState) => state.recipe.formula.flours;
 
 const selectTotalRatio = createSelector(
     selectFormulaIngredients, ingredients =>
-        ingredients.reduce((totalRatio, ingredient) => totalRatio + ingredient.ratio, 1)
+        ingredients.reduce((totalRatio: number, ingredient: Ingredient) => totalRatio + ingredient.ratio, 1)
 );
 
-const selectTotalWeight = createSelector(
+export const selectTotalWeight = createSelector(
     selectUnitWeight,
     selectUnitQuantity,
     selectWasteFactor,
     ( unitWeight, unitQuantity, wasteFactor ) =>
-        unitWeight * unitQuantity * (1 + wasteFactor)
+        Math.round(unitWeight * unitQuantity * (1 + wasteFactor))
 );
 
 export const selectTotals = createStructuredSelector({
@@ -29,11 +29,11 @@ export const selectTotals = createStructuredSelector({
     totalWeight: selectTotalWeight,
 });
 
-const selectTotalFlourWeight = createSelector(
+export const selectTotalFlourWeight = createSelector(
     selectTotalWeight,
     selectTotalRatio,
     (totalWeight, totalRatio) =>
-        totalWeight / totalRatio
+        Math.round((totalWeight / totalRatio))
 );
 
 const selectIngredient = createSelector(
@@ -42,34 +42,34 @@ const selectIngredient = createSelector(
         (ingredients, id) => id
     ],
     (ingredients, id) =>
-        Object.assign({}, ...ingredients.filter(ingredient => ingredient.id === id))
+        Object.assign({}, ...ingredients.filter((ingredient: Ingredient) => ingredient.id === id))
 );
 
 export const selectIngredientWeight = createSelector(
     selectIngredient,
     selectTotalFlourWeight,
     (ingredient, totalFlourWeight) =>
-        ingredient.ratio * totalFlourWeight
+        Math.round(ingredient.ratio * totalFlourWeight)
 );
 
-const selectFlour = createSelector(
+export const selectFlour = createSelector(
     [
         selectFormulaFlours,
         (flours, id) => id
     ],
     (flours, id) =>
-        Object.assign({}, ...flours.filter(flour => flour.id === id))
+        Object.assign({}, ...flours.filter((flour: Ingredient) => flour.id === id))
 );
 
 export const selectFlourWeight = createSelector(
     selectFlour,
     selectTotalFlourWeight,
     (flour, totalFlourWeight) =>
-        flour.ratio * totalFlourWeight
+        Math.round(flour.ratio * totalFlourWeight)
 );
 
-/*
-import {initialState} from "./recipeSlice";
 
-const selection = (selectFlourWeight({recipe: initialState}, '1' as never));
-console.log(selection);*/
+/*import {initialState} from "./recipeSlice";
+
+const selection = selectFlourWeight({recipe: initialState}, '1' as never);
+console.log(selection); */

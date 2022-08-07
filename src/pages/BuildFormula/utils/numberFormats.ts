@@ -6,7 +6,7 @@ export const percentFormat = (n: number): string => {
     return parseFloat((n * 100).toFixed(2)) + '%';
 }
 
-export const formatContent = (type: 'name' | 'metric' | 'ratio', content: string | number): string => {
+export const formatContent = (type: string, content: string | number): string => {
     switch (type) {
         case 'metric':
             return metricFormat(content as number);
