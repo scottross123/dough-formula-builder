@@ -1,17 +1,14 @@
 import Row from "./Row";
 import { useAppSelector } from "../../../../../app/hooks";
 import { selectFormula } from "../../../../../app/recipeSelectors";
+import FlourRow from "./FlourRow";
 
 const Body = () => {
     const { flours, ingredients } = useAppSelector(selectFormula);
 
     return (
         <tbody>
-        {
-            flours.map((flour) => (
-                <Row type={'flour'} ingredient={flour}/>
-            ))
-        }
+        <FlourRow />
 
         {
             ingredients.map((ingredient) => (

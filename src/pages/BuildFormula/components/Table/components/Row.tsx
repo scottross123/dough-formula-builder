@@ -19,7 +19,7 @@ const Row = (props: TableRowProps) => {
     const { ingredient: { id, name, ratio }, type } = props;
     //const metric = useAppSelector((state) => selectIngredientWeight(state, id as never));
     const entry = [
-        <NameCell ingredientId={id} name={name} type={type} />,
+        <NameCell ingredientId={id} name={name} />,
         <WeightCell ingredientId={id} ratio={ratio} type={type} />,
         <RatioCell ingredientId={id} ratio={ratio} type={type} />,
     ];

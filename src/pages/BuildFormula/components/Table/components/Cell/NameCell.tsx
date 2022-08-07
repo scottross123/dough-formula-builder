@@ -7,7 +7,6 @@ import OutsideClickProvider from "./OutsideClickProvider";
 type NameCellProps = {
     ingredientId: string,
     name: string,
-    type: 'flour' | 'ingredient',
 }
 
 const NameCell = (props: NameCellProps) => {

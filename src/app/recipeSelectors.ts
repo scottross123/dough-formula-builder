@@ -5,11 +5,11 @@ import {RootState} from "./store";
 
 export const selectRecipe = (state: RootState) => state.recipe;
 export const selectFormula = (state: RootState) => state.recipe.formula;
-const selectFormulaIngredients = (state: RootState) => state.recipe.formula.ingredients;
+export const selectFormulaIngredients = (state: RootState) => state.recipe.formula.ingredients;
 const selectUnitWeight = (state: RootState) => state.recipe.yields.unitWeight;
 const selectUnitQuantity = (state: RootState) => state.recipe.yields.unitQuantity;
 const selectWasteFactor = (state: RootState) => state.recipe.yields.wasteFactor;
-const selectFormulaFlours = (state: RootState) => state.recipe.formula.flours;
+export const selectFlours = (state: RootState) => state.recipe.formula.flours;
 
 const selectTotalRatio = createSelector(
     selectFormulaIngredients, ingredients =>
@@ -54,7 +54,7 @@ export const selectIngredientWeight = createSelector(
 
 export const selectFlour = createSelector(
     [
-        selectFormulaFlours,
+        selectFlours,
         (flours, id) => id
     ],
     (flours, id) =>

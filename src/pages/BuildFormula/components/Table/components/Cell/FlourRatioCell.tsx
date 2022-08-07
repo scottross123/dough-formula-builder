@@ -5,42 +5,37 @@ import {formatContent} from "../../../../utils/numberFormats";
 import OutsideClickProvider from "./OutsideClickProvider";
 import {selectTotalFlourWeight} from "../../../../../../app/recipeSelectors";
 
-type RatioCellProps = {
+type FlourRatioCellProps = {
     ingredientId: string,
     ratio: number,
-    type: 'flour' | 'ingredient',
+    updateEditing: (isEditing: boolean) => void,
+    editing: boolean,
 }
 
-const RatioCell = (props: RatioCellProps) => {
-    const { ingredientId, ratio, type } = props;
-    const [editable, setEditable] = useState<boolean>(false);
+const FlourRatioCell = (props: FlourRatioCellProps) => {
+    const { ingredientId, ratio, updateEditing, editing } = props;
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLTableCellElement>(null);
     const totalFlourWeight = useAppSelector(selectTotalFlourWeight);
+    const [percent, setPercent] = useState(ratio)
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
-        const newRatio = parseFloat(e.currentTarget.value);
-        const additionalWeight = (newRatio - ratio) * totalFlourWeight;
-        if (type === 'flour') {
-            dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio}))
-        }
-        if (type === 'ingredient') {
-            dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
-            dispatch(addToUnitWeight({additionalWeight: additionalWeight}));
-        }
+        setPercent(parseFloat(e.currentTarget.value));
     }
 
     const handleClickOutside = () => {
-        setEditable(false);
+        dispatch(updateFlourRatio({id: ingredientId, newRatio: percent}))
+        updateEditing(false);
     }
 
-    if (editable) {
+    if (editing) {
         return (
             <td ref={ref}>
                 <OutsideClickProvider parentRef={ref} handleClickOutside={handleClickOutside}>
                     <input
+                        className="flourInput"
                         type="number"
-                        value={ratio}
+                        value={percent}
                         onChange={handleChange}
                     />
                 </OutsideClickProvider>%
@@ -49,10 +44,10 @@ const RatioCell = (props: RatioCellProps) => {
     }
 
     return (
-        <td onClick={() => setEditable(true)}>
+        <td onClick={() => updateEditing(true)}>
             {Math.round(ratio * 100 * 100)/100}%
         </td>
     );
 }
 
-export default RatioCell;
+export default FlourRatioCell;
