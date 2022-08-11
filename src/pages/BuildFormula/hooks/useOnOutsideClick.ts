@@ -2,6 +2,7 @@ import {RefObject, useEffect, useRef} from "react";
 
 export const useOnOutsideClick = (ref: any, handler: () => void)  => {
     const listener = (e: Event) => {
+        const target = e.target as Element;
         if (!ref.current?.contains(e.target as Node)) {
             handler();
         }

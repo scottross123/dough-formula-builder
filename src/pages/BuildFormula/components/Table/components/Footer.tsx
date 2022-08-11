@@ -1,20 +1,15 @@
 import { TableEntry } from "../types";
 import { metricFormat, percentFormat } from "../../../utils/numberFormats";
+import { useAppSelector } from "../../../../../app/hooks";
+import { selectTotals } from "../../../../../app/recipeSelectors";
 
-
-type FooterProps = {
-    totalMetric: number,
-    totalRatio: number,
-}
-
-const Footer = (props: FooterProps) => {
-    const { totalMetric, totalRatio } = props;
-
+const Footer = () => {
+    const { totalWeight, totalRatio } = useAppSelector(selectTotals)
     return (
         <tfoot>
             <tr>
                 <td>Total</td>
-                <td>{metricFormat(totalMetric)}</td>
+                <td>{metricFormat(totalWeight)}</td>
                 <td>{percentFormat(totalRatio)}</td>
             </tr>
         </tfoot>

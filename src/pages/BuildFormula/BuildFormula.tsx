@@ -5,14 +5,12 @@ import {ReactNode} from "react";
 
 const BuildFormula = () => {
     return (
-        <FormulaProvider>
-            <section className={styles.buildFormula}>
-                <Heading />
-                <Inputs />
-                <Table />
-                <Controls deletable={false}/>
-            </section>
-        </FormulaProvider>
+        <section className={styles.buildFormula}>
+            <Heading />
+            <Inputs />
+            <Table />
+            <Controls deletable={false}/>
+        </section>
     )
 }
 

@@ -1,19 +1,34 @@
-import Cell from './Cell';
-import { formulaRow } from "../../../hooks/useFormula/useFormula";
+import Cell from './Cell/Cell';
+import { Ingredient } from "../../../../../app/recipeSlice";
+import {useAppSelector} from "../../../../../app/hooks";
+import {selectIngredientWeight} from "../../../../../app/recipeSelectors";
+import NameCell from "./Cell/NameCell";
+import RatioCell from "./Cell/RatioCell";
+import WeightCell from "./Cell/WeightCell";
 
 type TableRowProps = {
-    row: formulaRow,
+    ingredient: Ingredient,
+    type: 'flour' | 'ingredient',
+}
+
+type Entry = Ingredient & {
+    metric: number;
 }
 
 const Row = (props: TableRowProps) => {
-    const { row: { id, ingredient, metric, ratio } } = props;
-    const tableEntry: [string, number, number] = [ingredient, metric, ratio]
+    const { ingredient: { id, name, ratio }, type } = props;
+    //const metric = useAppSelector((state) => selectIngredientWeight(state, id as never));
+    const entry = [
+        <NameCell ingredientId={id} name={name} />,
+        <WeightCell ingredientId={id} ratio={ratio} type={type} />,
+        <RatioCell ingredientId={id} ratio={ratio} type={type} />,
+    ];
 
     return (
       <tr>
           {
-              tableEntry.map((content, columnIndex) => (
-                  <Cell rowId={id} content={content} columnIndex={columnIndex} />
+              entry.map((cell, index) => (
+                  cell
               ))
           }
       </tr>
@@ -21,3 +36,7 @@ const Row = (props: TableRowProps) => {
 }
 
 export default Row;
+
+// fix key prop warning in console
+
+// divide into flour row and ingredient row

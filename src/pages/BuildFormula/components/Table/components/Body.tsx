@@ -1,18 +1,18 @@
-import { formulaRow } from "../../../hooks/useFormula/useFormula";
 import Row from "./Row";
+import { useAppSelector } from "../../../../../app/hooks";
+import { selectFormula } from "../../../../../app/recipeSelectors";
+import FlourRow from "./FlourRow";
 
-type BodyProps = {
-    formula: formulaRow[]
-}
-
-const Body = (props: BodyProps) => {
-    const { formula } = props;
+const Body = () => {
+    const { flours, ingredients } = useAppSelector(selectFormula);
 
     return (
         <tbody>
+        <FlourRow />
+
         {
-            formula.map((row) => (
-                <Row row={row} />
+            ingredients.map((ingredient) => (
+            <Row type={'ingredient'} ingredient={ingredient} />
             ))
         }
         </tbody>
@@ -20,3 +20,5 @@ const Body = (props: BodyProps) => {
 }
 
 export default Body;
+
+// fix key prop warning in console
