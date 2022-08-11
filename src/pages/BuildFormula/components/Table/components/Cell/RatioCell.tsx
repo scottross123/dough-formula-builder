@@ -21,8 +21,9 @@ const RatioCell = (props: RatioCellProps) => {
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         const newRatio = parseFloat(e.currentTarget.value);
         const additionalWeight = (newRatio - ratio) * totalFlourWeight;
-        isFlour ? dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio})) :
-        dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
+        isFlour ?
+            dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio})) :
+            dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
         dispatch(addToUnitWeight({additionalWeight: additionalWeight})); // combine this into one reducer iwthj update
     }
 

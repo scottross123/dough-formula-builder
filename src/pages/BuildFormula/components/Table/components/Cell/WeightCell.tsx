@@ -43,16 +43,19 @@ const WeightCell = (props: WeightCellProps) => {
 
     useEffect(() => {
         if (!isMount) {
-            const prevRatio = metric / totalFlourWeight;
+            //const prevRatio = metric / totalFlourWeight;
             const newRatio = weight / totalFlourWeight;
             const additionalWeight = weight - metric;
             if (newRatio) {
-                if (!isFlour) {
-                    dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
-                    dispatch(addToUnitWeight({additionalWeight: additionalWeight}));
-                }
+                isFlour ? (
+                    dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio })),
+                    dispatch(addToUnitWeight({additionalWeight: additionalWeight}))
+                ) : (
+                    dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio})),
+                    dispatch(addToUnitWeight({additionalWeight: additionalWeight}))
+                )
             }
-            console.log({"weight": weight, "metric": metric, "ratio": newRatio, "totalFlourWeight": totalFlourWeight});
+            //console.log({"weight": weight, "metric": metric, "ratio": newRatio, "totalFlourWeight": totalFlourWeight});
         }
     }, [weight]);
 
