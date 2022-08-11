@@ -8,11 +8,11 @@ import {selectTotalFlourWeight} from "../../../../../../app/recipeSelectors";
 type RatioCellProps = {
     ingredientId: string,
     ratio: number,
-    type: 'flour' | 'ingredient',
+    isFlour: boolean,
 }
 
 const RatioCell = (props: RatioCellProps) => {
-    const { ingredientId, ratio, type } = props;
+    const { ingredientId, ratio, isFlour } = props;
     const [editable, setEditable] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLTableCellElement>(null);
@@ -21,13 +21,9 @@ const RatioCell = (props: RatioCellProps) => {
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         const newRatio = parseFloat(e.currentTarget.value);
         const additionalWeight = (newRatio - ratio) * totalFlourWeight;
-        if (type === 'flour') {
-            dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio}))
-        }
-        if (type === 'ingredient') {
-            dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
-            dispatch(addToUnitWeight({additionalWeight: additionalWeight}));
-        }
+        isFlour ? dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio})) :
+        dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
+        dispatch(addToUnitWeight({additionalWeight: additionalWeight})); // combine this into one reducer iwthj update
     }
 
     const handleClickOutside = () => {

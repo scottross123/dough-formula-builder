@@ -3,13 +3,16 @@ import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
 import {formatContent} from "../../../../utils/numberFormats";
 import OutsideClickProvider from "./OutsideClickProvider";
 import {selectTotalFlourWeight, selectIngredientWeight, selectFlourWeight} from "../../../../../../app/recipeSelectors";
-import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import {addToUnitWeight,  updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import {UpdatedFlourRatio} from "../FlourRow";
 
 type FlourWeightCellProps = {
     ingredientId: string,
     ratio: number,
     updateEditing: (isEditing: boolean) => void,
     editing: boolean,
+    updateUpdatedFlours: (updatedFlourArray: UpdatedFlourRatio[]) => void,
+    newFlours: UpdatedFlourRatio[]
 }
 
 const useIsMount = () => {

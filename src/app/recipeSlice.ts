@@ -8,6 +8,8 @@ export type Ingredient = {
     ratio: number,
 }
 
+type PrimaryFlour = Omit<Ingredient, "ratio">;
+
 export type Yields = {
     unitWeight: number,
     unitQuantity: number,
@@ -15,7 +17,10 @@ export type Yields = {
 }
 
 export type Formula = {
-    flours: [Ingredient, ...Ingredient[]],
+    flours: {
+        primaryFlour: string;
+        additionalFlours: Ingredient[],
+    },
     ingredients: Ingredient[],
 }
 
@@ -46,18 +51,16 @@ export const initialState: RecipeState = {
         wasteFactor: 0,
     },
     formula: {
-        flours: [
-            {
-                id: uuidv4(),
-                name: 'Bread Flour',
-                ratio: .92,
-            },
-            {
-                id: uuidv4(),
-                name: 'Whole Wheat Flour',
-                ratio: .08,
-            },
-        ],
+        flours: {
+            primaryFlour: 'Bread Flour',
+            additionalFlours: [
+                {
+                    id: uuidv4(),
+                    name: 'Whole Wheat Flour',
+                    ratio: .08,
+                },
+            ],
+        },
         ingredients: [
             {
                 id: uuidv4(),
@@ -84,26 +87,26 @@ const recipeSlice = createSlice({
     initialState,
     reducers: {
         addFlour: (state, action) => {
-          state.formula.ingredients.push(action.payload)
+          state.formula.ingredients.push(action.payload);
         },
         removeFlour: (state, action) => {
           state.formula.ingredients.push(action.payload)
         },
         addIngredient: (state, action) => {
-          state.formula.ingredients.push(action.payload)
+          state.formula.ingredients.push(action.payload);
         },
         removeIngredient: (state, action) => {
           state.formula.ingredients.push(action.payload)
         },
         updateFlourRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const difference = 1 - newRatio;
-            const flour = state.formula.flours.find((flour: Ingredient) => flour.id === id);
-            const largestFlour = state.formula.flours.reduce((prevFlour: Ingredient, currFlour: Ingredient) =>
-                (prevFlour.ratio > currFlour.ratio) ? prevFlour : currFlour);
+            const flour = state.formula.flours.additionalFlours.find((flour: Ingredient) => (flour.id === id));
             flour!.ratio = parseFloat(newRatio.toFixed(3));
-            console.log(difference);
-            largestFlour.ratio += difference;
+        },
+        updateFlourName: (state, action: PayloadAction<{id: string, newName: string}>) => {
+            const { id, newName } = action.payload;
+            const flour = state.formula.flours.additionalFlours.find((flour: Ingredient) => flour.id === id);
+            flour!.name = newName;
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
@@ -129,6 +132,7 @@ export const {
     addIngredient,
     removeIngredient,
     updateFlourRatio,
+    updateFlourName,
     updateIngredientRatio,
     updateIngredientName,
     addToUnitWeight,

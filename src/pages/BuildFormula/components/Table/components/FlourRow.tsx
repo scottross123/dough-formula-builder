@@ -1,36 +1,32 @@
 import Cell from './Cell/Cell';
-import { Ingredient } from "../../../../../app/recipeSlice";
+import {Ingredient, updateFlourRatio} from "../../../../../app/recipeSlice";
 import {useAppSelector} from "../../../../../app/hooks";
-import {selectFlours, selectIngredientWeight, selectTotalFlourWeight} from "../../../../../app/recipeSelectors";
+import {
+    selectAdditionalFlours,
+    selectPrimaryFlour,
+    selectPrimaryFlourRatio, selectPrimaryFlourWeight,
+    selectTotalFlourWeight,
+} from "../../../../../app/recipeSelectors";
 import NameCell from "./Cell/NameCell";
 import {Fragment, useState} from "react";
 import FlourRatioCell from "./Cell/FlourRatioCell";
 import FlourWeightCell from "./Cell/FlourWeightCell";
-
-type Entry = Ingredient & {
-    metric: number;
-}
+import WeightCell from "./Cell/WeightCell";
+import RatioCell from "./Cell/RatioCell";
 
 const FlourRow = () => {
-    const totalFlourWeight = useAppSelector(selectTotalFlourWeight)
-    const flours = useAppSelector(selectFlours);
-    const [editingRatio, setEditingRatio] = useState(false);
-    const [editingWeight, setEditingWeight] = useState(false);
-
-    const updateEditingRatio = (isEditing: boolean) => {
-        setEditingRatio(isEditing);
-    }
-
-    const updateEditingWeight = (isEditing: boolean) => {
-        setEditingWeight(isEditing);
-    }
+    const totalFlourWeight = useAppSelector(selectTotalFlourWeight);
+    const primaryFlour = useAppSelector(selectPrimaryFlour);
+    const flours = useAppSelector(selectAdditionalFlours);
+    const primaryFlourRatio = useAppSelector(selectPrimaryFlourRatio);
+    const primaryFlourWeight = useAppSelector(selectPrimaryFlourWeight);
 
     return (
         <Fragment>
             <tr>
-                <td>Flour</td>
-                <td>{ totalFlourWeight }g</td>
-                <td>100%</td>
+                <td>{primaryFlour}</td>
+                <td>{primaryFlourWeight}g</td>
+                <td>{primaryFlourRatio * 100}%</td>
             </tr>
 
                 {
@@ -40,17 +36,15 @@ const FlourRow = () => {
                                 ingredientId={id}
                                 name={name}
                             />
-                            <FlourWeightCell
+                            <WeightCell
                                 ingredientId={id}
                                 ratio={ratio}
-                                updateEditing={updateEditingWeight}
-                                editing={editingWeight}
+                                isFlour={true}
                             />
-                            <FlourRatioCell
+                            <RatioCell
                                 ingredientId={id}
                                 ratio={ratio}
-                                updateEditing={updateEditingRatio}
-                                editing={editingRatio}
+                                isFlour={true}
                             />
                         </tr>
                     ))

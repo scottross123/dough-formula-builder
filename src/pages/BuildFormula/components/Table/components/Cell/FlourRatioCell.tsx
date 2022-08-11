@@ -1,19 +1,31 @@
-import {FormEvent, useRef, useState} from "react";
+import {FormEvent, useEffect, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
-import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import {addToUnitWeight, updateFlours, updateIngredientRatio} from "../../../../../../app/recipeSlice";
 import {formatContent} from "../../../../utils/numberFormats";
 import OutsideClickProvider from "./OutsideClickProvider";
 import {selectTotalFlourWeight} from "../../../../../../app/recipeSelectors";
+import {UpdatedFlourRatio} from "../FlourRow";
 
 type FlourRatioCellProps = {
     ingredientId: string,
     ratio: number,
     updateEditing: (isEditing: boolean) => void,
     editing: boolean,
+    updateUpdatedFlours: (updatedFlourArray: UpdatedFlourRatio) => void,
+    newFlours: UpdatedFlourRatio[]
 }
 
+const useIsMount = () => {
+    const isMountRef = useRef(true);
+    useEffect(() => {
+        isMountRef.current = false;
+    }, [
+    ]);
+    return isMountRef.current;
+};
+
 const FlourRatioCell = (props: FlourRatioCellProps) => {
-    const { ingredientId, ratio, updateEditing, editing } = props;
+    const { ingredientId, ratio, updateEditing, editing, updateUpdatedFlours, newFlours } = props;
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLTableCellElement>(null);
     const totalFlourWeight = useAppSelector(selectTotalFlourWeight);
@@ -21,10 +33,12 @@ const FlourRatioCell = (props: FlourRatioCellProps) => {
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         setPercent(parseFloat(e.currentTarget.value));
+        updateUpdatedFlours({id: ingredientId, newRatio: percent})
+        console.log('percent', percent)
     }
 
     const handleClickOutside = () => {
-        dispatch(updateFlourRatio({id: ingredientId, newRatio: percent}))
+        dispatch(updateFlours(newFlours))
         updateEditing(false);
     }
 

@@ -8,27 +8,25 @@ import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../..
 type WeightCellProps = {
     ingredientId: string,
     ratio: number,
-    type: 'flour' | 'ingredient',
+    isFlour: boolean,
 }
 
 const useIsMount = () => {
     const isMountRef = useRef(true);
     useEffect(() => {
         isMountRef.current = false;
-    }, [
-    ]);
+    }, []);
     return isMountRef.current;
 };
 
 const WeightCell = (props: WeightCellProps) => {
-    const { ingredientId, ratio, type } = props;
+    const { ingredientId, ratio, isFlour } = props;
     const [editable, setEditable] = useState<boolean>(false);
     const dispatch = useAppDispatch();
     const ref = useRef<HTMLTableCellElement>(null);
-    const metric = type === 'flour' ?
+    const metric = isFlour ?
         useAppSelector((state) =>
             selectFlourWeight(state, ingredientId as never)) :
-
         useAppSelector((state) =>
             selectIngredientWeight(state, ingredientId as never))
 
@@ -49,7 +47,7 @@ const WeightCell = (props: WeightCellProps) => {
             const newRatio = weight / totalFlourWeight;
             const additionalWeight = weight - metric;
             if (newRatio) {
-                if (type === 'ingredient') {
+                if (!isFlour) {
                     dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
                     dispatch(addToUnitWeight({additionalWeight: additionalWeight}));
                 }
