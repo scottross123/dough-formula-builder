@@ -1,20 +1,25 @@
+import { useAppSelector } from "../../../../store/hooks";
+import { selectYields } from "../../../../store/selectors/recipeSelectors";
+
 const Inputs = () => {
+    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(selectYields);
+
     return (
         <section>
-            <div>
-                <label htmlFor="quantity">Quantity of Units</label>
-                <input id="quantity" />
-            </div>
-
-            <div>
-                <label htmlFor="weight">Unit Weight</label>
-                <input id="weight" />
-            </div>
-
-            <div>
-                <label htmlFor="waste">Waste Factor</label>
-                <input id="waste" />
-            </div>
+            <table>
+                <tr>
+                    <td>Quantity of Units</td>
+                    <td>{unitQuantity} units</td>
+                </tr>
+                <tr>
+                    <td>Unit Weight</td>
+                    <td>{unitWeight}g</td>
+                </tr>
+                <tr>
+                    <td>Waste Factor</td>
+                    <td>{wasteFactor * 100}%</td>
+                </tr>
+            </table>
         </section>
     );
 }

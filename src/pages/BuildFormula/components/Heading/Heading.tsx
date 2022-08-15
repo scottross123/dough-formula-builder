@@ -1,6 +1,6 @@
 import styles from './Heading.module.css';
-import {useAppSelector} from "../../../../app/hooks";
-import {selectFormula, selectRecipe, selectTotalWeight} from "../../../../app/recipeSelectors";
+import {useAppSelector} from "../../../../store/hooks";
+import {selectFormula, selectRecipe, selectTotalWeight} from "../../../../store/selectors/recipeSelectors";
 
 const Heading = () => {
     const { name, description, yields: { unitQuantity, unitWeight } } = useAppSelector(selectRecipe);
@@ -13,24 +13,6 @@ const Heading = () => {
                 <h1>{name}</h1>
                 <p>{description}</p>
             </div>
-
-            <table className={styles.vitals}>
-
-                <tr>
-                    <td className={styles.info}>Yield</td>
-                    <td>{unitQuantity} units</td>
-                </tr>
-
-                <tr>
-                    <td>Unit Weight</td>
-                    <td>{unitWeight}g</td>
-                </tr>
-
-                <tr>
-                    <td>Total Weight</td>
-                    <td>{totalWeight}g</td>
-                </tr>
-            </table>
         </section>
     )
 }

@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { useOnOutsideClick } from "../../../../hooks/useOnOutsideClick";
+import { useOnOutsideClick } from "../hooks/useOnOutsideClick";
 
 type OutsideClickProviderProps = {
     parentRef: any,

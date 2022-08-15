@@ -1,12 +1,10 @@
 import Cell from './Cell/Cell';
-import {Ingredient, updateFlourRatio} from "../../../../../app/recipeSlice";
-import {useAppSelector} from "../../../../../app/hooks";
+import {Ingredient, updateFlourRatio} from "../../../../../store/slices/recipeSlice";
+import {useAppSelector} from "../../../../../store/hooks";
 import {
-    selectAdditionalFlours,
-    selectPrimaryFlour,
-    selectPrimaryFlourRatio, selectPrimaryFlourWeight,
+    selectFlours,
     selectTotalFlourWeight,
-} from "../../../../../app/recipeSelectors";
+} from "../../../../../store/selectors/recipeSelectors";
 import NameCell from "./Cell/NameCell";
 import {Fragment, useState} from "react";
 import FlourRatioCell from "./Cell/FlourRatioCell";
@@ -16,18 +14,15 @@ import RatioCell from "./Cell/RatioCell";
 
 const FlourRow = () => {
     const totalFlourWeight = useAppSelector(selectTotalFlourWeight);
-    const primaryFlour = useAppSelector(selectPrimaryFlour);
-    const flours = useAppSelector(selectAdditionalFlours);
-    const primaryFlourRatio = useAppSelector(selectPrimaryFlourRatio);
-    const primaryFlourWeight = useAppSelector(selectPrimaryFlourWeight);
+    const flours = useAppSelector(selectFlours);
 
     return (
         <Fragment>
-            <tr>
+            {/*<tr>
                 <td>{primaryFlour}</td>
                 <td>{primaryFlourWeight}g</td>
                 <td>{primaryFlourRatio * 100}%</td>
-            </tr>
+            </tr> */}
 
                 {
                     flours.map(({ id, name, ratio}, index) => (

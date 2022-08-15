@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { createStructuredSelector } from 'reselect'
-import {Ingredient} from "./recipeSlice";
-import {RootState} from "./store";
+import { Ingredient } from "../slices/recipeSlice";
+import { RootState } from "../store";
 
 export const selectRecipe = (state: RootState) => state.recipe;
 export const selectFormula = (state: RootState) => state.recipe.formula;
@@ -9,8 +9,8 @@ export const selectFormulaIngredients = (state: RootState) => state.recipe.formu
 const selectUnitWeight = (state: RootState) => state.recipe.yields.unitWeight;
 const selectUnitQuantity = (state: RootState) => state.recipe.yields.unitQuantity;
 const selectWasteFactor = (state: RootState) => state.recipe.yields.wasteFactor;
-export const selectAdditionalFlours = (state: RootState) => state.recipe.formula.flours.additionalFlours;
-export const selectPrimaryFlour = (state: RootState) => state.recipe.formula.flours.primaryFlour;
+export const selectFlours = (state: RootState) => state.recipe.formula.flours;
+export const selectYields = (state: RootState) => state.recipe.yields;
 
 const selectTotalRatio = createSelector(
     selectFormulaIngredients, ingredients =>
@@ -55,7 +55,7 @@ export const selectIngredientWeight = createSelector(
 
 export const selectFlour = createSelector(
     [
-        selectAdditionalFlours,
+        selectFlours,
         (flours, id) => id
     ],
     (flours, id) =>
@@ -69,22 +69,6 @@ export const selectFlourWeight = createSelector(
         Math.round(flour.ratio * totalFlourWeight)
 );
 
-export const selectPrimaryFlourRatio = createSelector(
-    selectAdditionalFlours,
-    (flours) => {
-        const ratioSum = flours.reduce((ratioSum, { ratio }) => ratioSum + ratio, 0);
-        console.log(ratioSum)
-        if (1 - ratioSum < 0) throw new Error('ratio can not exceed 100%!');
-        return 1 - ratioSum;
-    }
-);
-
-export const selectPrimaryFlourWeight = createSelector(
-    selectPrimaryFlourRatio,
-    selectTotalFlourWeight,
-    (primaryFlourRatio, totalFlourWeight) =>
-        Math.round(primaryFlourRatio * totalFlourWeight)
-)
 
 /*import {initialState} from "./recipeSlice";
 

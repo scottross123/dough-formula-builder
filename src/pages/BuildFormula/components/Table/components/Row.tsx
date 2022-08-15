@@ -1,7 +1,7 @@
 import Cell from './Cell/Cell';
-import { Ingredient } from "../../../../../app/recipeSlice";
-import {useAppSelector} from "../../../../../app/hooks";
-import {selectIngredientWeight} from "../../../../../app/recipeSelectors";
+import { Ingredient } from "../../../../../store/slices/recipeSlice";
+import {useAppSelector} from "../../../../../store/hooks";
+import {selectIngredientWeight} from "../../../../../store/selectors/recipeSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
 import WeightCell from "./Cell/WeightCell";

@@ -1,9 +1,9 @@
 import {FormEvent, useEffect, useRef, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
-import {addToUnitWeight, updateFlours, updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
+import {addToUnitWeight, updateFlours, updateIngredientRatio} from "../../../../../../store/slices/recipeSlice";
 import {formatContent} from "../../../../utils/numberFormats";
-import OutsideClickProvider from "./OutsideClickProvider";
-import {selectTotalFlourWeight} from "../../../../../../app/recipeSelectors";
+import OutsideClickProvider from "../../../../providers/OutsideClickProvider";
+import {selectTotalFlourWeight} from "../../../../../../store/selectors/recipeSelectors";
 import {UpdatedFlourRatio} from "../FlourRow";
 
 type FlourRatioCellProps = {

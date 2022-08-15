@@ -1,9 +1,9 @@
 import {FormEvent, useEffect, useMemo, useRef, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
 import {formatContent} from "../../../../utils/numberFormats";
-import OutsideClickProvider from "./OutsideClickProvider";
-import {selectTotalFlourWeight, selectIngredientWeight, selectFlourWeight} from "../../../../../../app/recipeSelectors";
-import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import OutsideClickProvider from "../../../../providers/OutsideClickProvider";
+import {selectTotalFlourWeight, selectIngredientWeight, selectFlourWeight} from "../../../../../../store/selectors/recipeSelectors";
+import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../store/slices/recipeSlice";
 
 type WeightCellProps = {
     ingredientId: string,

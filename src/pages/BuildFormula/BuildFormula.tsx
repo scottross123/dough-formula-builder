@@ -1,6 +1,5 @@
 import styles from './BuildFormula.module.css';
 import { Heading, Inputs, Table, Controls } from "./components";
-import { FormulaProvider } from './contexts'
 import {ReactNode} from "react";
 
 const BuildFormula = () => {

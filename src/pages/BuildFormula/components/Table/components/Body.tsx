@@ -1,6 +1,6 @@
 import Row from "./Row";
-import { useAppSelector } from "../../../../../app/hooks";
-import { selectFormula } from "../../../../../app/recipeSelectors";
+import { useAppSelector } from "../../../../../store/hooks";
+import { selectFormula } from "../../../../../store/selectors/recipeSelectors";
 import FlourRow from "./FlourRow";
 
 const Body = () => {

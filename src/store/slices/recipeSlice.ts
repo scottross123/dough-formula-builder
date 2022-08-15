@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "./store";
+import {RootState} from "../store";
 import { v4 as uuidv4 } from 'uuid';
 
 export type Ingredient = {
@@ -8,8 +8,6 @@ export type Ingredient = {
     ratio: number,
 }
 
-type PrimaryFlour = Omit<Ingredient, "ratio">;
-
 export type Yields = {
     unitWeight: number,
     unitQuantity: number,
@@ -17,10 +15,7 @@ export type Yields = {
 }
 
 export type Formula = {
-    flours: {
-        primaryFlour: string;
-        additionalFlours: Ingredient[],
-    },
+    flours: Ingredient[],
     ingredients: Ingredient[],
 }
 
@@ -43,7 +38,7 @@ type RecipeState = {
 export const initialState: RecipeState = {
     id: uuidv4(),
     name: 'Pain de Champagne',
-    description: 'French style country boule made with white and whole wheat flours.',
+    description: 'French style country boule made with bread flour.',
     author: 'Ruby the Baker',
     yields: {
         unitWeight: 1000,
@@ -51,16 +46,13 @@ export const initialState: RecipeState = {
         wasteFactor: 0,
     },
     formula: {
-        flours: {
-            primaryFlour: 'Bread Flour',
-            additionalFlours: [
-                {
-                    id: uuidv4(),
-                    name: 'Whole Wheat Flour',
-                    ratio: .08,
-                },
-            ],
-        },
+        flours: [
+            {
+                id: uuidv4(),
+                name: 'Bread Flour',
+                ratio: 1,
+            },
+        ],
         ingredients: [
             {
                 id: uuidv4(),
@@ -100,12 +92,12 @@ const recipeSlice = createSlice({
         },
         updateFlourRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const flour = state.formula.flours.additionalFlours.find((flour: Ingredient) => (flour.id === id));
+            const flour = state.formula.flours.find((flour: Ingredient) => (flour.id === id));
             flour!.ratio = parseFloat(newRatio.toFixed(3));
         },
         updateFlourName: (state, action: PayloadAction<{id: string, newName: string}>) => {
             const { id, newName } = action.payload;
-            const flour = state.formula.flours.additionalFlours.find((flour: Ingredient) => flour.id === id);
+            const flour = state.formula.flours.find((flour: Ingredient) => flour.id === id);
             flour!.name = newName;
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {

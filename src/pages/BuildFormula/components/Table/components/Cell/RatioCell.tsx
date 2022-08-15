@@ -1,9 +1,9 @@
 import {FormEvent, useRef, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../../../../../app/hooks";
-import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../app/recipeSlice";
+import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
+import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../../store/slices/recipeSlice";
 import {formatContent} from "../../../../utils/numberFormats";
-import OutsideClickProvider from "./OutsideClickProvider";
-import {selectTotalFlourWeight} from "../../../../../../app/recipeSelectors";
+import OutsideClickProvider from "../../../../providers/OutsideClickProvider";
+import {selectTotalFlourWeight} from "../../../../../../store/selectors/recipeSelectors";
 
 type RatioCellProps = {
     ingredientId: string,
