@@ -8,7 +8,7 @@ const App = () => {
     <div className="flex">
         <Navbar />
         <Sidebar />
-        <div className="flex flex-col w-3/4">
+        <div className="flex flex-col grow">
             <Header />
             <Main />
         </div>

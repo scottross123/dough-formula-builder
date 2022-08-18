@@ -18,7 +18,7 @@ const sidebarItems: SidebarItemProps[] = [
 
 const Sidebar = () => {
     return (
-        <div className="min-h-screen top-0 drawer-side sticky overflow-auto w-2/12 flex flex-col p-4 border-r-2 justify-items-center">
+        <div className="min-h-screen top-0 drawer-side sticky overflow-auto w-64 flex flex-col p-4 border-r-2 justify-items-center">
             <div className="flex items-center justify-center h-1/5 border-b-2">
                 <h1 className="text-center font-bold text-red">Your Recipes</h1>
             </div>

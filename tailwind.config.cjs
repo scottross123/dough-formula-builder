@@ -12,7 +12,7 @@ module.exports = {
         },
     },
     daisyui: {
-        themes: ["cupcake"],
+        themes: ["corporate"],
     },
     plugins: [
         require("daisyui"),
