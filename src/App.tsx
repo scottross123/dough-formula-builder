@@ -1,13 +1,14 @@
-import styles from './App.module.css';
 import Header from "./components/Header";
 import Main from "./components/Main";
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <div className="flex">
+        <Navbar />
         <Sidebar />
-        <div className="flex flex-col w-5/6">
+        <div className="flex flex-col w-3/4">
             <Header />
             <Main />
         </div>

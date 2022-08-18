@@ -1,16 +1,16 @@
-import Cell from './Cell/Cell';
+import Cell from '../../Cell/Cell';
 import {Ingredient, updateFlourRatio} from "../../../../../store/slices/recipeSlice";
 import {useAppSelector} from "../../../../../store/hooks";
 import {
     selectFlours,
     selectTotalFlourWeight,
 } from "../../../../../store/selectors/recipeSelectors";
-import NameCell from "./Cell/NameCell";
+import NameCell from "../../Cell/NameCell";
 import {Fragment, useState} from "react";
-import FlourRatioCell from "./Cell/FlourRatioCell";
-import FlourWeightCell from "./Cell/FlourWeightCell";
-import WeightCell from "./Cell/WeightCell";
-import RatioCell from "./Cell/RatioCell";
+import FlourRatioCell from "../../Cell/FlourRatioCell";
+import FlourWeightCell from "../../Cell/FlourWeightCell";
+import WeightCell from "../../Cell/WeightCell";
+import RatioCell from "../../Cell/RatioCell";
 
 const FlourRow = () => {
     const totalFlourWeight = useAppSelector(selectTotalFlourWeight);

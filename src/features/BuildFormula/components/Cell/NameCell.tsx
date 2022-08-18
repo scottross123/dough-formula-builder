@@ -1,8 +1,8 @@
 import {FormEvent, useRef, useState} from "react";
-import {useAppDispatch} from "../../../../../../store/hooks";
-import {updateIngredientName, updateIngredientRatio} from "../../../../../../store/slices/recipeSlice";
-import {formatContent} from "../../../../utils/numberFormats";
-import OutsideClickProvider from "../../../../providers/OutsideClickProvider";
+import {useAppDispatch} from "../../../../store/hooks";
+import {updateIngredientName, updateIngredientRatio} from "../../../../store/slices/recipeSlice";
+import {formatContent} from "../../utils/numberFormats";
+import OutsideClickProvider from "../../providers/OutsideClickProvider";
 
 type NameCellProps = {
     ingredientId: string,
@@ -29,6 +29,7 @@ const NameCell = (props: NameCellProps) => {
             <td ref={ref}>
                 <OutsideClickProvider parentRef={ref} handleClickOutside={handleClickOutside}>
                     <input
+                        className="bg-transparent border-none"
                         type="text"
                         value={name}
                         onChange={handleChange}

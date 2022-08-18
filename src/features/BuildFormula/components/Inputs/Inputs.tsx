@@ -5,22 +5,24 @@ const Inputs = () => {
     const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(selectYields);
 
     return (
-        <section>
-            <table>
-                <tr>
-                    <td>Quantity of Units</td>
-                    <td>{unitQuantity} units</td>
-                </tr>
-                <tr>
-                    <td>Unit Weight</td>
-                    <td>{unitWeight}g</td>
-                </tr>
-                <tr>
-                    <td>Waste Factor</td>
-                    <td>{wasteFactor * 100}%</td>
-                </tr>
+        <div>
+            <table className="table w-full">
+                <tbody>
+                    <tr>
+                        <td>Quantity of Units</td>
+                        <td>{unitQuantity} units</td>
+                    </tr>
+                    <tr>
+                        <td>Unit Weight</td>
+                        <td>{unitWeight}g</td>
+                    </tr>
+                    <tr>
+                        <td>Waste Factor</td>
+                        <td>{wasteFactor * 100}%</td>
+                    </tr>
+                </tbody>
             </table>
-        </section>
+        </div>
     );
 }
 

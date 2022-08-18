@@ -1,10 +1,10 @@
-import Cell from './Cell/Cell';
+import Cell from '../../Cell/Cell';
 import { Ingredient } from "../../../../../store/slices/recipeSlice";
 import {useAppSelector} from "../../../../../store/hooks";
 import {selectIngredientWeight} from "../../../../../store/selectors/recipeSelectors";
-import NameCell from "./Cell/NameCell";
-import RatioCell from "./Cell/RatioCell";
-import WeightCell from "./Cell/WeightCell";
+import NameCell from "../../Cell/NameCell";
+import RatioCell from "../../Cell/RatioCell";
+import WeightCell from "../../Cell/WeightCell";
 
 type TableRowProps = {
     ingredient: Ingredient,
