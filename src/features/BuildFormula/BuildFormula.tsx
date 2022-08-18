@@ -4,7 +4,7 @@ import {ReactNode} from "react";
 
 const BuildFormula = () => {
     return (
-        <section className={styles.buildFormula}>
+        <section className="flex flex-col items-center gap-8">
             <Heading />
             <Inputs />
             <Table />

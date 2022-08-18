@@ -1,9 +1,9 @@
 import styles from './Main.module.css'
-import BuildFormula from "../../pages/BuildFormula";
+import BuildFormula from "../../features/BuildFormula";
 
 const Main = () => {
     return (
-        <main className={styles.main}>
+        <main className="p-4 container">
             <BuildFormula />
         </main>
     );

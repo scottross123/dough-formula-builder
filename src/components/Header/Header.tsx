@@ -1,9 +1,7 @@
-import styles from './Header.module.css'
-
 const Header = () => {
     return (
-        <header className={styles.header}>
-            <div className={styles.headerText}>
+        <header className="sticky top-0 h-12 border-b-2">
+            <div className="float-left text-red p-1">
                 Dough Builder
             </div>
         </header>
