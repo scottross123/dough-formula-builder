@@ -10,38 +10,20 @@ type IngredientRowProps = {
     isFlour?: boolean,
 }
 
-type Row = {
-    key: string | number,
-    cell: JSX.Element,
-}
-
 const IngredientRow = (props: IngredientRowProps) => {
     const { ingredient: { id, name, ratio }, isFlour } = props;
     const metric: number = isFlour ?
         useAppSelector((state) => selectFlourWeight(state, id as never)) :
         useAppSelector((state) => selectIngredientWeight(state, id as never))
-    const rows: Row[] = [
-        {
-            key: name,
-            cell: <NameCell ingredientId={id} name={name}/>,
-        },
-        {
-            key: metric,
-            cell: <td>{metric}g</td>,
-        },
-        {
-            key: ratio,
-            cell: isFlour ? <td>100%</td> : <RatioCell ingredientId={id} ratio={ratio} />,
-        },
+    const columns = [
+        <NameCell key="name" ingredientId={id} name={name}/>,
+        <td key="metric">{metric}g</td>,
+        isFlour ? <td key="ratio">100%</td> : <RatioCell key="ratio" ingredientId={id} ratio={ratio} />,
     ];
 
     return (
       <tr className="hover">
-          { rows.map(({cell, key}) =>
-              <Fragment key={key}>
-                  {cell}
-              </Fragment>
-          )}
+          { columns.map((column) => column )}
       </tr>
     );
 }
