@@ -1,6 +1,6 @@
-import { Ingredient } from "../../../../store/slices/recipeSlice";
+import { Ingredient } from "../../../../store/slices/recipesSlice";
 import {useAppSelector} from "../../../../store/hooks";
-import {selectIngredientWeight, selectFlourWeight} from "../../../../store/selectors/recipeSelectors";
+import {selectIngredientWeight, selectFlourWeight} from "../../../../store/selectors/recipesSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
 import { Fragment } from "react";

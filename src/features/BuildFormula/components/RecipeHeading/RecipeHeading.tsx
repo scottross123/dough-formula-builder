@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectFormula, selectRecipe, selectTotalWeight } from "../../../../store/selectors/recipeSelectors";
+import { selectFormula, selectRecipe, selectTotalWeight } from "../../../../store/selectors/recipesSelectors";
 import bread from "../../../../assets/images/bread.jpeg";
 
 const RecipeHeading = () => {

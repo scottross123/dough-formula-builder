@@ -1,7 +1,7 @@
 import IngredientRow from "./IngredientRow";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectFormula } from "../../../../store/selectors/recipeSelectors";
-import { Ingredient } from "../../../../store/slices/recipeSlice";
+import { selectFormula } from "../../../../store/selectors/recipesSelectors";
+import { Ingredient } from "../../../../store/slices/recipesSlice";
 
 const Body = () => {
     const { flours, ingredients } = useAppSelector(selectFormula);

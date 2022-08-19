@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectYields } from "../../../../store/selectors/recipeSelectors";
+import { selectYields } from "../../../../store/selectors/recipesSelectors";
 
 const Yields = () => {
     const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(selectYields);

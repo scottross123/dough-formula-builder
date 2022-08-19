@@ -1,9 +1,9 @@
 import {FormEvent, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../store/slices/recipeSlice";
+import {addToUnitWeight, updateFlourRatio, updateIngredientRatio} from "../../../../../store/slices/recipesSlice";
 import {formatContent} from "../../../utils/numberFormats";
 import OutsideClickProvider from "../../../providers/OutsideClickProvider";
-import {selectTotalFlourWeight} from "../../../../../store/selectors/recipeSelectors";
+import {selectTotalFlourWeight} from "../../../../../store/selectors/recipesSelectors";
 
 type RatioCellProps = {
     ingredientId: string,
@@ -20,11 +20,7 @@ const RatioCell = (props: RatioCellProps) => {
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         const newRatio = parseFloat(e.currentTarget.value);
-        const additionalWeight = (newRatio - ratio) * totalFlourWeight;
-        isFlour ?
-            dispatch(updateFlourRatio({id: ingredientId, newRatio: newRatio})) :
-            dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}))
-        dispatch(addToUnitWeight({additionalWeight: additionalWeight})); // combine this into one reducer iwthj update
+        dispatch(updateIngredientRatio({id: ingredientId, newRatio: newRatio}));
     }
 
     const handleClickOutside = () => {

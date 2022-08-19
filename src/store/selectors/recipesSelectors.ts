@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { createStructuredSelector } from 'reselect'
-import { Ingredient } from "../slices/recipeSlice";
+import { Ingredient } from "../slices/recipesSlice";
 import { RootState } from "../store";
 
 export const selectRecipe = (state: RootState) => state.recipe;

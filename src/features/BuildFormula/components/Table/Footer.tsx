@@ -1,6 +1,6 @@
 import { metricFormat, percentFormat } from "../../utils/numberFormats";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectTotals } from "../../../../store/selectors/recipeSelectors";
+import { selectTotals } from "../../../../store/selectors/recipesSelectors";
 
 const Footer = () => {
     const { totalWeight, totalRatio } = useAppSelector(selectTotals)
