@@ -1,5 +1,5 @@
 import styles from './Main.module.css'
-import BuildFormula from "../../features/BuildFormula";
+import BuildFormula from "../../features/recipe";
 
 const Main = () => {
     return (

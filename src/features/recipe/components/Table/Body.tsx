@@ -2,9 +2,12 @@ import IngredientRow from "./IngredientRow";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectFormula } from "../../../../store/selectors/recipesSelectors";
 import { Ingredient } from "../../../../store/slices/recipesSlice";
+import {useContext} from "react";
+import {RecipeContext} from "../../providers/RecipeProvider";
 
 const Body = () => {
-    const { flours, ingredients } = useAppSelector(selectFormula);
+    const recipeId = useContext(RecipeContext);
+    const { flours, ingredients } = useAppSelector(state => selectFormula(state, recipeId));
 
     return (
         <tbody>

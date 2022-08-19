@@ -6,7 +6,7 @@ import { RecipesState } from "./recipesSlice";
 
 export const initialState: RecipesState = [
     {
-        id: uuidv4(),
+        id: "1",
         name: 'Pain de Champagne',
         description: 'French style country boule made with bread flour.',
         author: 'Ruby the Baker',
@@ -43,7 +43,7 @@ export const initialState: RecipesState = [
         },
     },
     {
-        id: uuidv4(),
+        id: "2",
         name: 'Sourdough Country Bread',
         description: 'A San Francisco style sourdough bread made with stiff levain and bread flour.',
         author: 'Chad',
@@ -102,7 +102,7 @@ export const initialState: RecipesState = [
         ]
     },
     {
-        id: uuidv4(),
+        id: "3",
         name: 'Rich Man\'s Brioche',
         description: 'A French bread and Viennoiserie made with a high proportion of egg and butter.',
         author: 'Osono',

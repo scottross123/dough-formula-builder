@@ -1,11 +1,11 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { createStructuredSelector } from 'reselect'
-import { Ingredient } from "../slices/recipesSlice";
+import { Formula, Ingredient, Recipe } from "../slices/recipesSlice";
 import { RootState } from "../store";
 
 export const selectRecipes = (state: RootState) => state.recipes;
 
-export const selectRecipe = (state: RootState, id: string) => state.recipes.find(recipe => recipe.id === id);
+export const selectRecipe = (state: RootState, id: string) => state.recipes.find(recipe => recipe!.id === id) as Recipe;
 
 export const selectFormula = createSelector(
     selectRecipe,
@@ -67,38 +67,21 @@ export const selectTotalFlourWeight = createSelector(
         Math.round((totalWeight / totalRatio))
 );
 
-const selectIngredient = createSelector(
-    [
-        selectIngredients,
-        (ingredients, id) => id
-    ],
-    (ingredients, id) =>
-        Object.assign({}, ...ingredients.filter((ingredient: Ingredient) => ingredient.id === id))
-);
+const selectRecipeId = (_: any, id: string) => id;
 
-export const selectIngredientWeight = createSelector(
-    selectIngredient,
-    selectTotalFlourWeight,
-    (ingredient, totalFlourWeight) =>
-        Math.round(ingredient.ratio * totalFlourWeight)
-);
-
-export const selectFlour = createSelector(
-    [
-        selectFlours,
-        (flours, id) => id
-    ],
+const selectFlour = createSelector(
+    selectFlours,
+    selectRecipeId,
     (flours, id) =>
-        Object.assign({}, ...flours.filter((flour: Ingredient) => flour.id === id))
+        flours.find((flour: Ingredient) => flour.id === id)
 );
 
-export const selectFlourWeight = createSelector(
-    selectFlour,
-    selectTotalFlourWeight,
-    (flour, totalFlourWeight) =>
-        Math.round(flour.ratio * totalFlourWeight)
+const selectIngredient = createSelector(
+    selectIngredients,
+    selectRecipeId,
+    (ingredients, id) =>
+        ingredients.find((ingredient: Ingredient) => ingredient.id === id)
 );
-
 
 /*import {initialState} from "./recipeSlice";
 

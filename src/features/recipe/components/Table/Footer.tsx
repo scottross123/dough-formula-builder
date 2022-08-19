@@ -1,9 +1,13 @@
 import { metricFormat, percentFormat } from "../../utils/numberFormats";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectTotals } from "../../../../store/selectors/recipesSelectors";
+import {useContext} from "react";
+import {RecipeContext} from "../../providers/RecipeProvider";
 
 const Footer = () => {
-    const { totalWeight, totalRatio } = useAppSelector(selectTotals)
+    const recipeId = useContext(RecipeContext);
+    const { totalWeight, totalRatio } = useAppSelector(state => selectTotals(state, recipeId));
+
     return (
         <tfoot>
             <tr>

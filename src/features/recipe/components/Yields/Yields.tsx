@@ -1,8 +1,11 @@
 import { useAppSelector } from "../../../../store/hooks";
 import { selectYields } from "../../../../store/selectors/recipesSelectors";
+import { useContext } from "react";
+import { RecipeContext } from "../../providers/RecipeProvider";
 
 const Yields = () => {
-    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(selectYields);
+    const recipeId = useContext(RecipeContext);
+    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(state => selectYields(state, recipeId));
 
     return (
         <div>

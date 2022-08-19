@@ -28,7 +28,7 @@ type Preferment = {
     formula: Formula,
 }
 
-type Recipe = {
+export type Recipe = {
     id: string,
     name: string,
     description: string,
@@ -76,9 +76,10 @@ const recipesSlice = createSlice({
             ingredient!.ratio = parseFloat(newRatio.toFixed(3));
             recipe!.yields.unitWeight += Math.round(additionalUnitWeight);
         },
-        updateIngredientName: (state, action: PayloadAction<{ recipeIndex: number, id: string, newName: string}>) => {
-            const { recipeIndex, id, newName } = action.payload;
-            const ingredient = state[recipeIndex].formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
+        updateIngredientName: (state, action: PayloadAction<{ recipeId: string, id: string, newName: string}>) => {
+            const { recipeId, id, newName } = action.payload;
+            const recipe = state.find(recipe => recipe.id === recipeId);
+            const ingredient = recipe!.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
         addRecipe: (state, action: PayloadAction<{recipe: Recipe}>) => {

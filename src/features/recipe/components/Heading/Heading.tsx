@@ -1,10 +1,14 @@
 import { useAppSelector } from "../../../../store/hooks";
 import { selectFormula, selectRecipe, selectTotalWeight } from "../../../../store/selectors/recipesSelectors";
 import bread from "../../../../assets/images/bread.jpeg";
+import {useContext} from "react";
+import {RecipeContext} from "../../providers/RecipeProvider";
 
-const RecipeHeading = () => {
-    const { name, description, yields: { unitQuantity, unitWeight } } = useAppSelector(selectRecipe);
-    const totalWeight = useAppSelector(selectTotalWeight);
+const Heading = () => {
+    const recipeId = useContext(RecipeContext);
+    const { name, description, yields: { unitQuantity, unitWeight } } =
+        useAppSelector(state => selectRecipe(state, recipeId));
+    const totalWeight = useAppSelector(state => selectTotalWeight(state, recipeId));
 
     return (
         <div className="card card-side border">
@@ -20,4 +24,4 @@ const RecipeHeading = () => {
     )
 }
 
-export default RecipeHeading;
+export default Heading;
