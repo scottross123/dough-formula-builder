@@ -42,35 +42,39 @@ type Recipe = {
 export type RecipesState = Recipe[]
 
 const recipesSlice = createSlice({
-    name: 'recipe',
+    name: 'recipes',
     initialState,
     reducers: {
-        addIngredient: (state, action: PayloadAction<{ recipeIndex: number, newIngredient: Ingredient }>) => {
-            const { recipeIndex, newIngredient } = action.payload;
-            state[recipeIndex].formula.ingredients.push(newIngredient);
+        addIngredient: (state, action: PayloadAction<{ recipeId: string, newIngredient: Ingredient }>) => {
+            const { recipeId, newIngredient } = action.payload;
+            const recipe = state.find(recipe => recipe.id === recipeId);
+            recipe!.formula.ingredients.push(newIngredient);
         },
-        removeIngredient: (state, action: PayloadAction<{ recipeIndex: number, id: string }>) => {
-            const { recipeIndex, id } = action.payload;
-            state[recipeIndex].formula.ingredients = state[recipeIndex].formula.ingredients.filter((ingredient) => ingredient.id == id);
+        removeIngredient: (state, action: PayloadAction<{ recipeId: string, id: string }>) => {
+            const { recipeId, id } = action.payload;
+            const recipe = state.find(recipe => recipe.id === recipeId);
+            recipe!.formula.ingredients = recipe!.formula.ingredients.filter((ingredient) => ingredient.id == id);
         },
         /*updateFlourRatio: (state, action: PayloadAction<{ recipeIndex: number, id: string, newRatio: number }>) => {
             const { recipeIndex, id, newRatio } = action.payload;
             const flour = state[recipeIndex].formula.flours.find((flour: Ingredient) => (flour.id === id));
             flour!.ratio = parseFloat(newRatio.toFixed(3));
         },*/ // for now flour ratios can not be changed
-        updateFlourName: (state, action: PayloadAction<{ recipeIndex: number, id: string, newName: string}>) => {
-            const { recipeIndex, id, newName } = action.payload;
-            const flour = state[recipeIndex].formula.flours.find((flour: Ingredient) => flour.id === id);
+        updateFlourName: (state, action: PayloadAction<{ recipeId: string, id: string, newName: string}>) => {
+            const { recipeId, id, newName } = action.payload;
+            const recipe = state.find(recipe => recipe.id === recipeId);
+            const flour = recipe!.formula.flours.find((flour: Ingredient) => flour.id === id);
             flour!.name = newName;
         },
-        updateIngredientRatio: (state, action: PayloadAction<{ recipeIndex: number, id: string, newRatio: number }>) => {
-            const { recipeIndex, id, newRatio } = action.payload;
-            const totalFlourWeight = useAppSelector(selectTotalFlourWeight);
-            const ingredient = state[recipeIndex].formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
-            const unitQuantity = state[recipeIndex].yields.unitQuantity;
+        updateIngredientRatio: (state, action: PayloadAction<{ recipeId: string, id: string, newRatio: number }>) => {
+            const { recipeId, id, newRatio } = action.payload;
+            const totalFlourWeight = selectTotalFlourWeight({ recipes: state }, recipeId);
+            const recipe = state.find(recipe => recipe.id === recipeId);
+            const ingredient = recipe!.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
+            const unitQuantity = recipe!.yields.unitQuantity;
             const additionalUnitWeight = ((newRatio - ingredient!.ratio) * totalFlourWeight) / unitQuantity;
             ingredient!.ratio = parseFloat(newRatio.toFixed(3));
-            state[recipeIndex].yields.unitWeight += Math.round(additionalUnitWeight);
+            recipe!.yields.unitWeight += Math.round(additionalUnitWeight);
         },
         updateIngredientName: (state, action: PayloadAction<{ recipeIndex: number, id: string, newName: string}>) => {
             const { recipeIndex, id, newName } = action.payload;

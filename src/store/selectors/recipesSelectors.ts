@@ -3,17 +3,47 @@ import { createStructuredSelector } from 'reselect'
 import { Ingredient } from "../slices/recipesSlice";
 import { RootState } from "../store";
 
-export const selectRecipe = (state: RootState) => state.recipe;
-export const selectFormula = (state: RootState) => state.recipe.formula;
-export const selectFormulaIngredients = (state: RootState) => state.recipe.formula.ingredients;
-const selectUnitWeight = (state: RootState) => state.recipe.yields.unitWeight;
-const selectUnitQuantity = (state: RootState) => state.recipe.yields.unitQuantity;
-const selectWasteFactor = (state: RootState) => state.recipe.yields.wasteFactor;
-export const selectFlours = (state: RootState) => state.recipe.formula.flours;
-export const selectYields = (state: RootState) => state.recipe.yields;
+export const selectRecipes = (state: RootState) => state.recipes;
+
+export const selectRecipe = (state: RootState, id: string) => state.recipes.find(recipe => recipe.id === id);
+
+export const selectFormula = createSelector(
+    selectRecipe,
+    (recipe) => recipe!.formula
+);
+
+export const selectIngredients = createSelector(
+    selectFormula,
+    (formula) => formula.ingredients
+);
+
+export const selectFlours = createSelector(
+    selectFormula,
+    (formula) => formula.flours
+);
+
+export const selectYields = createSelector(
+    selectRecipe,
+    (recipe) => recipe!.yields
+);
+
+export const selectUnitWeight = createSelector(
+    selectYields,
+    (yields) => yields!.unitWeight
+);
+
+const selectUnitQuantity = createSelector(
+    selectYields,
+    (yields) => yields!.unitQuantity
+);
+
+const selectWasteFactor = createSelector(
+    selectYields,
+    (yields) => yields!.wasteFactor
+);
 
 const selectTotalRatio = createSelector(
-    selectFormulaIngredients, ingredients =>
+    selectIngredients, ingredients =>
         ingredients.reduce((totalRatio: number, ingredient: Ingredient) => totalRatio + ingredient.ratio, 1)
 );
 
@@ -23,7 +53,7 @@ export const selectTotalWeight = createSelector(
     selectWasteFactor,
     ( unitWeight, unitQuantity, wasteFactor ) =>
         Math.round(unitWeight * unitQuantity * (1 + wasteFactor))
-);
+)
 
 export const selectTotals = createStructuredSelector({
     totalRatio: selectTotalRatio,
@@ -39,7 +69,7 @@ export const selectTotalFlourWeight = createSelector(
 
 const selectIngredient = createSelector(
     [
-        selectFormulaIngredients,
+        selectIngredients,
         (ingredients, id) => id
     ],
     (ingredients, id) =>
