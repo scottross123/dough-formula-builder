@@ -17,6 +17,7 @@ React/TypeScript frontend app created with Vite. Eventually some backend to save
 - Vite
 - TailwindCSS + DaisyUI
 - Redux Toolkit
+- React Router v6
 
 ### Backend (to-do)
 - Go + Gin
