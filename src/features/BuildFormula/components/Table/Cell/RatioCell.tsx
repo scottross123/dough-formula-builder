@@ -8,7 +8,7 @@ import {selectTotalFlourWeight} from "../../../../../store/selectors/recipeSelec
 type RatioCellProps = {
     ingredientId: string,
     ratio: number,
-    isFlour: boolean,
+    isFlour?: boolean,
 }
 
 const RatioCell = (props: RatioCellProps) => {

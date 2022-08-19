@@ -1,24 +1,22 @@
 import IngredientRow from "./IngredientRow";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectFormula } from "../../../../store/selectors/recipeSelectors";
-import FlourRow from "./FlourRow";
+import { Ingredient } from "../../../../store/slices/recipeSlice";
 
 const Body = () => {
     const { flours, ingredients } = useAppSelector(selectFormula);
 
     return (
         <tbody>
-        <FlourRow />
+            { flours.map((flour: Ingredient) =>
+                <IngredientRow key={flour.id} ingredient={flour} isFlour />
+            )}
 
-        {
-            ingredients.map((ingredient) => (
-            <IngredientRow type={'ingredient'} ingredient={ingredient} />
-            ))
-        }
+            { ingredients.map((ingredient: Ingredient) =>
+                <IngredientRow key={ingredient.id} ingredient={ingredient} />
+            )}
         </tbody>
     );
 }
 
 export default Body;
-
-// fix key prop warning in console

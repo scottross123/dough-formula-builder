@@ -1,42 +1,49 @@
-import Cell from './Cell/Cell';
 import { Ingredient } from "../../../../store/slices/recipeSlice";
 import {useAppSelector} from "../../../../store/hooks";
-import {selectIngredientWeight} from "../../../../store/selectors/recipeSelectors";
+import {selectIngredientWeight, selectFlourWeight} from "../../../../store/selectors/recipeSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
-import WeightCell from "./Cell/WeightCell";
+import { Fragment } from "react";
 
-type TableRowProps = {
+type IngredientRowProps = {
     ingredient: Ingredient,
-    type: 'flour' | 'ingredient',
+    isFlour?: boolean,
 }
 
-type Entry = Ingredient & {
-    metric: number;
+type Row = {
+    key: string | number,
+    cell: JSX.Element,
 }
 
-const IngredientRow = (props: TableRowProps) => {
-    const { ingredient: { id, name, ratio }, type } = props;
-    //const metric = useAppSelector((state) => selectIngredientWeight(state, id as never));
-    const entry = [
-        <NameCell ingredientId={id} name={name} />,
-        <WeightCell ingredientId={id} ratio={ratio} type={type} />,
-        <RatioCell ingredientId={id} ratio={ratio} type={type} />,
+const IngredientRow = (props: IngredientRowProps) => {
+    const { ingredient: { id, name, ratio }, isFlour } = props;
+    const metric: number = isFlour ?
+        useAppSelector((state) => selectFlourWeight(state, id as never)) :
+        useAppSelector((state) => selectIngredientWeight(state, id as never))
+    const rows: Row[] = [
+        {
+            key: name,
+            cell: <NameCell ingredientId={id} name={name}/>,
+        },
+        {
+            key: metric,
+            cell: <td>{metric}g</td>,
+        },
+        {
+            key: ratio,
+            cell: isFlour ? <td>100%</td> : <RatioCell ingredientId={id} ratio={ratio} />,
+        },
     ];
 
     return (
       <tr className="hover">
-          {
-              entry.map((cell, index) => (
-                  cell
-              ))
-          }
+          { rows.map(({cell, key}) =>
+              <Fragment key={key}>
+                  {cell}
+              </Fragment>
+          )}
       </tr>
     );
 }
 
 export default IngredientRow;
-
-// fix key prop warning in console
-
-// divide into flour row and ingredient row
