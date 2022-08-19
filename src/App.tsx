@@ -1,12 +1,17 @@
-import styles from './App.module.css';
-import Header from "./layout/Header";
-import Main from "./layout/Main";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
-    <div className={styles.app}>
-        <Header />
-        <Main />
+    <div className="flex">
+        <Navbar />
+        <Sidebar />
+        <div className="flex flex-col grow">
+            <Header />
+            <Main />
+        </div>
     </div>
   );
 }
