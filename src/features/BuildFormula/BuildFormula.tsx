@@ -6,6 +6,8 @@ const BuildFormula = () => {
             <Heading />
             <Inputs />
             <Table title="Overall Formula" />
+            <Table title="Preferment" />
+            <Table title="Final Dough Formula" />
         </section>
     )
 }

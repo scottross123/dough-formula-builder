@@ -1,8 +1,8 @@
 import {FormEvent, Fragment, useContext, useEffect, useRef, useState} from "react";
-import {formatContent, metricFormat, percentFormat} from "../../utils/numberFormats";
-import { useOnOutsideClick } from "../../hooks/useOnOutsideClick";
-import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {updateIngredientRatio } from "../../../../store/slices/recipeSlice";
+import {formatContent, metricFormat, percentFormat} from "../../../utils/numberFormats";
+import { useOnOutsideClick } from "../../../hooks/useOnOutsideClick";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {updateIngredientRatio } from "../../../../../store/slices/recipeSlice";
 
 type CellProps  = {
     ingredientId: string,

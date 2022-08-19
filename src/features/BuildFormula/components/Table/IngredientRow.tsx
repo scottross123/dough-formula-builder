@@ -1,10 +1,10 @@
-import Cell from '../../Cell/Cell';
-import { Ingredient } from "../../../../../store/slices/recipeSlice";
-import {useAppSelector} from "../../../../../store/hooks";
-import {selectIngredientWeight} from "../../../../../store/selectors/recipeSelectors";
-import NameCell from "../../Cell/NameCell";
-import RatioCell from "../../Cell/RatioCell";
-import WeightCell from "../../Cell/WeightCell";
+import Cell from './Cell/Cell';
+import { Ingredient } from "../../../../store/slices/recipeSlice";
+import {useAppSelector} from "../../../../store/hooks";
+import {selectIngredientWeight} from "../../../../store/selectors/recipeSelectors";
+import NameCell from "./Cell/NameCell";
+import RatioCell from "./Cell/RatioCell";
+import WeightCell from "./Cell/WeightCell";
 
 type TableRowProps = {
     ingredient: Ingredient,
@@ -15,7 +15,7 @@ type Entry = Ingredient & {
     metric: number;
 }
 
-const Row = (props: TableRowProps) => {
+const IngredientRow = (props: TableRowProps) => {
     const { ingredient: { id, name, ratio }, type } = props;
     //const metric = useAppSelector((state) => selectIngredientWeight(state, id as never));
     const entry = [
@@ -25,7 +25,7 @@ const Row = (props: TableRowProps) => {
     ];
 
     return (
-      <tr>
+      <tr className="hover">
           {
               entry.map((cell, index) => (
                   cell
@@ -35,7 +35,7 @@ const Row = (props: TableRowProps) => {
     );
 }
 
-export default Row;
+export default IngredientRow;
 
 // fix key prop warning in console
 

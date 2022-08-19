@@ -1,12 +1,12 @@
 import { useAppSelector } from "../../../../store/hooks";
 import { selectYields } from "../../../../store/selectors/recipeSelectors";
 
-const Inputs = () => {
+const Yields = () => {
     const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(selectYields);
 
     return (
         <div>
-            <table className="table w-full">
+            <table className="table table-compact w-full">
                 <tbody>
                     <tr>
                         <td>Quantity of Units</td>
@@ -26,4 +26,4 @@ const Inputs = () => {
     );
 }
 
-export default Inputs;
+export default Yields;

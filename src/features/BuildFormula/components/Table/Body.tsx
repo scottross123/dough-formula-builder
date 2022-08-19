@@ -1,6 +1,6 @@
-import Row from "./Row";
-import { useAppSelector } from "../../../../../store/hooks";
-import { selectFormula } from "../../../../../store/selectors/recipeSelectors";
+import IngredientRow from "./IngredientRow";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectFormula } from "../../../../store/selectors/recipeSelectors";
 import FlourRow from "./FlourRow";
 
 const Body = () => {
@@ -12,7 +12,7 @@ const Body = () => {
 
         {
             ingredients.map((ingredient) => (
-            <Row type={'ingredient'} ingredient={ingredient} />
+            <IngredientRow type={'ingredient'} ingredient={ingredient} />
             ))
         }
         </tbody>

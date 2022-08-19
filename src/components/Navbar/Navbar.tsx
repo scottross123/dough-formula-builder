@@ -36,7 +36,7 @@ const navItems: NavbarItemProps[] = [
 
 const Navbar = () => {
     return (
-        <div className="drawer-side w-20 flex flex-col border-r-2 justify-evenly items-center">
+        <div className="drawer-side top-0 h-screen sticky w-20 flex flex-col border-r-2 justify-evenly items-center">
             { navItems.map(({key, icon, text, link}: NavbarItemProps) =>
                 <NavbarItem key={key} icon={icon} text={text} link={link} />
             )}

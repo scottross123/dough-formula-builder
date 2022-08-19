@@ -1,6 +1,6 @@
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {addIngredient, } from "../../../../../store/slices/recipeSlice";
-import { selectFormula} from "../../../../../store/selectors/recipeSelectors";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {addIngredient, } from "../../../../store/slices/recipeSlice";
+import { selectFormula} from "../../../../store/selectors/recipeSelectors";
 import { v4 as uuidv4 } from 'uuid';
 
 const Controls = () => {
