@@ -7,7 +7,7 @@ const BuildFormula = () => {
             <Inputs />
             <Table title="Overall Formula" />
             <Table title="Preferment" />
-            <Table title="Final Dough Formula" />
+            <Table title="Final Dough Formula" readOnly />
         </section>
     )
 }

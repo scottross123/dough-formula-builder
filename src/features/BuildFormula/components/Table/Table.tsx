@@ -6,10 +6,11 @@ import Controls from "./Controls";
 
 type TableProps = {
     title: string,
+    readOnly?: boolean,
 }
 
 const Table = (props: TableProps) => {
-    const { title } = props;
+    const { title, readOnly } = props;
 
     return (
         <div className="w-1/2 flex flex-col items-center gap-2">
@@ -25,7 +26,7 @@ const Table = (props: TableProps) => {
                 <Body />
                 <Footer />
             </table>
-            <Controls />
+            {!readOnly && <Controls />}
         </div>
     )
 

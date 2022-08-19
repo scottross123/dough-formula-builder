@@ -23,7 +23,7 @@ const IngredientRow = (props: IngredientRowProps) => {
 
     return (
       <tr className="hover">
-          { columns.map((column) => column )}
+          { columns.map((column) => column ) }
       </tr>
     );
 }
