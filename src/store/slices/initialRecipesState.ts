@@ -107,9 +107,9 @@ export const initialState: RecipesState = [
         description: 'A French bread and Viennoiserie made with a high proportion of egg and butter.',
         author: 'Osono',
         yields: {
-            unitWeight: 1000,
-            unitQuantity: 2,
-            wasteFactor: 0,
+            unitWeight: 800,
+            unitQuantity: 4,
+            wasteFactor: 0.02,
         },
         formula: {
             flours: [

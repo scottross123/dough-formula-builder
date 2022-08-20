@@ -1,18 +1,23 @@
+import { NavLink } from "react-router-dom";
+
 export type NavbarItemProps = {
-    key: string,
     icon: JSX.Element,
     text: string,
     link: string,
 }
 
 const NavbarItem = (props: NavbarItemProps) => {
-     const { icon, text } = props;
+     const { icon, text, link } = props;
 
     return (
-        <div className="tooltip tooltip-right z-50" data-tip={text}>
-            <button className="btn btn-ghost rounded-full w-fit">
-                {icon}
-            </button>
+        <div className="tooltip tooltip-right z-5" data-tip={text}>
+            <NavLink
+                to={link}
+            >
+                <button className="btn btn-ghost rounded-full w-fit">
+                    {icon}
+                </button>
+            </NavLink>
         </div>
     )
 }

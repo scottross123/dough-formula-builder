@@ -1,9 +1,9 @@
-import { Heading, Inputs, Table } from "./components";
-import RecipeProvider from "./providers/RecipeProvider";
+import { Heading, Inputs, Table } from "../components";
+import RecipeProvider from "../providers/RecipeProvider";
 
-const BuildFormula = () => {
+const EditRecipe = () => {
     return (
-        <RecipeProvider recipeId={"1"}>
+        <RecipeProvider recipeId={"3"}>
             <section className="flex flex-col items-center gap-8">
                 <Heading />
                 <Inputs />
@@ -15,4 +15,4 @@ const BuildFormula = () => {
     );
 }
 
-export default BuildFormula;
+export default EditRecipe;

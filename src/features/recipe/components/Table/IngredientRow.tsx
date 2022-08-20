@@ -1,8 +1,6 @@
 import { Ingredient } from "../../../../store/slices/recipesSlice";
 import {useAppSelector} from "../../../../store/hooks";
 import {
-    selectIngredientWeight,
-    selectFlourWeight,
     selectTotalFlourWeight
 } from "../../../../store/selectors/recipesSelectors";
 import NameCell from "./Cell/NameCell";

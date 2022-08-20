@@ -82,8 +82,3 @@ const selectIngredient = createSelector(
     (ingredients, id) =>
         ingredients.find((ingredient: Ingredient) => ingredient.id === id)
 );
-
-/*import {initialState} from "./recipeSlice";
-
-const selection = selectFlourWeight({recipe: initialState}, '1' as never);
-console.log(selection); */

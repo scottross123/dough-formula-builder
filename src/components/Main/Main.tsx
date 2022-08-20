@@ -1,10 +1,11 @@
 import styles from './Main.module.css'
-import BuildFormula from "../../features/recipe";
+import EditRecipe from "../../features/recipe";
+import AppRoutes from "../../routes/AppRoutes";
 
 const Main = () => {
     return (
         <main className="p-4 container">
-            <BuildFormula />
+            <AppRoutes />
         </main>
     );
 }

@@ -1,2 +1,2 @@
-import BuildFormula from "./BuildFormula";
-export default BuildFormula;
+import EditRecipe from "./routes/EditRecipe";
+export default EditRecipe;
