@@ -1,14 +1,14 @@
-import { Heading, Inputs, Table } from "../components";
-import RecipeProvider from "../providers/RecipeProvider";
-import {useAppSelector} from "../../../store/hooks";
-import {selectPreferements, selectRecipe, selectRecipes} from "../../../store/selectors/recipesSelectors";
+import { Heading, Inputs, Table } from "../index";
+import RecipeProvider from "../../providers/RecipeProvider";
+import {useAppSelector} from "../../../../store/hooks";
+import {selectPreferements, selectRecipe, selectRecipes} from "../../../../store/selectors/recipesSelectors";
 
 const EditRecipe = () => {
     const preferments = useAppSelector(state => selectPreferements(state, "3"))
 
     return (
         <RecipeProvider recipeId={"3"}>
-            <section className="flex flex-col items-center gap-8">
+            <section className="flex flex-col items-center gap-8 w-full">
                 <Heading />
                 <Inputs />
                 <Table title="Overall Formula" />

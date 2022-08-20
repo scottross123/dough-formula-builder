@@ -1,6 +1,6 @@
 import bread from "../../assets/images/bread.jpeg"; // placeholder image
 
-export type SidebarItemProps = {
+type SidebarItemProps = {
     key: string,
     title: string,
     description: string,
@@ -12,7 +12,7 @@ const SidebarItem = (props: SidebarItemProps) => {
     const { title, description } = props;
 
     return (
-        <div className="text-center py-2 rounded text-red hover:bg-gray-100">
+        <div className="text-center my-2 p-1 rounded text-red hover:bg-gray-100">
             <p className="text-sm">{title}</p>
             <p className="text-xs">{description}</p>
         </div>

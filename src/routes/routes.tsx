@@ -1,4 +1,4 @@
-import { Home, EditRecipe, Starters, Community, Resources } from "../features";
+import { Home, RecipePage, Starters, Community, Resources } from "../features";
 
 type route = {
     path: string,
@@ -12,7 +12,7 @@ export const routes: route[] = [
     },
     {
         path: '/recipes',
-        element: <EditRecipe />,
+        element: <RecipePage />,
     },
     {
         path: '/starters',
