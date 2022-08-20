@@ -1,7 +1,7 @@
 import Header from "./components/Header";
-import Main from "./components/Main";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar/Navbar";
+import AppRoutes from "./routes/AppRoutes";
 
 const App = () => {
   return (
@@ -10,7 +10,9 @@ const App = () => {
         <Sidebar />
         <div className="flex flex-col grow">
             <Header />
-            <Main />
+            <main className="p-4 container">
+                <AppRoutes />
+            </main>
         </div>
     </div>
   );

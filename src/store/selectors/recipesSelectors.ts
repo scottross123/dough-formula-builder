@@ -12,6 +12,11 @@ export const selectFormula = createSelector(
     (recipe) => recipe!.formula
 );
 
+export const selectPreferements = createSelector(
+    selectRecipe,
+    (recipe) => recipe!.preferments
+)
+
 export const selectIngredients = createSelector(
     selectFormula,
     (formula) => formula.ingredients
