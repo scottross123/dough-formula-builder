@@ -3,12 +3,12 @@ import EditRecipe from "../components/EditRecipe/EditRecipe";
 
 const RecipePage = () => {
     return (
-        <>
-            <main className="flex p-4 w-full">
+        <div className="flex">
+            <main className="page">
                 <EditRecipe />
             </main>
             <Sidebar />
-        </>
+        </div>
     )
 }
 

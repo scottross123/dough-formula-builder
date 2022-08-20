@@ -1,19 +1,27 @@
-import { Home, RecipePage, Starters, Community, Resources } from "../features";
+import { Home, Starters, Community, Resources } from "../features";
+import { RecipeListPage, RecipePage } from "../features/recipe/pages";
+import { RouteObject } from "react-router-dom";
+import {NotFound} from "../components";
 
-type route = {
-    path: string,
-    element: JSX.Element,
-}
-
-export const routes: route[] = [
+export const routes: RouteObject[] = [
     {
         path: '/',
         element: <Home />,
     },
     {
         path: '/recipes',
-        element: <RecipePage />,
+        children: [
+            {
+                path: '',
+                element: <RecipeListPage />,
+            },
+            {
+                path: ':recipeId',
+                element: <RecipePage />,
+            },
+        ]
     },
+
     {
         path: '/starters',
         element: <Starters />,
@@ -26,4 +34,8 @@ export const routes: route[] = [
         path: '/resources',
         element: <Resources/>,
     },
+    {
+        path: '*',
+        element: <NotFound />,
+    }
 ];

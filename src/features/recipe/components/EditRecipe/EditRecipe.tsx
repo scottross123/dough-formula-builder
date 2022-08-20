@@ -1,13 +1,16 @@
 import { Heading, Inputs, Table } from "../index";
 import RecipeProvider from "../../providers/RecipeProvider";
-import {useAppSelector} from "../../../../store/hooks";
-import {selectPreferements, selectRecipe, selectRecipes} from "../../../../store/selectors/recipesSelectors";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectPreferements } from "../../../../store/selectors/recipesSelectors";
+import { useParams } from "react-router-dom";
 
 const EditRecipe = () => {
-    const preferments = useAppSelector(state => selectPreferements(state, "3"))
+    const { recipeId } = useParams();
+    console.log(recipeId)
+    const preferments = useAppSelector(state => selectPreferements(state, recipeId!));
 
     return (
-        <RecipeProvider recipeId={"3"}>
+        <RecipeProvider recipeId={recipeId!}>
             <section className="flex flex-col items-center gap-8 w-full">
                 <Heading />
                 <Inputs />

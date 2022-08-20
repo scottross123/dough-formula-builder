@@ -1,2 +1,4 @@
 import RecipePage from './RecipePage';
-export default RecipePage;
+import RecipeListPage from "./RecipeListPage";
+
+export { RecipePage, RecipeListPage };

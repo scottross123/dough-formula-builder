@@ -13,9 +13,7 @@ const Layout = (props: LayoutProps) => {
             <Navbar />
             <div className="flex flex-col grow">
                 <Header />
-                <div className="flex">
-                    {children}
-                </div>
+                {children}
             </div>
         </div>
     )

@@ -4,4 +4,4 @@ import Starters from "./starters";
 import Resources from "./resources";
 import Community from "./community";
 
-export { Home, RecipePage, Starters, Resources, Community };
+export { Home, Starters, Resources, Community };
