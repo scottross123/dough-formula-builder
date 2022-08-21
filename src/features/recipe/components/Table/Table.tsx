@@ -1,35 +1,21 @@
-import styles from './table.module.css';
-import { useContext } from "react";
-import Footer from "./Footer";
-import Body from "./Body";
-import Controls from "./Controls";
-
 type TableProps = {
     title: string,
-    readOnly?: boolean,
+    children: JSX.Element,
+    controls?: JSX.Element,
 }
 
-const Table = (props: TableProps) => {
-    const { title, readOnly } = props;
+const Table = (props: TableProps ) => {
+    const { title, children, controls } = props;
 
     return (
         <div className="card items-center gap-4 mb-4">
             <h1 className="card-title self-start font-bold">{title}</h1>
             <table className="card-body table table-compact w-full">
-                <thead>
-                    <tr>
-                        <th>Ingredients</th>
-                        <th>Metric</th>
-                        <th>Baker's %</th>
-                    </tr>
-                </thead>
-                <Body />
-                <Footer />
+                {children}
             </table>
-            {!readOnly && <Controls />}
+            {controls}
         </div>
-    )
-
+    );
 }
 
 export default Table;

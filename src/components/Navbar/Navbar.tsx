@@ -34,7 +34,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="h-screen sticky top-0 w-20 flex flex-col border-r-2 justify-evenly items-center">
+        <nav className="h-screen sticky top-0 w-20 flex flex-col border-r-2 justify-evenly items-center bg-base-100 z-50">
             { navItems.map(({ icon, text, link}: NavbarItemProps) =>
                 <NavbarItem icon={icon} text={text} link={link} />
             )}

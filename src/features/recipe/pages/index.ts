@@ -1,4 +1,4 @@
 import RecipePage from './RecipePage';
-import RecipeListPage from "./RecipeListPage";
+//import RecipeListPage from "./RecipeListPage";
 
-export { RecipePage, RecipeListPage };
+export { RecipePage, };

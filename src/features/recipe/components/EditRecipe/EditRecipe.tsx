@@ -1,8 +1,9 @@
-import { Heading, Inputs, Table } from "../index";
+import { Heading, Yields, Table } from "../index";
 import RecipeProvider from "../../providers/RecipeProvider";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectPreferements } from "../../../../store/selectors/recipesSelectors";
 import { useParams } from "react-router-dom";
+import Process from "../Process";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();
@@ -13,8 +14,8 @@ const EditRecipe = () => {
             <section className="flex gap-8 w-full">
                 <div className="w-1/2 flex flex-col gap-8">
                     <Heading />
-                    <Inputs />
-
+                    <Yields />
+                    <Process />
                 </div>
 
                 <div className="w-1/2">
