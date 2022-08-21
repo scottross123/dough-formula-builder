@@ -12,10 +12,6 @@ export const routes: RouteObject[] = [
         path: '/recipes',
         children: [
             {
-                path: '',
-                element: <RecipeListPage />,
-            },
-            {
                 path: ':recipeId',
                 element: <RecipePage />,
             },

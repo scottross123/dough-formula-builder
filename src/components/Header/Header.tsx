@@ -1,14 +1,18 @@
 import { BsGithub } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdAdd } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const currentUser = "User";
 
     return (
-        <header className="navbar border-b-2">
+        <header className="navbar border-b-2 sticky top-0 z-50 bg-base-100">
             <div className="navbar-start">
-                <h1 className="font-bold text-red p-1">Formula App</h1>
+                <Link to="/">
+                    <h1 className="font-bold text-red p-1">Formula App</h1>
+                </Link>
+                <input type="text" placeholder="Search…" className="input input-bordered input-sm w-1/2 ml-4"/>
             </div>
 
             <div className="navbar-end">

@@ -8,6 +8,7 @@ import {RecipeContext} from "../../providers/RecipeProvider";
 const Controls = () => {
     const dispatch = useAppDispatch();
     const recipeId = useContext(RecipeContext);
+    const buttonStyle = "btn btn-primary btn-outline btn-sm";
 
     const handleClickIngredient = () => {
         dispatch(addIngredient({
@@ -25,9 +26,9 @@ const Controls = () => {
     }
 
     return (
-        <div className="btn-group">
-            <button className="btn" onClick={handleClickIngredient}>Add ingredient</button>
-            <button className="btn" onClick={handleClickFlour}>Add flour</button>
+        <div className="card-actions btn-group">
+            <button className={buttonStyle} onClick={handleClickIngredient}>Add ingredient</button>
+            <button className={buttonStyle} onClick={handleClickFlour}>Add flour</button>
         </div>
     );
 }

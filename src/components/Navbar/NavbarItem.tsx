@@ -14,7 +14,7 @@ const NavbarItem = (props: NavbarItemProps) => {
             <NavLink
                 to={link}
             >
-                <button className="btn btn-ghost rounded-full w-fit">
+                <button className="btn btn-ghost rounded w-fit">
                     {icon}
                 </button>
             </NavLink>

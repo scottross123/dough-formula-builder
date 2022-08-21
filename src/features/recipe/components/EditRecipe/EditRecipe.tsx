@@ -6,14 +6,18 @@ import { useParams } from "react-router-dom";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();
-    console.log(recipeId)
     const preferments = useAppSelector(state => selectPreferements(state, recipeId!));
 
     return (
         <RecipeProvider recipeId={recipeId!}>
-            <section className="flex flex-col items-center gap-8 w-full">
-                <Heading />
-                <Inputs />
+            <section className="flex gap-8 w-full">
+                <div className="w-1/2 flex flex-col gap-8">
+                    <Heading />
+                    <Inputs />
+
+                </div>
+
+                <div className="w-1/2">
                 <Table title="Overall Formula" />
                 {
                     preferments &&
@@ -22,6 +26,7 @@ const EditRecipe = () => {
                         <Table title="Final Dough Formula" readOnly />
                     </>
                 }
+                </div>
             </section>
         </RecipeProvider>
     );
