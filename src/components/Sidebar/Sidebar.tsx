@@ -1,6 +1,6 @@
 import SidebarItem from "./SidebarItem";
 import {useAppSelector} from "../../store/hooks";
-import {selectRecipes} from "../../store/selectors/recipesSelectors";
+import {selectRecipes} from "../../features/state/recipesSelectors";
 
 const Sidebar = () => {
     const recipes = useAppSelector(selectRecipes);
@@ -11,8 +11,8 @@ const Sidebar = () => {
             <h1 className="mb-2 text-center font-bold text-red text-xl">Your Recipes</h1>
             <hr />
             <div className="flex flex-col ">
-                { recipes.map(({ id, name, description }) =>
-                    <SidebarItem key={id} title={name} description={description} link={id} />
+                { recipes.map(({ id, title, description }) =>
+                    <SidebarItem key={id} title={title} description={description} link={id} />
                 )}
             </div>
         </aside>

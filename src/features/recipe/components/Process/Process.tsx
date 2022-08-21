@@ -34,10 +34,6 @@ const Process = () => {
                     <td>Boule</td>
                 </tr>
                 <tr>
-                    <td>Steam</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
                     <td>Bake</td>
                     <td>40 minutes at 450°F</td>
                 </tr>

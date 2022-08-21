@@ -1,9 +1,9 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../store";
+import {RootState} from "../../store/store";
 import { v4 as uuidv4 } from 'uuid';
 import { initialState } from "./initialRecipesState";
-import {selectTotalFlourWeight} from "../selectors/recipesSelectors";
-import {useAppSelector} from "../hooks";
+import {selectTotalFlourWeight} from "./recipesSelectors";
+import {useAppSelector} from "../../store/hooks";
 
 export type Ingredient = {
     id: string,
@@ -11,7 +11,7 @@ export type Ingredient = {
     ratio: number,
 }
 
-export type Yields = {
+type Yields= {
     unitWeight: number,
     unitQuantity: number,
     wasteFactor: number,
@@ -25,15 +25,46 @@ export type Formula = {
 type Preferment = {
     id: string,
     prefermentedFlourRatio: number,
+    fermentation: {
+        time: number,
+        temperature: number,
+    }
     formula: Formula,
+}
+
+type Process = {
+    mix: {
+        method: "short" | "improved" | "intensive",
+        notes?: string,
+    },
+    ddt: number,
+    bulkFermentationTime: number,
+    preshape: {
+        time: number,
+        shape: string,
+    },
+    finalProof: {
+        time: number,
+        temp: number,
+    },
+    shape: string,
+    bake: Array<
+        {
+            id: string,
+            time: number,
+            temp: number
+        }
+    >,
 }
 
 export type Recipe = {
     id: string,
-    name: string,
+    title: string,
     description: string,
+    image?: string, // for now just link to placeholder images in assests folder
     author: string,
     yields: Yields,
+    process: Process,
     formula: Formula,
     preferments?: Preferment[],
     // eventually: soakers, instructions, proofing times, etc

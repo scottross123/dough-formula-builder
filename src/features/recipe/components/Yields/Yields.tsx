@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectYields } from "../../../../store/selectors/recipesSelectors";
+import { selectYields } from "../../../state/recipesSelectors";
 import { useContext } from "react";
 import { RecipeContext } from "../../providers/RecipeProvider";
 import Table from "../Table";

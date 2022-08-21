@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {addIngredient, } from "../../../../store/slices/recipesSlice";
-import { selectFormula} from "../../../../store/selectors/recipesSelectors";
+import {addIngredient, } from "../../../state/recipesSlice";
+import { selectFormula} from "../../../state/recipesSelectors";
 import { v4 as uuidv4 } from 'uuid';
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";

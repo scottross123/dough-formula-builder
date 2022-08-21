@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { createStructuredSelector } from 'reselect'
-import { Formula, Ingredient, Recipe } from "../slices/recipesSlice";
-import { RootState } from "../store";
+import { Formula, Ingredient, Recipe } from "./recipesSlice";
+import { RootState } from "../../store/store";
 
 export const selectRecipes = (state: RootState) => state.recipes;
 

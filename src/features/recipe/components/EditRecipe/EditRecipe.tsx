@@ -1,7 +1,7 @@
 import { Heading, Yields, Table } from "../index";
 import RecipeProvider from "../../providers/RecipeProvider";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectPreferements } from "../../../../store/selectors/recipesSelectors";
+import { selectPreferements } from "../../../state/recipesSelectors";
 import { useParams } from "react-router-dom";
 import Process from "../Process";
 

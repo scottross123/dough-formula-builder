@@ -1,7 +1,7 @@
 import NavbarItem, { NavbarItemProps } from "./NavbarItem";
 import { BiRestaurant, BiFoodMenu, BiPlanet, BiFile, BiHome } from "react-icons/bi";
 import {useAppSelector} from "../../store/hooks";
-import {selectRecipes} from "../../store/selectors/recipesSelectors";
+import {selectRecipes} from "../../features/state/recipesSelectors";
 
 const Navbar = () => {
     const { id: currentRecipeId } = useAppSelector(selectRecipes)[0]; // eventually recipe currently ebing eddited will persist, for now goes to firce in array

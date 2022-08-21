@@ -1,8 +1,8 @@
-import { Ingredient } from "../../../../store/slices/recipesSlice";
+import { Ingredient } from "../../../state/recipesSlice";
 import {useAppSelector} from "../../../../store/hooks";
 import {
     selectTotalFlourWeight
-} from "../../../../store/selectors/recipesSelectors";
+} from "../../../state/recipesSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
 import {Fragment, useContext} from "react";
