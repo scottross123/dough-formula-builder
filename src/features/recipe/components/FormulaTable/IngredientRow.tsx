@@ -1,8 +1,8 @@
-import { Ingredient } from "../../../state/recipesSlice";
+import { Ingredient } from "../../state/recipesSlice";
 import {useAppSelector} from "../../../../store/hooks";
 import {
     selectTotalFlourWeight
-} from "../../../state/recipesSelectors";
+} from "../../state/recipesSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
 import {Fragment, useContext} from "react";
@@ -15,10 +15,10 @@ type IngredientRowProps = {
 
 const IngredientRow = (props: IngredientRowProps) => {
     const { ingredient: { id, name, ratio }, isFlour } = props;
-    const recipeId = useContext(RecipeContext);
-    const totalFlourWeight = useAppSelector(state => selectTotalFlourWeight(state, recipeId));
+    const recipeId: string = useContext(RecipeContext);
+    const totalFlourWeight: number = useAppSelector(state => selectTotalFlourWeight(state, recipeId));
     const metric: number = Math.round(ratio * totalFlourWeight);
-    const columns = [
+    const columns: JSX.Element[] = [
         <NameCell key="name" ingredientId={id} name={name}/>,
         <td key="metric">{metric}g</td>,
         isFlour ? <td key="ratio">100%</td> : <RatioCell key="ratio" ingredientId={id} ratio={ratio} />,

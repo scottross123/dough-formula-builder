@@ -1,13 +1,16 @@
-import { Heading, Yields, Table } from "../index";
+import { Heading, Yields, FormulaTable } from "../index";
 import RecipeProvider from "../../providers/RecipeProvider";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectPreferements } from "../../../state/recipesSelectors";
+import { selectPreferments } from "../../state/recipesSelectors";
 import { useParams } from "react-router-dom";
 import Process from "../Process";
+import { Preferment } from "../../state/recipesSlice";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();
-    const preferments = useAppSelector(state => selectPreferements(state, recipeId!));
+    // add current recipe being edited to redux state, so it persists.
+    // will do this after rtk query has been implemented and recipe data is being fetched rather than hard coded
+    const preferments: Preferment[] | undefined = useAppSelector(state => selectPreferments(state, recipeId!));
 
     return (
         <RecipeProvider recipeId={recipeId!}>
@@ -19,13 +22,15 @@ const EditRecipe = () => {
                 </div>
 
                 <div className="w-1/2">
-                <Table title="Overall Formula" />
+                <FormulaTable title="Overall Formula" />
                 {
-                    preferments &&
+                    preferments ?
                     <>
-                        <Table title="Preferment" />
-                        <Table title="Final Dough Formula" readOnly />
-                    </>
+                        { preferments.map(preferment => (
+                            <FormulaTable title={preferment.name} prefermentId={preferment.id} />
+                        ))}
+                        <FormulaTable title="Final Dough Formula" readOnly />
+                    </> : <></>
                 }
                 </div>
             </section>

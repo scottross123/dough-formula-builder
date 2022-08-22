@@ -1,6 +1,6 @@
 import SidebarItem from "./SidebarItem";
 import {useAppSelector} from "../../store/hooks";
-import {selectRecipes} from "../../features/state/recipesSelectors";
+import {selectRecipes} from "../../features/recipe/state/recipesSelectors";
 
 const Sidebar = () => {
     const recipes = useAppSelector(selectRecipes);

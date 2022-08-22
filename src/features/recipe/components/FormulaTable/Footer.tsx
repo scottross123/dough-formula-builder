@@ -1,12 +1,20 @@
 import { metricFormat, percentFormat } from "../../utils/numberFormats";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectTotals } from "../../../state/recipesSelectors";
+import {selectPrefermentTotals, selectTotals} from "../../state/recipesSelectors";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
 
-const Footer = () => {
-    const recipeId = useContext(RecipeContext);
-    const { totalWeight, totalRatio } = useAppSelector(state => selectTotals(state, recipeId));
+type FooterProps = {
+    prefermentId?: string,
+}
+
+const Footer = (props: FooterProps) => {
+    const { prefermentId } = props;
+
+    const recipeId: string = useContext(RecipeContext);
+    const { totalWeight, totalRatio } = prefermentId ?
+        useAppSelector(state => selectPrefermentTotals(state, recipeId, prefermentId!)) :
+        useAppSelector(state => selectTotals(state, recipeId))
 
     return (
         <tfoot>

@@ -1,13 +1,20 @@
 import IngredientRow from "./IngredientRow";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectFormula } from "../../../state/recipesSelectors";
-import { Ingredient } from "../../../state/recipesSlice";
+import {selectFormula, selectPreferment, selectPreferments} from "../../state/recipesSelectors";
+import {Formula, Ingredient, Preferment} from "../../state/recipesSlice";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
 
-const Body = () => {
+type BodyProps = {
+    prefermentId?: string,
+}
+
+const Body = (props: BodyProps) => {
+    const { prefermentId } = props;
     const recipeId = useContext(RecipeContext);
-    const { flours, ingredients } = useAppSelector(state => selectFormula(state, recipeId));
+    const { flours, ingredients } = prefermentId ?
+        useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.formula :
+        useAppSelector(state => selectFormula(state, recipeId));
 
     return (
         <tbody>

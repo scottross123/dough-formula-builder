@@ -1,6 +1,6 @@
 import {FormEvent, useContext, useRef, useState} from "react";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {updateIngredientName, updateIngredientRatio} from "../../../../state/recipesSlice";
+import {updateIngredientName, updateIngredientRatio} from "../../../state/recipesSlice";
 import {formatContent} from "../../../utils/numberFormats";
 import OutsideClickProvider from "../../../providers/OutsideClickProvider";
 import {RecipeContext} from "../../../providers/RecipeProvider";

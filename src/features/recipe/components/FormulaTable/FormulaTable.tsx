@@ -4,17 +4,19 @@ import Footer from "./Footer";
 import Body from "./Body";
 import Controls from "./Controls";
 import Table from "../Table";
+import {useAppDispatch} from "../../../../store/hooks";
 
 type TableProps = {
     title: string,
     readOnly?: boolean,
+    prefermentId?: string,
 }
 
 const FormulaTable = (props: TableProps) => {
-    const { title, readOnly } = props;
+    const { title, readOnly, prefermentId } = props;
 
     return (
-        <Table title={title} controls={<Controls />}>
+        <Table title={title} controls={readOnly ? undefined : <Controls />}>
             <>
                 <thead>
                     <tr>
@@ -23,8 +25,8 @@ const FormulaTable = (props: TableProps) => {
                         <th>Baker's %</th>
                     </tr>
                 </thead>
-                <Body />
-                <Footer />
+                <Body prefermentId={prefermentId} />
+                <Footer prefermentId={prefermentId} />
             </>
         </Table>
     );

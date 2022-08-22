@@ -1,9 +1,9 @@
 import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../store/store";
+import {RootState} from "../../../store/store";
 import { v4 as uuidv4 } from 'uuid';
 import { initialState } from "./initialRecipesState";
 import {selectTotalFlourWeight} from "./recipesSelectors";
-import {useAppSelector} from "../../store/hooks";
+import {useAppSelector} from "../../../store/hooks";
 
 export type Ingredient = {
     id: string,
@@ -11,7 +11,7 @@ export type Ingredient = {
     ratio: number,
 }
 
-type Yields= {
+type Yields = {
     unitWeight: number,
     unitQuantity: number,
     wasteFactor: number,
@@ -22,8 +22,9 @@ export type Formula = {
     ingredients: Ingredient[],
 }
 
-type Preferment = {
+export type Preferment = {
     id: string,
+    name: string,
     prefermentedFlourRatio: number,
     fermentation: {
         time: number,
@@ -67,6 +68,7 @@ export type Recipe = {
     process: Process,
     formula: Formula,
     preferments?: Preferment[],
+    notes?: string,
     // eventually: soakers, instructions, proofing times, etc
 }
 

@@ -1,15 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 import { RecipesState } from "./recipesSlice";
-import bread from '../../assets/images/bread.jpeg';
-import brioche from '../../assets/images/brioche.jpeg';
-import sourdough from '../../assets/images/sourdough.jpeg';
+import bread from '../../../assets/images/bread.jpeg';
+import brioche from '../../../assets/images/brioche.jpeg';
+import sourdough from '../../../assets/images/sourdough.jpeg';
 
 // to normalize or not normalize? weigh benefits and cons later
 // will optimize latter though
 
 export const initialState: RecipesState = [
     {
-        id: uuidv4(),
+        id: "bread1",
         title: 'Pain de Champagne',
         description: 'French style country boule made with bread flour.',
         image: bread,
@@ -70,7 +70,7 @@ export const initialState: RecipesState = [
         },
     },
     {
-        id: uuidv4(),
+        id: "bread2",
         title: 'Sourdough Country Bread',
         description: 'A San Francisco style sourdough bread made with stiff levain and bread flour.',
         image: sourdough,
@@ -132,6 +132,7 @@ export const initialState: RecipesState = [
         preferments: [
             {
                 id: uuidv4(),
+                name: "Stiff Levain",
                 prefermentedFlourRatio: .1,
                 fermentation: {
                     time: 720,
@@ -162,7 +163,7 @@ export const initialState: RecipesState = [
         ]
     },
     {
-        id: uuidv4(),
+        id: "bread3",
         title: 'Rich Man\'s Brioche',
         description: 'A French bread and Viennoiserie made with a high proportion of egg and butter.',
         author: 'Osono',
