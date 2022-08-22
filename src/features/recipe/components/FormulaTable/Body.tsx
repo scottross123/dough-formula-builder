@@ -1,4 +1,4 @@
-import IngredientRow from "./IngredientRow";
+import Row from "./Row";
 import { useAppSelector } from "../../../../store/hooks";
 import {selectFormula, selectPreferment, selectPreferments} from "../../state/recipesSelectors";
 import {Formula, Ingredient, Preferment} from "../../state/recipesSlice";
@@ -12,18 +12,27 @@ type BodyProps = {
 const Body = (props: BodyProps) => {
     const { prefermentId } = props;
     const recipeId = useContext(RecipeContext);
-    const { flours, ingredients } = prefermentId ?
+    const { flours, ingredients }: { flours: Ingredient[], ingredients: Ingredient[] } = prefermentId ?
         useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.formula :
         useAppSelector(state => selectFormula(state, recipeId));
 
     return (
         <tbody>
             { flours.map((flour: Ingredient) =>
-                <IngredientRow key={flour.id} ingredient={flour} isFlour />
+                <Row
+                    key={flour.id}
+                    ingredient={flour}
+                    prefermentId={prefermentId}
+                    isFlour
+                />
             )}
 
             { ingredients.map((ingredient: Ingredient) =>
-                <IngredientRow key={ingredient.id} ingredient={ingredient} />
+                <Row
+                    key={ingredient.id}
+                    ingredient={ingredient}
+                    prefermentId={prefermentId}
+                />
             )}
         </tbody>
     );

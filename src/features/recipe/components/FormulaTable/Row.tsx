@@ -1,22 +1,26 @@
 import { Ingredient } from "../../state/recipesSlice";
 import {useAppSelector} from "../../../../store/hooks";
 import {
+    selectPffWeight,
     selectTotalFlourWeight
 } from "../../state/recipesSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
-import {Fragment, useContext} from "react";
-import {RecipeContext} from "../../providers/RecipeProvider";
+import { useContext } from "react";
+import { RecipeContext } from "../../providers/RecipeProvider";
 
-type IngredientRowProps = {
+type RowProps = {
     ingredient: Ingredient,
     isFlour?: boolean,
+    prefermentId?: string,
 }
 
-const IngredientRow = (props: IngredientRowProps) => {
-    const { ingredient: { id, name, ratio }, isFlour } = props;
+const Row = (props: RowProps) => {
+    const { ingredient: { id, name, ratio }, isFlour, prefermentId } = props;
     const recipeId: string = useContext(RecipeContext);
-    const totalFlourWeight: number = useAppSelector(state => selectTotalFlourWeight(state, recipeId));
+    const totalFlourWeight: number = prefermentId ?
+        useAppSelector(state => selectPffWeight(state, recipeId, prefermentId)) :
+        useAppSelector(state => selectTotalFlourWeight(state, recipeId));
     const metric: number = Math.round(ratio * totalFlourWeight);
     const columns: JSX.Element[] = [
         <NameCell key="name" ingredientId={id} name={name}/>,
@@ -31,4 +35,4 @@ const IngredientRow = (props: IngredientRowProps) => {
     );
 }
 
-export default IngredientRow;
+export default Row;

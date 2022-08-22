@@ -4,19 +4,29 @@ import Footer from "./Footer";
 import Body from "./Body";
 import Controls from "./Controls";
 import Table from "../Table";
-import {useAppDispatch} from "../../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {RecipeContext} from "../../providers/RecipeProvider";
+import {selectPreferment} from "../../state/recipesSelectors";
 
-type TableProps = {
+type FormulaTableProps = {
     title: string,
     readOnly?: boolean,
     prefermentId?: string,
 }
 
-const FormulaTable = (props: TableProps) => {
+const FormulaTable = (props: FormulaTableProps) => {
     const { title, readOnly, prefermentId } = props;
+    const recipeId: string = useContext(RecipeContext);
+    const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.prefermentedFlourRatio : undefined;
+    const additionalInfo: string | undefined = pffRatio ? `Pre-Fermented Flour: ${pffRatio * 100}%` : undefined;
+
 
     return (
-        <Table title={title} controls={readOnly ? undefined : <Controls />}>
+        <Table
+            title={title}
+            controls={readOnly ? undefined : <Controls />}
+            additionalInfo={additionalInfo}
+        >
             <>
                 <thead>
                     <tr>
