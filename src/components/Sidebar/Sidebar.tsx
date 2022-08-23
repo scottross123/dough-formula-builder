@@ -1,34 +1,21 @@
-import SidebarItem, {SidebarItemProps} from "./SidebarItem";
-//import Search from "../Search";
-
-const sidebarItems: SidebarItemProps[] = [
-    {
-        key: "champagne",
-        title: "Pain de Champagne"
-    },
-    {
-        key: "sourdoughCountry",
-        title: "Sourdough Country Bread"
-    },
-    {
-        key: "brioche",
-        title: "Brioche"
-    },
-];
+import SidebarItem from "./SidebarItem";
+import {useAppSelector} from "../../store/hooks";
+import {selectRecipes} from "../../features/recipe/state/recipesSelectors";
 
 const Sidebar = () => {
+    const recipes = useAppSelector(selectRecipes);
+
     return (
-        <div className="h-screen top-0 drawer-side sticky overflow-y-auto w-64 flex flex-col p-4 border-r-2 justify-items-center">
-            <div className="flex items-center justify-center h-1/5 border-b-2">
-                <h1 className="text-center font-bold text-red">Your Recipes</h1>
-            </div>
-            {/*<Search />*/}
-            <div className="flex flex-col gap-8">
-                { sidebarItems.map(({ key, title }) =>
-                    <SidebarItem key={key} title={title} />
+        <aside className="drawer-side h-screen top-0 right-0 sticky overflow-y-hidden w-1/4 flex flex-col p-4 border-l-2
+        justify-items-center bg-base-100">
+            <h1 className="mb-2 text-center font-bold text-red text-xl">Your Recipes</h1>
+            <hr />
+            <div className="flex flex-col ">
+                { recipes.map(({ id, title, description }) =>
+                    <SidebarItem key={id} title={title} description={description} link={id} />
                 )}
             </div>
-        </div>
+        </aside>
      );
 }
 

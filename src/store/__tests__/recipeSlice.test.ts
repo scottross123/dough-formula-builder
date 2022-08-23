@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { initialState, updateFlourRatio } from "../slices/recipeSlice";
+import { initialState, updateFlourRatio } from "../../features/recipe/state/recipesSlice";
 import {store} from "../store";
 
 describe('update ingredient ratios', () => {

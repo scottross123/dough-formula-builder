@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .page {
+    @apply flex p-8 w-full h-full overflow-y-auto
+  }
+}
+
 :root {
 
   font-synthesis: none;
