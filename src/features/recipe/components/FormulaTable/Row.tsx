@@ -13,20 +13,26 @@ type RowProps = {
     ingredient: Ingredient,
     isFlour?: boolean,
     prefermentId?: string,
+    finalDough?: boolean,
 }
 
 const Row = (props: RowProps) => {
-    const { ingredient: { id, name, ratio }, isFlour, prefermentId } = props;
+    const { ingredient: { id, name, ratio }, isFlour, prefermentId, finalDough } = props;
     const recipeId: string = useContext(RecipeContext);
     const totalFlourWeight: number = prefermentId ?
         useAppSelector(state => selectPffWeight(state, recipeId, prefermentId)) :
         useAppSelector(state => selectTotalFlourWeight(state, recipeId));
     const metric: number = Math.round(ratio * totalFlourWeight);
-    const columns: JSX.Element[] = [
+    const columns: JSX.Element[] = !finalDough ?
+        [
+            <td key="name">{name}</td>,
+            <td key="metric">{metric}g</td>,
+            isFlour ? <td key="ratio">100%</td> : <td>{ratio * 100}%</td>,
+        ] : [
         <NameCell key="name" ingredientId={id} name={name}/>,
         <td key="metric">{metric}g</td>,
         isFlour ? <td key="ratio">100%</td> : <RatioCell key="ratio" ingredientId={id} ratio={ratio} />,
-    ];
+        ];
 
     return (
       <tr className="hover">

@@ -29,7 +29,7 @@ const EditRecipe = () => {
                         { preferments.map(preferment => (
                             <FormulaTable title={preferment.name} prefermentId={preferment.id} />
                         ))}
-                        <FormulaTable title="Final Dough Formula" readOnly />
+                        <FormulaTable title="Final Dough Formula" finalDough />
                     </> : <></>
                 }
                 </div>

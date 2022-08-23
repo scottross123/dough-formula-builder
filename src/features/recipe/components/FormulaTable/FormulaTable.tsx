@@ -10,12 +10,12 @@ import {selectPreferment} from "../../state/recipesSelectors";
 
 type FormulaTableProps = {
     title: string,
-    readOnly?: boolean,
+    finalDough?: boolean,
     prefermentId?: string,
 }
 
 const FormulaTable = (props: FormulaTableProps) => {
-    const { title, readOnly, prefermentId } = props;
+    const { title, finalDough, prefermentId } = props;
     const recipeId: string = useContext(RecipeContext);
     const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.prefermentedFlourRatio : undefined;
     const additionalInfo: string | undefined = pffRatio ? `Pre-Fermented Flour: ${pffRatio * 100}%` : undefined;
@@ -24,7 +24,7 @@ const FormulaTable = (props: FormulaTableProps) => {
     return (
         <Table
             title={title}
-            controls={readOnly ? undefined : <Controls />}
+            controls={finalDough ? undefined : <Controls />}
             additionalInfo={additionalInfo}
         >
             <>
@@ -35,7 +35,7 @@ const FormulaTable = (props: FormulaTableProps) => {
                         <th>Baker's %</th>
                     </tr>
                 </thead>
-                <Body prefermentId={prefermentId} />
+                <Body prefermentId={prefermentId} finalDough />
                 <Footer prefermentId={prefermentId} />
             </>
         </Table>
