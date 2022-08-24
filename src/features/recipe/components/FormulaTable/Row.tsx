@@ -1,9 +1,9 @@
-import { Ingredient } from "../../state/recipesSlice";
+import { Ingredient } from "../../state/editRecipeSlice";
 import {useAppSelector} from "../../../../store/hooks";
 import {
     selectPffWeight,
     selectTotalFlourWeight
-} from "../../state/recipesSelectors";
+} from "../../state/editRecipeSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
 import { useContext } from "react";

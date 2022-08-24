@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import {useAppSelector} from "../../../store/hooks";
-import {selectRecipes} from "../state/recipesSelectors";
+import {selectRecipes} from "../state/editRecipeSelectors";
 
 export const RecipeContext = createContext<string>("1");
 

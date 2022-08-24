@@ -1,7 +1,7 @@
 import Row from "./Row";
 import { useAppSelector } from "../../../../store/hooks";
-import {selectFormula, selectPreferment, selectPreferments} from "../../state/recipesSelectors";
-import {Formula, Ingredient, Preferment} from "../../state/recipesSlice";
+import {selectFormula, selectPreferment, selectPreferments} from "../../state/editRecipeSelectors";
+import {Formula, Ingredient, Preferment} from "../../state/editRecipeSlice";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
 

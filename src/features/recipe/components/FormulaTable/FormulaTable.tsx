@@ -6,7 +6,7 @@ import Controls from "./Controls";
 import Table from "../Table";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {RecipeContext} from "../../providers/RecipeProvider";
-import {selectPreferment} from "../../state/recipesSelectors";
+import {selectPreferment} from "../../state/editRecipeSelectors";
 
 type FormulaTableProps = {
     title: string,

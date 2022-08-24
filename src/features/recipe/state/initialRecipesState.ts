@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { RecipesState } from "./recipesSlice";
+import { RecipesState } from "./editRecipeSlice";
 import bread from '../../../assets/images/bread.jpeg';
 import brioche from '../../../assets/images/brioche.jpeg';
 import sourdough from '../../../assets/images/sourdough.jpeg';

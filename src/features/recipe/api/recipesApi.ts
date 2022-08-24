@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {EndpointBuilder} from "@reduxjs/toolkit/dist/query/endpointDefinitions";
-import { Recipe } from "../features/recipe/state/recipesSlice";
+import { Recipe } from "../types";
 
-export const apiSlice = createApi({
+export const recipesApi = createApi({
     reducerPath: 'recipes',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3000',
@@ -14,4 +13,4 @@ export const apiSlice = createApi({
     })
 })
 
-export const { useGetRecipesQuery } = apiSlice;
+export const { useGetRecipesQuery } = recipesApi;

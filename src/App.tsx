@@ -1,6 +1,6 @@
 import AppRoutes from "./routes/AppRoutes";
 import Layout from "./components/Layout/Layout";
-import {useGetRecipesQuery} from "./api/apiSlice";
+import {useGetRecipesQuery} from "./features/recipe/api/recipesApi";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {

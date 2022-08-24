@@ -2,7 +2,7 @@ import Table from "../Table";
 import {useAppSelector} from "../../../../store/hooks";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
-import {selectProcess} from "../../state/recipesSelectors";
+import {selectProcess} from "../../state/editRecipeSelectors";
 import recipe from "../../index";
 import { capitalize } from "../../../../utils/capitalize";
 

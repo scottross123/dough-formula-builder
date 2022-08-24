@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import type { AppStore, RootState } from '../app/store'
 // As a basic setup, import your same slice reducers
-import recipesReducer from '../features/recipe/state/recipesSlice';
+import recipesReducer from '../features/recipe/state/editRecipeSlice';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.

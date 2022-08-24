@@ -7,8 +7,8 @@ import {
     selectPreferment,
     selectPreferments,
     selectPrefermentTotalRatio, selectPrefermentTotals, selectPrefermentWeight
-} from "../recipesSelectors";
-import {RecipesState} from "../recipesSlice";
+} from "../editRecipeSelectors";
+import {RecipesState} from "../editRecipeSlice";
 import {RootState} from "../../../../store/store";
 
 const recipes: RootState = {

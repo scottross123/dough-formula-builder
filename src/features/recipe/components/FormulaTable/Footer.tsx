@@ -1,6 +1,6 @@
 import { metricFormat, percentFormat } from "../../utils/numberFormats";
 import { useAppSelector } from "../../../../store/hooks";
-import {selectPrefermentTotals, selectTotals} from "../../state/recipesSelectors";
+import {selectPrefermentTotals, selectTotals} from "../../state/editRecipeSelectors";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
 

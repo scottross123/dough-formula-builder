@@ -1,7 +1,5 @@
 import SidebarItem from "./SidebarItem";
-import {useAppSelector} from "../../store/hooks";
-import {selectRecipes} from "../../features/recipe/state/recipesSelectors";
-import { useGetRecipesQuery } from "../../api/apiSlice";
+import { useGetRecipesQuery } from "../../features/recipe/api/recipesApi";
 import Loading from "../Loading/Loading";
 
 const Sidebar = () => {

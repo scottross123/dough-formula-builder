@@ -1,10 +1,10 @@
 import { Heading, Yields, FormulaTable } from "../index";
 import RecipeProvider from "../../providers/RecipeProvider";
 import { useAppSelector } from "../../../../store/hooks";
-import { selectPreferments } from "../../state/recipesSelectors";
+import { selectPreferments } from "../../state/editRecipeSelectors";
 import { useParams } from "react-router-dom";
 import Process from "../Process";
-import { Preferment } from "../../state/recipesSlice";
+import { Preferment } from "../../state/editRecipeSlice";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();

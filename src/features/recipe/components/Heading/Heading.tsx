@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectFormula, selectRecipe, selectTotalWeight } from "../../state/recipesSelectors";
+import { selectFormula, selectRecipe, selectTotalWeight } from "../../state/editRecipeSelectors";
 import bread from "../../../../assets/images/bread.jpeg";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
