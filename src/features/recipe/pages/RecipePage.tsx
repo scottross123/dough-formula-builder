@@ -4,9 +4,9 @@ import EditRecipe from "../components/EditRecipe/EditRecipe";
 const RecipePage = () => {
     return (
         <div className="flex">
-            <main className="page">
+            {/*<main className="page">
                 <EditRecipe />
-            </main>
+            </main> */}
             <Sidebar />
         </div>
     )

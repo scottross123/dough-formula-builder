@@ -119,8 +119,7 @@ const recipesSlice = createSlice({
             const { recipe } = action.payload;
             state.push(recipe);
         }
-        // TO-DO: separate recipes and recipe being edited in to separate states. move update ratios/names
-        // reducers into local state, which then updates global recipes state once user is done editing.
+        // TODO separate recipes and recipe being edited in to separate states. move update ratios/names reducers into local state, which then updates global recipes state once user is done editing.
     }
 });
 

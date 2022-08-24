@@ -1,0 +1,248 @@
+{
+  "recipes": [
+    {
+      "id": "bread1",
+      "title": "Pain de Champagne",
+      "description": "French style country boule made with bread flour0.",
+      "image": "bread",
+      "author": "Ruby the Baker",
+      "yields": {
+        "unitWeight": 1000,
+        "unitQuantity": 2,
+        "wasteFactor": 0
+      },
+      "process": {
+        "mix": {
+          "method": "improved"
+        },
+        "ddt": 75,
+        "bulkFermentationTime": 120,
+        "preshape": {
+          "time": 15,
+          "shape": "ball"
+        },
+        "finalProof": {
+          "time": 75,
+          "temp": 75
+        },
+        "shape": "boule",
+        "bake": [
+          {
+            "id": "",
+            "time": 45,
+            "temp": 450
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "",
+            "name": "Bread Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": [
+          {
+            "id": "",
+            "name": "Water",
+            "ratio": 0.75
+          },
+          {
+            "id": "",
+            "name": "Salt",
+            "ratio": 0.018
+          },
+          {
+            "id": "",
+            "name": "Instant Yeast",
+            "ratio": 0.01
+          }
+        ]
+      }
+    },
+    {
+      "id": "bread2",
+      "title": "Sourdough Country Bread",
+      "description": "A San Francisco style sourdough bread made with stiff levain and bread flour0.",
+      "image": "sourdough",
+      "author": "Chad",
+      "yields": {
+        "unitWeight": 950,
+        "unitQuantity": 3,
+        "wasteFactor": 0.02
+      },
+      "process": {
+        "mix": {
+          "method": "improved"
+        },
+        "ddt": 78,
+        "bulkFermentationTime": 240,
+        "preshape": {
+          "time": 30,
+          "shape": "ball"
+        },
+        "finalProof": {
+          "time": 120,
+          "temp": 75
+        },
+        "shape": "batard",
+        "bake": [
+          {
+            "id": "",
+            "time": 15,
+            "temp": 475
+          },
+          {
+            "id": "",
+            "time": 30,
+            "temp": 450
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "",
+            "name": "Bread Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": [
+          {
+            "id": "",
+            "name": "Water",
+            "ratio": 0.8
+          },
+          {
+            "id": "",
+            "name": "Salt",
+            "ratio": 0.2
+          }
+        ]
+      },
+      "preferments": [
+        {
+          "id": "",
+          "name": "Stiff Levain",
+          "prefermentedFlourRatio": 0.1,
+          "fermentation": {
+            "time": 720,
+            "temperature": 70
+          },
+          "formula": {
+            "flours": [
+              {
+                "id": "",
+                "name": "Bread Flour",
+                "ratio": 1
+              }
+            ],
+            "ingredients": [
+              {
+                "id": "",
+                "name": "Water",
+                "ratio": 0.65
+              },
+              {
+                "id": "",
+                "name": "Starter",
+                "ratio": 0.2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bread3",
+      "title": "Rich Man's Brioche",
+      "description": "A French bread and Viennoiserie made with a high proportion of egg and butter0.",
+      "author": "Osono",
+      "image": "brioche",
+      "yields": {
+        "unitWeight": 800,
+        "unitQuantity": 4,
+        "wasteFactor": 0.02
+      },
+      "process": {
+        "mix": {
+          "method": "intensive",
+          "notes": "Add butter once gluten has been moderately developed0."
+        },
+        "ddt": 70,
+        "bulkFermentationTime": 60,
+        "preshape": {
+          "time": 15,
+          "shape": "ball"
+        },
+        "finalProof": {
+          "time": 90,
+          "temp": 80
+        },
+        "shape": "pan",
+        "bake": [
+          {
+            "id": "",
+            "time": 40,
+            "temp": 380
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "",
+            "name": "Bread Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": [
+          {
+            "id": "",
+            "name": "Egg",
+            "ratio": 0.6
+          },
+          {
+            "id": "",
+            "name": "Butter",
+            "ratio": 0.6
+          },
+          {
+            "id": "",
+            "name": "Sugar",
+            "ratio": 0.2
+          },
+          {
+            "id": "",
+            "name": "Milk",
+            "ratio": 0.1
+          },
+          {
+            "id": "",
+            "name": "Osmotolerant Instant Yeast",
+            "ratio": 0.012
+          }
+        ]
+      }
+    },
+    {
+      "id": "someBread",
+      "title": "Sourdoughnuts",
+      "description": "Naturally leavened doughnuts fermented using a sweet starter and no commercial yeast. Filled with pastry cream and tossed in cinnamon sugar after frying",
+      "image": "url-to-donuts",
+      "yields": {
+        "unitWeight": 65,
+        "unitQuantity": 24,
+        "wasteFactor": 0.02
+      },
+      "process": {},
+      "formula": {
+
+      },
+      "preferments": {
+
+      }
+    }
+  ]
+}

@@ -4,14 +4,14 @@ import {useAppSelector} from "../../store/hooks";
 import {selectRecipes} from "../../features/recipe/state/recipesSelectors";
 
 const Navbar = () => {
-    const { id: currentRecipeId } = useAppSelector(selectRecipes)[0]; // eventually recipe currently ebing eddited will persist, for now goes to firce in array
+   //const { id: currentRecipeId } = useAppSelector(selectRecipes)[0]; // eventually recipe currently ebing eddited will persist, for now goes to firce in array
 
     const navItems = [
         {
             key: "recipes",
             icon: <BiRestaurant color="#8C001D" fontSize="1.5rem" />,
             text: "Recipes",
-            link: `recipes/${currentRecipeId}`,
+            link: `recipes`, //${currentRecipeId}
         },
         {
             key: "starters",
