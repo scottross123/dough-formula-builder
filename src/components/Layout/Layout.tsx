@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import Header from "../Header";
+import Topbar from "../Topbar";
 
 type LayoutProps = {
     children: JSX.Element;
@@ -12,7 +12,7 @@ const Layout = (props: LayoutProps) => {
         <div className="flex">
             <Navbar />
             <div className="flex flex-col grow">
-                <Header />
+                <Topbar />
                 {children}
             </div>
         </div>

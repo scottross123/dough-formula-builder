@@ -1,4 +1,4 @@
-import { Ingredient } from "../../state/editRecipeSlice";
+import { Ingredient } from "../../types";
 import {useAppSelector} from "../../../../store/hooks";
 import {
     selectPffWeight,
@@ -6,8 +6,6 @@ import {
 } from "../../state/editRecipeSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
-import { useContext } from "react";
-import { RecipeContext } from "../../providers/RecipeProvider";
 
 type RowProps = {
     ingredient: Ingredient,
@@ -18,10 +16,9 @@ type RowProps = {
 
 const Row = (props: RowProps) => {
     const { ingredient: { id, name, ratio }, isFlour, prefermentId, finalDough } = props;
-    const recipeId: string = useContext(RecipeContext);
     const totalFlourWeight: number = prefermentId ?
-        useAppSelector(state => selectPffWeight(state, recipeId, prefermentId)) :
-        useAppSelector(state => selectTotalFlourWeight(state, recipeId));
+        useAppSelector(state => selectPffWeight(state, prefermentId)) :
+        useAppSelector(state => selectTotalFlourWeight(state));
     const metric: number = Math.round(ratio * totalFlourWeight);
     const columns: JSX.Element[] = !finalDough ?
         [

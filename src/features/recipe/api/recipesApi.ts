@@ -9,8 +9,11 @@ export const recipesApi = createApi({
     endpoints: (builder) => ({
         getRecipes: builder.query<Recipe[], void>({
             query: () => '/recipes'
-        })
-    })
-})
+        }),
+        getRecipe: builder.query<Recipe, string>({
+            query: (id) => `/recipes/${id}`
+        }),
+    }),
+});
 
-export const { useGetRecipesQuery } = recipesApi;
+export const { useGetRecipesQuery, useGetRecipeQuery } = recipesApi;

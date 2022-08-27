@@ -3,12 +3,10 @@ import EditRecipe from "../components/EditRecipe/EditRecipe";
 
 const RecipePage = () => {
     return (
-        <div className="flex">
-            {/*<main className="page">
-                <EditRecipe />
-            </main> */}
-            <Sidebar />
-        </div>
+        <main className="page">
+            <EditRecipe />
+            {/*<Sidebar />*/}
+        </main>
     )
 }
 

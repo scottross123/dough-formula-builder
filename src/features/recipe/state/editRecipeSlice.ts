@@ -1,10 +1,7 @@
-import {createSlice, Draft, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../../store/store";
-import { v4 as uuidv4 } from 'uuid';
+import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./initialRecipesState";
-import {selectTotalFlourWeight} from "./editRecipeSelectors";
-import {useAppSelector} from "../../../store/hooks";
-import { Ingredient } from "../types";
+import { selectTotalFlourWeight } from "./editRecipeSelectors";
+import { Ingredient, Recipe } from "../types";
 
 const editRecipeSlice = createSlice({
     name: 'editRecipe',
@@ -30,7 +27,8 @@ const editRecipeSlice = createSlice({
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const totalFlourWeight = selectTotalFlourWeight(state);
+            const totalFlourWeight = selectTotalFlourWeight(state as never);
+            console.log(totalFlourWeight);
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             const unitQuantity = state.yields.unitQuantity;
             const additionalUnitWeight = ((newRatio - ingredient!.ratio) * totalFlourWeight) / unitQuantity;
@@ -42,7 +40,10 @@ const editRecipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
-        // TODO separate recipes and recipe being edited in to separate states. move update ratios/names reducers into local state, which then updates global recipes state once user is done editing.
+        setEditRecipe: (state, action: PayloadAction<Recipe>) => {
+            const recipe = action.payload;
+            Object.assign(state, recipe);
+        }
     }
 });
 
@@ -52,6 +53,7 @@ export const {
     updateFlourName,
     updateIngredientRatio,
     updateIngredientName,
+    setEditRecipe,
 } = editRecipeSlice.actions;
 export default editRecipeSlice.reducer;
 

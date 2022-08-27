@@ -11,15 +11,14 @@ const Controls = () => {
     const buttonStyle = "btn btn-primary btn-outline btn-sm";
 
     const handleClickIngredient = () => {
-        dispatch(addIngredient({
-            recipeId: recipeId,
-            newIngredient: {
+        dispatch(addIngredient(
+             {
                 id: uuidv4(),
                 name: "New Ingredient",
                 ratio: 0,
             },
-        }))
-    }
+        ));
+    };
 
     const handleClickFlour = () => {
         //dispatch(calcRatioFromMetric({id: 40, metric: 400}))

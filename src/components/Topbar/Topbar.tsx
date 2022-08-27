@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Topbar = () => {
     const currentUser = "User";
 
     return (
@@ -56,4 +56,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Topbar;

@@ -1,13 +1,9 @@
 import Table from "../Table";
-import {useAppSelector} from "../../../../store/hooks";
-import {useContext} from "react";
-import {RecipeContext} from "../../providers/RecipeProvider";
-import {selectProcess} from "../../state/editRecipeSelectors";
-import recipe from "../../index";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectProcess } from "../../state/editRecipeSelectors";
 import { capitalize } from "../../../../utils/capitalize";
 
 const Process = () => {
-    const recipeId = useContext(RecipeContext);
     const {
         mix,
         ddt,
@@ -16,7 +12,7 @@ const Process = () => {
         finalProof,
         shape,
         bake
-    } = useAppSelector(state => selectProcess(state, recipeId))
+    } = useAppSelector(state => selectProcess(state))!
 
     return (
         <Table title="Process">

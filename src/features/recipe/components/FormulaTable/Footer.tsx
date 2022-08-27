@@ -13,8 +13,8 @@ const Footer = (props: FooterProps) => {
 
     const recipeId: string = useContext(RecipeContext);
     const { totalWeight, totalRatio } = prefermentId ?
-        useAppSelector(state => selectPrefermentTotals(state, recipeId, prefermentId!)) :
-        useAppSelector(state => selectTotals(state, recipeId))
+        useAppSelector(state => selectPrefermentTotals(state, prefermentId!)) :
+        useAppSelector(state => selectTotals(state))
 
     return (
         <tfoot>

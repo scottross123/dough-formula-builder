@@ -1,10 +1,10 @@
-import { createSelector } from '@reduxjs/toolkit';
+import {createDraftSafeSelector, createSelector} from '@reduxjs/toolkit';
 import { createStructuredSelector } from 'reselect'
 import { RootState } from "../../../store/store";
 import {Process, Yields, Formula, Ingredient, Preferment, Recipe} from "../types";
 
 export const selectRecipe = (state: RootState): Recipe | undefined  => state.editRecipe;
-const selectYields = (state: RootState): Yields | undefined => state.editRecipe.yields
+export const selectYields = (state: RootState): Yields | undefined => state.editRecipe.yields
 const selectUnitWeight = (state: RootState): number | undefined => state.editRecipe.yields.unitWeight;
 const selectUnitQuantity = (state: RootState): number | undefined => state.editRecipe.yields.unitQuantity;
 const selectWasteFactor = (state: RootState): number | undefined => state.editRecipe.yields.wasteFactor;
@@ -12,9 +12,10 @@ export const selectProcess = (state: RootState): Process | undefined => state.ed
 export const selectFormula = (state: RootState) => state.editRecipe.formula;
 const selectIngredients = (state: RootState) => state.editRecipe.formula.ingredients;
 const selectFlours = (state: RootState) => state.editRecipe.formula.flours;
+export const selectPreferments = (state: RootState) => state.editRecipe.preferments;
 
 
-export const selectPreferment = (state: RootState, recipeId: string, prefermentId: string,): Preferment | undefined  =>
+export const selectPreferment = (state: RootState, prefermentId: string,): Preferment | undefined  =>
     state.editRecipe.preferments?.find((preferment: Preferment) => preferment!.id === prefermentId);
 
 export const selectPrefermentTotalRatio = createSelector(
@@ -45,7 +46,7 @@ export const selectTotals = createStructuredSelector({
     totalWeight: selectTotalWeight,
 });
 
-export const selectTotalFlourWeight = createSelector(
+export const selectTotalFlourWeight = createDraftSafeSelector(
     selectTotalWeight,
     selectTotalRatio,
     (totalWeight, totalRatio) =>
@@ -70,8 +71,9 @@ export const selectPrefermentWeight = createSelector(
 export const selectPrefermentTotals = createStructuredSelector({
     totalRatio: selectPrefermentTotalRatio,
     totalWeight: selectPrefermentWeight,
-})
+});
 
+/*
 const selectRecipeId = (_: any, id: string) => id;
 
 export const selectFlour = createSelector(
@@ -86,4 +88,4 @@ export const selectIngredient = createSelector(
     selectRecipeId,
     (ingredients, id) =>
         ingredients.find((ingredient: Ingredient) => ingredient.id === id)
-);
+);*/

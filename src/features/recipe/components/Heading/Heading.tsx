@@ -1,23 +1,18 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectFormula, selectRecipe, selectTotalWeight } from "../../state/editRecipeSelectors";
-import bread from "../../../../assets/images/bread.jpeg";
-import {useContext} from "react";
-import {RecipeContext} from "../../providers/RecipeProvider";
+import { selectRecipe } from "../../state/editRecipeSelectors";
+import brioche from "../../../../assets/images/brioche.jpeg"
 
 const Heading = () => {
-    const recipeId = useContext(RecipeContext);
-    const { title, description, image, yields: { unitQuantity, unitWeight } } =
-        useAppSelector(state => selectRecipe(state, recipeId));
-    const totalWeight = useAppSelector(state => selectTotalWeight(state, recipeId));
+    const { title, description, image, } =
+        useAppSelector(state => selectRecipe(state))!;
 
     return (
-        <div className="card card-side border">
+        <div className="card card-side">
             <figure className="h-64 w-64">
-                <img src={image} />
+                <img src={brioche} />
             </figure>
 
             <div className="card-body">
-                <h1 className="card-title">{title}</h1>
                 <p>{description}</p>
             </div>
         </div>

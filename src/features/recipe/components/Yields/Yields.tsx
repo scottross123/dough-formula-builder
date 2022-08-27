@@ -6,7 +6,7 @@ import Table from "../Table";
 
 const Yields = () => {
     const recipeId = useContext(RecipeContext);
-    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(state => selectYields(state, recipeId));
+    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(state => selectYields(state))!;
 
     return (
         <Table title="Yields">

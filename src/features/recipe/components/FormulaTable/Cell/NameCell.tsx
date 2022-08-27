@@ -1,7 +1,6 @@
 import {FormEvent, useContext, useRef, useState} from "react";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {updateIngredientName, updateIngredientRatio} from "../../../state/editRecipeSlice";
-import {formatContent} from "../../../utils/numberFormats";
+import {updateIngredientName } from "../../../state/editRecipeSlice";
 import OutsideClickProvider from "../../../providers/OutsideClickProvider";
 import {RecipeContext} from "../../../providers/RecipeProvider";
 
@@ -19,7 +18,7 @@ const NameCell = (props: NameCellProps) => {
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         const newName = e.currentTarget.value;
-        dispatch(updateIngredientName({recipeId: recipeId, id: ingredientId, newName: newName}))
+        dispatch(updateIngredientName({ id: ingredientId, newName: newName }))
     }
 
     const handleClickOutside = () => {
