@@ -26,7 +26,7 @@ export type Preferment = {
     formula: Formula,
 }
 
-export type Process = {
+interface BaseProcess {
     mix: {
         method: "short" | "improved" | "intensive",
         notes?: string,
@@ -42,14 +42,27 @@ export type Process = {
         temp: number,
     },
     shape: string,
-    bake: Array<
-        {
-            id: string,
-            time: number,
-            temp: number
-        }
-        >,
 }
+
+export type BakeItem = {
+    id: string,
+    time: number,
+    temp: number,
+};
+
+
+interface BakeProcess extends BaseProcess {
+    bake: BakeItem[]
+};
+
+interface FryProcess extends BaseProcess {
+    fry: {
+        time: number,
+        temp: number,
+    }
+};
+
+type Process = BakeProcess | FryProcess;
 
 export type Recipe = {
     id: string,
@@ -57,6 +70,7 @@ export type Recipe = {
     description: string,
     image?: string, // for now just link to placeholder images in assests folder
     author: string,
+    tags?: string[],
     yields: Yields,
     process: Process,
     formula: Formula,

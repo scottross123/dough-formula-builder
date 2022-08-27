@@ -2,6 +2,7 @@ import Table from "../Table";
 import { useAppSelector } from "../../../../store/hooks";
 import { selectProcess } from "../../state/editRecipeSelectors";
 import { capitalize } from "../../../../utils/capitalize";
+import {BakeItem} from "../../types";
 
 const Process = () => {
     const {
@@ -11,7 +12,8 @@ const Process = () => {
         preshape,
         finalProof,
         shape,
-        bake
+        bake,
+        fry,
     } = useAppSelector(state => selectProcess(state))!
 
     return (
@@ -41,12 +43,21 @@ const Process = () => {
                     <td>Shape</td>
                     <td>{capitalize(shape)}</td>
                 </tr>
-                <tr>
-                    <td>Bake</td>
-                    <td>
-                        { bake.map(bakeItem => <p>{bakeItem.time} minutes at {bakeItem.temp}°F</p>) }
-                    </td>
-                </tr>
+                { bake &&
+                    <tr>
+                        <td>Bake</td>
+                        <td>
+                            {bake.map((bakeItem: BakeItem) => <p>{bakeItem.time} minutes at {bakeItem.temp}°F</p>)}
+                        </td>
+                    </tr>
+                }
+                {
+                    fry &&
+                    <tr>
+                        <td>Fry</td>
+                        <td>{fry.time} minutes at {fry.temp}°F</td>
+                    </tr>
+                }
             </tbody>
         </Table>
     );

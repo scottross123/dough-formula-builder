@@ -13,7 +13,10 @@ export const recipesApi = createApi({
         getRecipe: builder.query<Recipe, string>({
             query: (id) => `/recipes/${id}`
         }),
+        getRecipesTags: builder.query<string[], void>({
+            query: () => '/tags'
+        }),
     }),
 });
 
-export const { useGetRecipesQuery, useGetRecipeQuery } = recipesApi;
+export const { useGetRecipesQuery, useGetRecipeQuery, useGetRecipesTagsQuery } = recipesApi;

@@ -9,7 +9,7 @@ import {setEditRecipe} from "../../state/editRecipeSlice";
 import {useGetRecipeQuery} from "../../api/recipesApi";
 import Loading from "../../../../components/Loading/Loading";
 import IconNavLink from "../../../../components/IconNavLink/IconNavLink";
-import {MdDeleteOutline, MdEdit, MdOutlineIosShare} from "react-icons/all";
+import {MdSaveAlt, MdDeleteOutline, MdEdit, MdOutlineEdit, MdOutlineIosShare, MdOutlinePrint} from "react-icons/all";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();
@@ -23,12 +23,34 @@ const EditRecipe = () => {
     return (
         <RecipeProvider recipeId={recipeId!}>
             <div className="w-full">
-                <div className="w-full mb-8 pb-8 flex text-primary justify-between border-b">
+                <div className="w-full mb-8 pb-8 flex text-primary justify-between">
                     <h1 className="text-6xl">{recipe?.title}</h1>
 
                     <div className="flex gap-4 items-end">
-                        <button className="btn btn-sm rounded btn-primary"><MdOutlineIosShare /></button>
-                        <button className="btn btn-sm rounded btn-primary"><MdDeleteOutline /></button>
+                        <IconNavLink
+                            icon={<MdSaveAlt />}
+                            tooltipText='Save'
+                            link={`save`}
+                            size='md'
+                        />
+                        <IconNavLink
+                            icon={<MdOutlineIosShare />}
+                            tooltipText='Share'
+                            link={`share`}
+                            size='md'
+                        />
+                        <IconNavLink
+                            icon={<MdOutlinePrint />}
+                            tooltipText='Print'
+                            link={`print`}
+                            size='md'
+                        />
+                        <IconNavLink
+                            icon={<MdDeleteOutline />}
+                            tooltipText='Delete'
+                            link={`delete`}
+                            size='md'
+                        />
                     </div>
                 </div>
                 <section className="flex gap-8 w-full">

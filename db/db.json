@@ -6,6 +6,7 @@
       "description": "French style country boule made with bread flour.",
       "image": "file://localhost/",
       "author": "Ruby the Baker",
+      "tags": ["Fresh Yeast"],
       "yields": {
         "unitWeight": 1000,
         "unitQuantity": 2,
@@ -28,7 +29,7 @@
         "shape": "boule",
         "bake": [
           {
-            "id": "",
+            "id": "1",
             "time": 45,
             "temp": 450
           }
@@ -37,24 +38,24 @@
       "formula": {
         "flours": [
           {
-            "id": "",
+            "id": "2",
             "name": "Bread Flour",
             "ratio": 1
           }
         ],
         "ingredients": [
           {
-            "id": "",
+            "id": "3",
             "name": "Water",
             "ratio": 0.75
           },
           {
-            "id": "",
+            "id": "4",
             "name": "Salt",
             "ratio": 0.018
           },
           {
-            "id": "",
+            "id": "5",
             "name": "Instant Yeast",
             "ratio": 0.01
           }
@@ -67,6 +68,7 @@
       "description": "A San Francisco style sourdough bread made with stiff levain and bread flour.",
       "image": "sourdough",
       "author": "Chad",
+      "tags": ["Sourdough", "Crusty"],
       "yields": {
         "unitWeight": 950,
         "unitQuantity": 3,
@@ -89,12 +91,12 @@
         "shape": "batard",
         "bake": [
           {
-            "id": "",
+            "id": "1",
             "time": 15,
             "temp": 475
           },
           {
-            "id": "",
+            "id": "2",
             "time": 30,
             "temp": 450
           }
@@ -103,19 +105,19 @@
       "formula": {
         "flours": [
           {
-            "id": "",
+            "id": "3",
             "name": "Bread Flour",
             "ratio": 1
           }
         ],
         "ingredients": [
           {
-            "id": "",
+            "id": "5",
             "name": "Water",
             "ratio": 0.8
           },
           {
-            "id": "",
+            "id": "4",
             "name": "Salt",
             "ratio": 0.2
           }
@@ -123,7 +125,7 @@
       },
       "preferments": [
         {
-          "id": "",
+          "id": "1",
           "name": "Stiff Levain",
           "prefermentedFlourRatio": 0.1,
           "fermentation": {
@@ -133,19 +135,19 @@
           "formula": {
             "flours": [
               {
-                "id": "",
+                "id": "1",
                 "name": "Bread Flour",
                 "ratio": 1
               }
             ],
             "ingredients": [
               {
-                "id": "",
+                "id": "2",
                 "name": "Water",
                 "ratio": 0.65
               },
               {
-                "id": "",
+                "id": "3",
                 "name": "Starter",
                 "ratio": 0.2
               }
@@ -160,6 +162,7 @@
       "description": "A French bread and Viennoiserie made with a high proportion of egg and butter.",
       "author": "Osono",
       "image": "brioche",
+      "tags": ["Fresh Yeast", "Enriched", "Sweet"],
       "yields": {
         "unitWeight": 800,
         "unitQuantity": 4,
@@ -192,34 +195,34 @@
       "formula": {
         "flours": [
           {
-            "id": "",
+            "id": "1",
             "name": "Bread Flour",
             "ratio": 1
           }
         ],
         "ingredients": [
           {
-            "id": "",
+            "id": "2",
             "name": "Egg",
             "ratio": 0.6
           },
           {
-            "id": "",
+            "id": "3",
             "name": "Butter",
             "ratio": 0.6
           },
           {
-            "id": "",
+            "id": "4",
             "name": "Sugar",
             "ratio": 0.2
           },
           {
-            "id": "",
+            "id": "5",
             "name": "Milk",
             "ratio": 0.1
           },
           {
-            "id": "",
+            "id": "6",
             "name": "Osmotolerant Instant Yeast",
             "ratio": 0.012
           }
@@ -232,18 +235,112 @@
       "description": "Naturally leavened doughnuts fermented using a sweet starter and no commercial yeast. Filled with pastry cream and tossed in cinnamon sugar after frying.",
       "image": "url-to-donuts",
       "author": "Fukuo",
+      "tags": ["Sourdough", "Enriched", "Sweet"],
       "yields": {
         "unitWeight": 65,
         "unitQuantity": 24,
         "wasteFactor": 0.02
       },
-      "process": {},
-      "formula": {
-
+      "process": {
+        "mix": {
+          "method": "intensive",
+          "notes": "Add butter once gluten has been moderately developed. Add some spices like cinnamon, nutmeg, cardamon and lemon zest."
+        },
+        "ddt": 75,
+        "bulkFermentationTime": 120,
+        "preshape": {
+          "time": 15,
+          "shape": "ball"
+        },
+        "finalProof": {
+          "time": 90,
+          "temp": 80
+        },
+        "shape": "balls",
+        "fry": {
+          "time": 5,
+          "temp": 360
+        }
       },
-      "preferments": {
-
-      }
+      "formula": {
+        "flours": [
+          {
+            "id": "2",
+            "name": "Bread Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": [
+          {
+            "id": "1",
+            "name": "Egg",
+            "ratio": 0.333
+          },
+          {
+            "id": "2",
+            "name": "Butter",
+            "ratio": 0.3
+          },
+          {
+            "id": "3",
+            "name": "Milk",
+            "ratio": 0.3
+          },
+          {
+            "id": "4",
+            "name": "Sugar",
+            "ratio": 0.084
+          },
+          {
+            "id": "5",
+            "name": "Salt",
+            "ratio": 0.017
+          },
+          {
+            "id": "6",
+            "name": "Vanilla Extract",
+            "ratio": 0.017
+          }
+        ]
+      },
+      "preferments": [
+        {
+          "id": "",
+          "name": "Sweet Liquid Starter",
+          "prefermentedFlourRatio": 0.15,
+          "fermentation": {
+            "time": 720,
+            "temperature": 70
+          },
+          "formula": {
+            "flours": [
+              {
+                "id": "2",
+                "name": "Bread Flour",
+                "ratio": 1
+              }
+            ],
+            "ingredients": [
+              {
+                "id": "1",
+                "name": "Water",
+                "ratio": 1
+              },
+              {
+                "id": "2",
+                "name": "Starter",
+                "ratio": 0.4
+              },
+              {
+                "id": "3",
+                "name": "Sugar",
+                "ratio": 0.2
+              }
+            ]
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "tags": ["Sourdough", "Fresh Yeast", "Enriched", "Sweet"]
 }
