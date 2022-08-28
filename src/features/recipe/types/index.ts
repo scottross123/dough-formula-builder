@@ -62,7 +62,7 @@ interface FryProcess extends BaseProcess {
     }
 };
 
-type Process = BakeProcess | FryProcess;
+export type Process = BakeProcess | FryProcess;
 
 export type Recipe = {
     id: string,

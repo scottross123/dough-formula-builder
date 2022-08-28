@@ -5,25 +5,25 @@ const Navbar = () => {
     const navItems = [
         {
             key: "recipes",
-            icon: <GiBread color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiBread color="primary" fontSize="1.5rem" />,
             text: "Recipes",
             link: `recipes`, //${currentRecipeId}
         },
         {
             key: "starters",
-            icon: <GiMasonJar color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiMasonJar color="primary" fontSize="1.5rem" />,
             text: "Starters",
             link: "starters",
         },
         {
             key: "community",
-            icon: <GiWheat color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiWheat color="primary" fontSize="1.5rem" />,
             text: "Community",
             link: "community",
         },
         {
             key: "resources",
-            icon: <GiBookshelf color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiBookshelf color="primary" fontSize="1.5rem" />,
             text: "Resources",
             link: "resources",
         },
