@@ -3,6 +3,7 @@ import { useAppSelector } from "../../../../store/hooks";
 import { selectProcess } from "../../state/editRecipeSelectors";
 import { capitalize } from "../../../../utils/capitalize";
 import {BakeItem} from "../../types";
+import EditableCell from "../EditableCell";
 
 const Process = () => {
     const {
@@ -25,11 +26,21 @@ const Process = () => {
                 </tr>
                 <tr>
                     <td>DDT</td>
-                    <td>{ddt}°F</td>
+                    <EditableCell
+                        type="number"
+                        handleChange={() => console.log("changed")}
+                        value={ddt}
+                        symbol={'°F'}
+                    />
                 </tr>
                 <tr>
                     <td>Bulk Fermentation</td>
-                    <td>{bulkFermentationTime} minutes</td>
+                    <EditableCell
+                        type="number"
+                        handleChange={() => console.log("changed")}
+                        value={bulkFermentationTime}
+                        symbol={' minutes'}
+                    />
                 </tr>
                 <tr>
                     <td>Preshape</td>
@@ -41,7 +52,12 @@ const Process = () => {
                 </tr>
                 <tr>
                     <td>Shape</td>
-                    <td>{capitalize(shape)}</td>
+                    <EditableCell
+                        type='text'
+                        handleChange={() => console.log("changed")}
+                        value={shape}
+                        formatValueFunction={capitalize}
+                    />
                 </tr>
                 { bake &&
                     <tr>
