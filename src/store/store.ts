@@ -1,9 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import recipesReducer from '../features/recipe/state/recipesSlice';
+import editRecipeReducer from '../features/recipe/state/editRecipeSlice';
+import {recipesApi} from "../features/recipe/api/recipesApi";
+import modalReducer from "../components/NewRecipeModal/modalSlice"
 
 export const store = configureStore({
     reducer: {
-        recipes: recipesReducer,
+        editRecipe: editRecipeReducer,
+        modal: modalReducer,
+        [recipesApi.reducerPath]: recipesApi.reducer
+    },
+    middleware: (getDefaultMiddleware) => {
+        return getDefaultMiddleware().concat(recipesApi.middleware)
     }
 })
 

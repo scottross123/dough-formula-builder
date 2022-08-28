@@ -1,13 +1,10 @@
 import Table from "../Table";
-import {useAppSelector} from "../../../../store/hooks";
-import {useContext} from "react";
-import {RecipeContext} from "../../providers/RecipeProvider";
-import {selectProcess} from "../../state/recipesSelectors";
-import recipe from "../../index";
+import { useAppSelector } from "../../../../store/hooks";
+import { selectProcess } from "../../state/editRecipeSelectors";
 import { capitalize } from "../../../../utils/capitalize";
+import {BakeItem} from "../../types";
 
 const Process = () => {
-    const recipeId = useContext(RecipeContext);
     const {
         mix,
         ddt,
@@ -15,8 +12,9 @@ const Process = () => {
         preshape,
         finalProof,
         shape,
-        bake
-    } = useAppSelector(state => selectProcess(state, recipeId))
+        bake,
+        fry,
+    } = useAppSelector(state => selectProcess(state))!
 
     return (
         <Table title="Process">
@@ -45,12 +43,21 @@ const Process = () => {
                     <td>Shape</td>
                     <td>{capitalize(shape)}</td>
                 </tr>
-                <tr>
-                    <td>Bake</td>
-                    <td>
-                        { bake.map(bakeItem => <p>{bakeItem.time} minutes at {bakeItem.temp}°F</p>) }
-                    </td>
-                </tr>
+                { bake &&
+                    <tr>
+                        <td>Bake</td>
+                        <td>
+                            {bake.map((bakeItem: BakeItem) => <p>{bakeItem.time} minutes at {bakeItem.temp}°F</p>)}
+                        </td>
+                    </tr>
+                }
+                {
+                    fry &&
+                    <tr>
+                        <td>Fry</td>
+                        <td>{fry.time} minutes at {fry.temp}°F</td>
+                    </tr>
+                }
             </tbody>
         </Table>
     );

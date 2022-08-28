@@ -1,10 +1,8 @@
-import {FormEvent, useContext, useRef, useState} from "react";
-import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
-import { updateIngredientRatio } from "../../../state/recipesSlice";
-import {formatContent} from "../../../utils/numberFormats";
+import { FormEvent, useContext, useRef, useState } from "react";
+import { useAppDispatch } from "../../../../../store/hooks";
+import { updateIngredientRatio } from "../../../state/editRecipeSlice";
 import OutsideClickProvider from "../../../providers/OutsideClickProvider";
-import {selectTotalFlourWeight} from "../../../state/recipesSelectors";
-import {RecipeContext} from "../../../providers/RecipeProvider";
+import { RecipeContext } from "../../../providers/RecipeProvider";
 
 type RatioCellProps = {
     ingredientId: string,
@@ -21,7 +19,7 @@ const RatioCell = (props: RatioCellProps) => {
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
         const newRatio = parseFloat(e.currentTarget.value);
-        dispatch(updateIngredientRatio({recipeId: recipeId, id: ingredientId, newRatio: newRatio}));
+        dispatch(updateIngredientRatio({ id: ingredientId, newRatio: newRatio }));
     }
 
     const handleClickOutside = () => {

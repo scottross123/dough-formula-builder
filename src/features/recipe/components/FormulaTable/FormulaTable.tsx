@@ -6,7 +6,7 @@ import Controls from "./Controls";
 import Table from "../Table";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {RecipeContext} from "../../providers/RecipeProvider";
-import {selectPreferment} from "../../state/recipesSelectors";
+import {selectPreferment} from "../../state/editRecipeSelectors";
 
 type FormulaTableProps = {
     title: string,
@@ -17,7 +17,7 @@ type FormulaTableProps = {
 const FormulaTable = (props: FormulaTableProps) => {
     const { title, finalDough, prefermentId } = props;
     const recipeId: string = useContext(RecipeContext);
-    const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.prefermentedFlourRatio : undefined;
+    const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, prefermentId))!.prefermentedFlourRatio : undefined;
     const additionalInfo: string | undefined = pffRatio ? `Pre-Fermented Flour: ${pffRatio * 100}%` : undefined;
 
 

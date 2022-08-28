@@ -2,8 +2,9 @@ import { BsGithub } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
+import CreateRecipe from "../CreateRecipe/CreateRecipe";
 
-const Header = () => {
+const Topbar = () => {
     const currentUser = "User";
 
     return (
@@ -21,7 +22,7 @@ const Header = () => {
                         <MdAdd color="#8C001D" fontSize="1.5rem" />
                     </label>
                     <ul tabIndex={0} className="menu dropdown-content shadow bg-base-100 rounded-box w-48 mt-4">
-                        <li><a>Create a new recipe!</a></li>
+                        <CreateRecipe />
                         <li><a>Add a new starter!</a></li>
                     </ul>
                 </div>
@@ -56,4 +57,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Topbar;

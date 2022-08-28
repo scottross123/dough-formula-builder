@@ -1,12 +1,12 @@
 import { useAppSelector } from "../../../../store/hooks";
-import { selectYields } from "../../state/recipesSelectors";
+import { selectYields } from "../../state/editRecipeSelectors";
 import { useContext } from "react";
 import { RecipeContext } from "../../providers/RecipeProvider";
 import Table from "../Table";
 
 const Yields = () => {
     const recipeId = useContext(RecipeContext);
-    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(state => selectYields(state, recipeId));
+    const { unitQuantity, unitWeight, wasteFactor } = useAppSelector(state => selectYields(state))!;
 
     return (
         <Table title="Yields">

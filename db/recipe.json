@@ -1,0 +1,22 @@
+{
+  "recipes": [
+    {
+      "id": "someBread",
+      "title": "Sourdoughnuts",
+      "description": "Naturally leavened doughnuts fermented using a sweet starter and no commercial yeast. Filled with pastry cream and tossed in cinnamon sugar after frying",
+      "image": "url-to-donuts",
+      "yields": {
+        "unitWeight": 65,
+        "unitQuantity": 24,
+        "wasteFactor": 0.02
+      },
+      "process": {},
+      "formula": {
+
+      },
+      "preferments": {
+
+      },
+    }
+  ]
+}

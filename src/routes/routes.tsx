@@ -1,5 +1,5 @@
 import { Home, Starters, Community, Resources } from "../features";
-import { RecipeListPage, RecipePage } from "../features/recipe/pages";
+import { RecipePage, RecipeListPage } from "../features/recipe/pages";
 import { RouteObject } from "react-router-dom";
 import {NotFound} from "../components";
 
@@ -12,12 +12,15 @@ export const routes: RouteObject[] = [
         path: '/recipes',
         children: [
             {
+                path: '',
+                element: <RecipeListPage />,
+            },
+            {
                 path: ':recipeId',
                 element: <RecipePage />,
             },
         ]
     },
-
     {
         path: '/starters',
         element: <Starters />,

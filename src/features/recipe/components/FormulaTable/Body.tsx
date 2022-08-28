@@ -1,7 +1,7 @@
 import Row from "./Row";
 import { useAppSelector } from "../../../../store/hooks";
-import {selectFormula, selectPreferment, selectPreferments} from "../../state/recipesSelectors";
-import {Formula, Ingredient, Preferment} from "../../state/recipesSlice";
+import { selectFormula, selectPreferment } from "../../state/editRecipeSelectors";
+import { Ingredient } from "../../types";
 import {useContext} from "react";
 import {RecipeContext} from "../../providers/RecipeProvider";
 
@@ -14,8 +14,8 @@ const Body = (props: BodyProps) => {
     const { prefermentId, finalDough } = props;
     const recipeId: string = useContext(RecipeContext);
     const { flours, ingredients }: { flours: Ingredient[], ingredients: Ingredient[] } = prefermentId ?
-            useAppSelector(state => selectPreferment(state, recipeId, prefermentId))!.formula :
-            useAppSelector(state => selectFormula(state, recipeId));
+            useAppSelector(state => selectPreferment(state, prefermentId))!.formula :
+            useAppSelector(state => selectFormula(state));
 
     return (
         <tbody>
