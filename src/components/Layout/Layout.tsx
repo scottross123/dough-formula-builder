@@ -1,6 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import Topbar from "../Topbar";
-import NewRecipeModal from "../NewRecipeModal";
+import AppModals from "../AppModals";
 
 type LayoutProps = {
     children: JSX.Element;
@@ -16,7 +16,7 @@ const Layout = (props: LayoutProps) => {
                 <Topbar />
                 {children}
             </div>
-            <NewRecipeModal />
+                <AppModals />
         </div>
     )
 }

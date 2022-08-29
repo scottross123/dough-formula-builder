@@ -6,6 +6,7 @@ export const recipesApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3000',
     }),
+
     endpoints: (builder) => ({
         getRecipes: builder.query<Recipe[], void>({
             query: () => '/recipes'
@@ -16,7 +17,14 @@ export const recipesApi = createApi({
         getRecipesTags: builder.query<string[], void>({
             query: () => '/tags'
         }),
+        addRecipe: builder.mutation<Recipe, Recipe>({
+            query: (body) => ({
+                url: '/recipes',
+                method: 'POST',
+                body,
+            })
+        })
     }),
 });
 
-export const { useGetRecipesQuery, useGetRecipeQuery, useGetRecipesTagsQuery } = recipesApi;
+export const { useGetRecipesQuery, useGetRecipeQuery, useGetRecipesTagsQuery, useAddRecipeMutation } = recipesApi;

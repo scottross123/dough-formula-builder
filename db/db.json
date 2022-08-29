@@ -6,7 +6,9 @@
       "description": "French style country boule made with bread flour.",
       "image": "file://localhost/",
       "author": "Ruby the Baker",
-      "tags": ["Fresh Yeast"],
+      "tags": [
+        "Fresh Yeast"
+      ],
       "yields": {
         "unitWeight": 1000,
         "unitQuantity": 2,
@@ -68,7 +70,10 @@
       "description": "A San Francisco style sourdough bread made with stiff levain and bread flour.",
       "image": "sourdough",
       "author": "Chad",
-      "tags": ["Sourdough", "Crusty"],
+      "tags": [
+        "Sourdough",
+        "Crusty"
+      ],
       "yields": {
         "unitWeight": 950,
         "unitQuantity": 3,
@@ -162,7 +167,11 @@
       "description": "A French bread and Viennoiserie made with a high proportion of egg and butter.",
       "author": "Osono",
       "image": "brioche",
-      "tags": ["Fresh Yeast", "Enriched", "Sweet"],
+      "tags": [
+        "Fresh Yeast",
+        "Enriched",
+        "Sweet"
+      ],
       "yields": {
         "unitWeight": 800,
         "unitQuantity": 4,
@@ -235,7 +244,11 @@
       "description": "Naturally leavened doughnuts fermented using a sweet starter and no commercial yeast. Filled with pastry cream and tossed in cinnamon sugar after frying.",
       "image": "url-to-donuts",
       "author": "Fukuo",
-      "tags": ["Sourdough", "Enriched", "Sweet"],
+      "tags": [
+        "Sourdough",
+        "Enriched",
+        "Sweet"
+      ],
       "yields": {
         "unitWeight": 65,
         "unitQuantity": 24,
@@ -340,7 +353,102 @@
           }
         }
       ]
+    },
+    {
+      "id": "0327a683-4d72-4b6e-82fe-0cbdb41b2fe1",
+      "title": "bruh",
+      "description": "bruh stuff",
+      "author": "bruh",
+      "tags": [],
+      "yields": {
+        "unitWeight": 0,
+        "unitQuantity": 0,
+        "wasteFactor": 0
+      },
+      "process": {
+        "mix": {
+          "method": "improved"
+        },
+        "ddt": 0,
+        "bulkFermentationTime": 0,
+        "preshape": {
+          "time": 0,
+          "shape": ""
+        },
+        "finalProof": {
+          "time": 30,
+          "temp": 80
+        },
+        "shape": "",
+        "bake": [
+          {
+            "id": "f9789bcd-3943-47cc-a460-3bc093097edc",
+            "time": 40,
+            "temp": 380
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "5918bcbb-9700-4c57-af3f-e33a3b67dd0a",
+            "name": "Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": []
+      }
+    },
+    {
+      "id": "f0666128-b025-4bb7-9a9b-648454862e13",
+      "title": "super cool bread",
+      "description": "bruh bruh bruh",
+      "author": "duper cool",
+      "tags": [],
+      "yields": {
+        "unitWeight": 0,
+        "unitQuantity": 0,
+        "wasteFactor": 0
+      },
+      "process": {
+        "mix": {
+          "method": "improved"
+        },
+        "ddt": 0,
+        "bulkFermentationTime": 0,
+        "preshape": {
+          "time": 0,
+          "shape": ""
+        },
+        "finalProof": {
+          "time": 30,
+          "temp": 80
+        },
+        "shape": "",
+        "bake": [
+          {
+            "id": "9505a27a-c19c-4aa7-8742-697a227e5773",
+            "time": 40,
+            "temp": 380
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "e42e4c69-b174-4eff-b9da-38fd339c9562",
+            "name": "Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": []
+      }
     }
   ],
-  "tags": ["Sourdough", "Fresh Yeast", "Enriched", "Sweet"]
+  "tags": [
+    "Sourdough",
+    "Fresh Yeast",
+    "Enriched",
+    "Sweet"
+  ]
 }
