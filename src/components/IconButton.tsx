@@ -8,8 +8,9 @@ type IconNavLinkProps = {
     tooltipPosition?: 'bottom' | 'left' | 'right'
     link?: string,
     handleClick?: () => void,
-    isGhost?: 'btn-ghost',
-    size?: 'sm' | 'md' | 'lg' | 'xl',
+    variant?: 'outline' | 'link',
+    size?: 'sm' | 'md' | 'lg' | 'xs',
+    color?: "primary" | "secondary" | "accent" | "ghost" | "info" | "success" | "warning" | "error",
 }
 
 const IconButton = (props: IconNavLinkProps) => {
@@ -18,23 +19,35 @@ const IconButton = (props: IconNavLinkProps) => {
         tooltipText,
         tooltipPosition,
         link,
-        isGhost,
+        variant,
         size,
+        color,
         handleClick
     } = props;
 
     return (
-        <Tooltip className="" position={tooltipPosition} message={tooltipText}>
+        <Tooltip className="font-" position={tooltipPosition} message={tooltipText}>
             { link ?
                 <NavLink
                 to={link}
                 >
-                    <Button color={"primary"} className={`btn-${isGhost} btn-${size} rounded w-fit`}>
+                    <Button
+                        color={color ? color : 'primary'}
+                        variant={variant}
+                        size={size}
+                        className="rounded w-fit"
+                    >
                         {icon}
                     </Button>
                 </NavLink>
             :
-                <Button onClick={handleClick} color={"primary"} className={`btn-${isGhost} btn-${size} rounded w-fit`}>
+                <Button
+                    onClick={handleClick}
+                    color={color ? color : 'primary'}
+                    variant={variant}
+                    size={size}
+                    className="rounded w-fit"
+                >
                     {icon}
                 </Button>
             }

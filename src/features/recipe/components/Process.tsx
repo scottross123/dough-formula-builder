@@ -1,9 +1,9 @@
-import Table from "../Table";
-import { useAppSelector } from "../../../../store/hooks";
-import { selectProcess } from "../../state/editRecipeSelectors";
-import { capitalize } from "../../../../utils/capitalize";
-import {BakeItem} from "../../types";
-import EditableCell from "../EditableCell";
+import Table from "./Table";
+import { useAppSelector } from "../../../store/hooks";
+import { selectProcess } from "../state/editRecipeSelectors";
+import { capitalize } from "../../../utils/capitalize";
+import {BakeItem} from "../types";
+import EditableCell from "./EditableCell";
 
 const Process = () => {
     const {

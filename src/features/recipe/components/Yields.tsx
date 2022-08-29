@@ -1,8 +1,8 @@
-import { useAppSelector } from "../../../../store/hooks";
-import { selectYields } from "../../state/editRecipeSelectors";
+import { useAppSelector } from "../../../store/hooks";
+import { selectYields } from "../state/editRecipeSelectors";
 import { useContext } from "react";
-import { RecipeContext } from "../../providers/RecipeProvider";
-import Table from "../Table";
+import { RecipeContext } from "../providers/RecipeProvider";
+import Table from "./Table";
 
 const Yields = () => {
     const recipeId = useContext(RecipeContext);

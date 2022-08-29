@@ -53,19 +53,16 @@ const RecipeListPage = () => {
                                     <IconButton
                                         icon={<MdOutlineEdit />}
                                         tooltipText='Edit'
-                                        link={`${id}`}
                                         size='md'
                                     />
                                     <IconButton
                                         icon={<MdOutlineIosShare />}
                                         tooltipText='Share'
-                                        link={`share`}
                                         size='md'
                                     />
                                     <IconButton
                                         icon={<MdOutlinePrint />}
                                         tooltipText='Print'
-                                        link={`print`}
                                         size='md'
                                     />
                                     <IconButton

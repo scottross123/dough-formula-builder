@@ -1,6 +1,5 @@
 import {Button, Modal} from "react-daisyui";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
-import {selectRecipe} from "../../features/recipe/state/editRecipeSelectors";
 import {selectDeleteRecipeId, setDeleteRecipeId} from "./modalSlice";
 import { useDeleteRecipeMutation, useGetRecipeQuery } from "../../features/recipe/api/recipesApi";
 import {useNavigate} from "react-router";

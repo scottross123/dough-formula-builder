@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export type NavbarItemProps = {
+type NavbarItemProps = {
     icon: JSX.Element,
     text: string,
     link: string,

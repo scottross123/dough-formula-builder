@@ -1,13 +1,21 @@
-import NavbarItem, { NavbarItemProps } from "./NavbarItem";
 import { GiWheat, GiMasonJar, GiBread, GiBookshelf } from "react-icons/gi";
+import IconButton from "../IconButton";
+
+type NavItem = {
+    key: string,
+    icon: JSX.Element,
+    text: string,
+    link: string,
+}
+
 
 const Navbar = () => {
-    const navItems = [
+    const navItems: NavItem[] = [
         {
             key: "recipes",
             icon: <GiBread color="#8C001D" fontSize="1.5rem" />,
             text: "Recipes",
-            link: `recipes`, //${currentRecipeId}
+            link: `recipes`,
         },
         {
             key: "starters",
@@ -31,8 +39,15 @@ const Navbar = () => {
 
     return (
         <nav className="h-screen sticky top-0 w-20 flex flex-col border-r-2 justify-evenly items-center bg-base-100 z-50">
-            { navItems.map(({ icon, text, link}: NavbarItemProps) =>
-                <NavbarItem icon={icon} text={text} link={link} />
+            { navItems.map(({ key, icon, text, link}: NavItem) =>
+                <IconButton
+                    key={key}
+                    icon={icon}
+                    tooltipText={text}
+                    link={link}
+                    size='sm'
+                    color='ghost'
+                />
             )}
         </nav>
     );

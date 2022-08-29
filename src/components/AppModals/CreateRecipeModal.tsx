@@ -120,7 +120,7 @@ const CreateRecipeModal = () => {
             </Modal.Body>
 
             <Modal.Actions>
-                <Button className="btn-primary" onClick={handleClick}>Create!</Button>
+                <Button className="btn-primary" loading={isLoading} onClick={handleClick}>Create!</Button>
             </Modal.Actions>
         </Modal>
     );
