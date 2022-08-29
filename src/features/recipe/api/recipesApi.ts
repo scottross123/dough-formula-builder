@@ -6,13 +6,15 @@ export const recipesApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3000',
     }),
-
+    tagTypes: ['Recipes'],
     endpoints: (builder) => ({
         getRecipes: builder.query<Recipe[], void>({
-            query: () => '/recipes'
+            query: () => '/recipes',
+            providesTags: ['Recipes'],
         }),
         getRecipe: builder.query<Recipe, string>({
-            query: (id) => `/recipes/${id}`
+            query: (id) => `/recipes/${id}`,
+            providesTags: (result, error, id) => [{ type: 'Recipes', id }]
         }),
         getRecipesTags: builder.query<string[], void>({
             query: () => '/tags'
@@ -22,7 +24,8 @@ export const recipesApi = createApi({
                 url: '/recipes',
                 method: 'POST',
                 body,
-            })
+            }),
+            invalidatesTags: ['Recipes'],
         })
     }),
 });

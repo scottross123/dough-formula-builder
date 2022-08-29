@@ -443,6 +443,51 @@
         ],
         "ingredients": []
       }
+    },
+    {
+      "id": "9f999a54-80a0-4c29-9217-8ca76647facc",
+      "title": "new bread",
+      "description": "bread bread bread",
+      "author": "breadman",
+      "tags": [],
+      "yields": {
+        "unitWeight": 0,
+        "unitQuantity": 0,
+        "wasteFactor": 0
+      },
+      "process": {
+        "mix": {
+          "method": "improved"
+        },
+        "ddt": 0,
+        "bulkFermentationTime": 0,
+        "preshape": {
+          "time": 0,
+          "shape": ""
+        },
+        "finalProof": {
+          "time": 0,
+          "temp": 0
+        },
+        "shape": "",
+        "bake": [
+          {
+            "id": "423d5b6c-2829-45c5-8466-8affc4619510",
+            "time": 0,
+            "temp": 0
+          }
+        ]
+      },
+      "formula": {
+        "flours": [
+          {
+            "id": "6c73b756-02b9-40f7-909f-0969dd0f3e73",
+            "name": "Flour",
+            "ratio": 1
+          }
+        ],
+        "ingredients": []
+      }
     }
   ],
   "tags": [
