@@ -5,6 +5,7 @@ import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import { Recipe } from "../../features/recipe/types";
 import { v4 as uuidv4 } from "uuid";
 import { useAddRecipeMutation } from "../../features/recipe/api/recipesApi";
+import {useNavigate} from "react-router";
 
 const CreateRecipeModal = () => {
     const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ const CreateRecipeModal = () => {
     const [author, setAuthor] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [addRecipe, { isLoading }] = useAddRecipeMutation();
+    const navigate = useNavigate();
 
     const handleClick = async () => {
         const newRecipe: Recipe = {
@@ -67,6 +69,7 @@ const CreateRecipeModal = () => {
             alert("thats awkward")
         }
         dispatch(toggleCreateRecipeModal());
+        navigate(`/recipes/${newRecipe.id}`, { replace: true });
     }
 
     return (
