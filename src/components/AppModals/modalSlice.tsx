@@ -3,13 +3,12 @@ import {RootState} from "../../store/store";
 import {Recipe} from "../../features/recipe/types";
 
 type ModalState = {
-    isCreateVisible: boolean
-    isDeleteVisible: boolean
+    isCreateVisible: boolean,
+    deleteRecipeId?: string
 }
 
 const initialState: ModalState = {
     isCreateVisible: false,
-    isDeleteVisible: false,
 }
 
 const modalSlice = createSlice({
@@ -19,14 +18,15 @@ const modalSlice = createSlice({
         toggleCreateRecipeModal: (state, action: PayloadAction<void>) => {
             state.isCreateVisible = !state.isCreateVisible;
         },
-        toggleDeleteRecipeModal: (state, action: PayloadAction<void>) => {
-            state.isDeleteVisible = !state.isCreateVisible;
+        setDeleteRecipeId: (state, action: PayloadAction<string | undefined>) => {
+            const deleteRecipeId = action.payload;
+            state.deleteRecipeId = deleteRecipeId;
         }
     }
 });
 
-export const { toggleCreateRecipeModal, toggleDeleteRecipeModal } = modalSlice.actions;
+export const { toggleCreateRecipeModal, setDeleteRecipeId } = modalSlice.actions;
 export default modalSlice.reducer;
 
 export const selectIsCreateVisible = (state: RootState): boolean => state.modal.isCreateVisible;
-export const selectIsDeleteVisible = (state: RootState): boolean => state.modal.isDeleteVisible;
+export const selectDeleteRecipeId = (state: RootState): string | undefined => state.modal.deleteRecipeId;

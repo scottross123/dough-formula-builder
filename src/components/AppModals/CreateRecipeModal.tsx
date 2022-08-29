@@ -1,10 +1,10 @@
 import {Button, Form, Input, InputGroup, Modal, Textarea} from "react-daisyui";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import { selectIsCreateVisible, toggleCreateRecipeModal } from "./modalSlice";
-import {ChangeEvent, ChangeEventHandler, useState} from "react";
-import {Recipe} from "../../features/recipe/types";
+import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { Recipe } from "../../features/recipe/types";
 import { v4 as uuidv4 } from "uuid";
-import {useAddRecipeMutation} from "../../features/recipe/api/recipesApi";
+import { useAddRecipeMutation } from "../../features/recipe/api/recipesApi";
 
 const CreateRecipeModal = () => {
     const dispatch = useAppDispatch();

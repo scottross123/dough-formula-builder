@@ -2,8 +2,8 @@ import { BsGithub } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
-import {toggleCreateRecipeModal} from "../AppModals/modalSlice";
-import {useAppDispatch} from "../../store/hooks";
+import {toggleCreateRecipeModal} from "./AppModals/modalSlice";
+import {useAppDispatch} from "../store/hooks";
 
 const Topbar = () => {
     const currentUser = "User";

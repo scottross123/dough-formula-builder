@@ -2,13 +2,16 @@ import { useGetRecipesQuery, useGetRecipesTagsQuery } from "../api/recipesApi";
 import { Recipe } from "../types";
 import brioche from "../../../assets/images/brioche.jpeg"
 import { MdOutlineEdit, MdOutlineIosShare, MdDeleteOutline, MdOutlinePrint } from "react-icons/all";
-import IconNavLink from "../../../components/IconNavLink/IconNavLink";
+import IconButton from "../../../components/IconButton";
+import {setDeleteRecipeId} from "../../../components/AppModals/modalSlice";
+import {useAppDispatch} from "../../../store/hooks";
 
 type RecipePreview = Readonly<Pick<Recipe, 'id' | 'title' | 'author' | 'image' | 'tags'>>;
 
 const RecipeListPage = () => {
     const { data: recipes } = useGetRecipesQuery();
     const { data: allTags } = useGetRecipesTagsQuery();
+    const dispatch = useAppDispatch();
     const placeholderImage = brioche;
 
     return (
@@ -47,28 +50,28 @@ const RecipeListPage = () => {
                                 </div>
                                 
                                 <div className="card-actions self-center justify-end w-1/4">
-                                    <IconNavLink
+                                    <IconButton
                                         icon={<MdOutlineEdit />}
                                         tooltipText='Edit'
                                         link={`${id}`}
                                         size='md'
                                     />
-                                    <IconNavLink
+                                    <IconButton
                                         icon={<MdOutlineIosShare />}
                                         tooltipText='Share'
                                         link={`share`}
                                         size='md'
                                     />
-                                    <IconNavLink
+                                    <IconButton
                                         icon={<MdOutlinePrint />}
                                         tooltipText='Print'
                                         link={`print`}
                                         size='md'
                                     />
-                                    <IconNavLink
+                                    <IconButton
                                         icon={<MdDeleteOutline />}
                                         tooltipText='Delete'
-                                        link={`delete`}
+                                        handleClick={() => dispatch(setDeleteRecipeId(id))}
                                         size='md'
                                     />
                                 </div>

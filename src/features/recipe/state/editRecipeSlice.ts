@@ -40,7 +40,7 @@ const editRecipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
-        setEditRecipe: (state, action: PayloadAction<Recipe>) => {
+        setEditRecipe: (state, action: PayloadAction<Recipe | undefined>) => {
             const recipe = action.payload;
             Object.assign(state, recipe);
         }
