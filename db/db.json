@@ -6,7 +6,9 @@
       "description": "French style country boule made with bread flour.",
       "image": "file://localhost/",
       "author": "Ruby the Baker",
-      "tags": ["Fresh Yeast"],
+      "tags": [
+        "Fresh Yeast"
+      ],
       "yields": {
         "unitWeight": 1000,
         "unitQuantity": 2,
@@ -68,7 +70,10 @@
       "description": "A San Francisco style sourdough bread made with stiff levain and bread flour.",
       "image": "sourdough",
       "author": "Chad",
-      "tags": ["Sourdough", "Crusty"],
+      "tags": [
+        "Sourdough",
+        "Crusty"
+      ],
       "yields": {
         "unitWeight": 950,
         "unitQuantity": 3,
@@ -162,7 +167,11 @@
       "description": "A French bread and Viennoiserie made with a high proportion of egg and butter.",
       "author": "Osono",
       "image": "brioche",
-      "tags": ["Fresh Yeast", "Enriched", "Sweet"],
+      "tags": [
+        "Fresh Yeast",
+        "Enriched",
+        "Sweet"
+      ],
       "yields": {
         "unitWeight": 800,
         "unitQuantity": 4,
@@ -235,7 +244,11 @@
       "description": "Naturally leavened doughnuts fermented using a sweet starter and no commercial yeast. Filled with pastry cream and tossed in cinnamon sugar after frying.",
       "image": "url-to-donuts",
       "author": "Fukuo",
-      "tags": ["Sourdough", "Enriched", "Sweet"],
+      "tags": [
+        "Sourdough",
+        "Enriched",
+        "Sweet"
+      ],
       "yields": {
         "unitWeight": 65,
         "unitQuantity": 24,
@@ -342,5 +355,10 @@
       ]
     }
   ],
-  "tags": ["Sourdough", "Fresh Yeast", "Enriched", "Sweet"]
+  "tags": [
+    "Sourdough",
+    "Fresh Yeast",
+    "Enriched",
+    "Sweet"
+  ]
 }

@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../../../store/hooks";
-import { selectRecipe } from "../../state/editRecipeSelectors";
-import brioche from "../../../../assets/images/brioche.jpeg"
+import { useAppSelector } from "../../../store/hooks";
+import { selectRecipe } from "../state/editRecipeSelectors";
+import brioche from "../../../assets/images/brioche.jpeg"
 
 const Heading = () => {
     const { title, description, image, } =

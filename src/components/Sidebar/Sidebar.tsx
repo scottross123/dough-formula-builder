@@ -1,6 +1,6 @@
 import SidebarItem from "./SidebarItem";
-import { useGetRecipesQuery } from "../../features/recipe/api/recipesApi";
-import Loading from "../Loading/Loading";
+import { useGetRecipesQuery } from "../../api/recipesApi";
+import Loading from "../Loading";
 
 const Sidebar = () => {
     const { isLoading, isError, error, data: recipes } = useGetRecipesQuery();

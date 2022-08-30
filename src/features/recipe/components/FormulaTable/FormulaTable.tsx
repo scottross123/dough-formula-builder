@@ -31,6 +31,7 @@ const FormulaTable = (props: FormulaTableProps) => {
                 <thead>
                     <tr>
                         <th>Ingredients</th>
+                        <th>U.S.</th>
                         <th>Metric</th>
                         <th>Baker's %</th>
                     </tr>

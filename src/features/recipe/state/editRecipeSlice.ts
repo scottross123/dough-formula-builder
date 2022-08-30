@@ -27,8 +27,7 @@ const editRecipeSlice = createSlice({
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const totalFlourWeight = selectTotalFlourWeight(state as never);
-            console.log(totalFlourWeight);
+            const totalFlourWeight = 1454;
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             const unitQuantity = state.yields.unitQuantity;
             const additionalUnitWeight = ((newRatio - ingredient!.ratio) * totalFlourWeight) / unitQuantity;
@@ -40,7 +39,7 @@ const editRecipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
-        setEditRecipe: (state, action: PayloadAction<Recipe>) => {
+        setEditRecipe: (state, action: PayloadAction<Recipe | undefined>) => {
             const recipe = action.payload;
             Object.assign(state, recipe);
         }

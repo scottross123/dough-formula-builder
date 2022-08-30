@@ -2,10 +2,12 @@ import { BsGithub } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 import { MdDarkMode, MdAdd } from "react-icons/md";
 import { Link } from "react-router-dom";
-import CreateRecipe from "../CreateRecipe/CreateRecipe";
+import {toggleCreateRecipeModal} from "./AppModals/modalSlice";
+import {useAppDispatch} from "../store/hooks";
 
 const Topbar = () => {
     const currentUser = "User";
+    const dispatch = useAppDispatch();
 
     return (
         <header className="navbar border-b-2 sticky top-0 z-50 bg-base-100">
@@ -22,7 +24,7 @@ const Topbar = () => {
                         <MdAdd color="#8C001D" fontSize="1.5rem" />
                     </label>
                     <ul tabIndex={0} className="menu dropdown-content shadow bg-base-100 rounded-box w-48 mt-4">
-                        <CreateRecipe />
+                        <li><a onClick={() => dispatch(toggleCreateRecipeModal())}>Create a new recipe!</a></li>
                         <li><a>Add a new starter!</a></li>
                     </ul>
                 </div>

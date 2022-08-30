@@ -1,11 +1,14 @@
 import { Ingredient } from "../../types";
-import {useAppSelector} from "../../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {
     selectPffWeight,
     selectTotalFlourWeight
 } from "../../state/editRecipeSelectors";
 import NameCell from "./Cell/NameCell";
 import RatioCell from "./Cell/RatioCell";
+import EditableCell from "../EditableCell";
+import {percentFormat} from "../../utils/numberFormats";
+import {gramsToOunces} from "../../utils/weightConversions";
 
 type RowProps = {
     ingredient: Ingredient,
@@ -20,15 +23,32 @@ const Row = (props: RowProps) => {
         useAppSelector(state => selectPffWeight(state, prefermentId)) :
         useAppSelector(state => selectTotalFlourWeight(state));
     const metric: number = Math.round(ratio * totalFlourWeight);
+
     const columns: JSX.Element[] = !finalDough ?
         [
             <td key="name">{name}</td>,
+            <td key="us">{gramsToOunces(metric)}</td>,
             <td key="metric">{metric}g</td>,
             isFlour ? <td key="ratio">100%</td> : <td>{ratio * 100}%</td>,
         ] : [
-        <NameCell key="name" ingredientId={id} name={name}/>,
-        <td key="metric">{metric}g</td>,
-        isFlour ? <td key="ratio">100%</td> : <RatioCell key="ratio" ingredientId={id} ratio={ratio} />,
+            <EditableCell
+                id={id}
+                key="name"
+                type="text"
+                dispatchType={isFlour ? 'flourName' : 'ingredientName'}
+                initialValue={name}
+            />,
+            <td key="us">{gramsToOunces(metric)}</td>,
+            <td key="metric">{metric}g</td>,
+            isFlour ? <td key="ratio">100%</td> :
+                <EditableCell
+                    id={id}
+                    key="ratio"
+                    type="number"
+                    dispatchType='ingredientRatio'
+                    initialValue={ratio}
+                    formatFunction={percentFormat}
+                />,
         ];
 
     return (

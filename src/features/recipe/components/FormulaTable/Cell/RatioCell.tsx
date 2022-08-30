@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../../../../store/hooks";
 import { updateIngredientRatio } from "../../../state/editRecipeSlice";
 import OutsideClickProvider from "../../../providers/OutsideClickProvider";
 import { RecipeContext } from "../../../providers/RecipeProvider";
+import {Input} from "react-daisyui";
 
 type RatioCellProps = {
     ingredientId: string,
@@ -28,9 +29,10 @@ const RatioCell = (props: RatioCellProps) => {
 
     if (editable) {
         return (
-            <td ref={ref}>
+            <td ref={ref} className="">
                 <OutsideClickProvider parentRef={ref} handleClickOutside={handleClickOutside}>
-                    <input
+                    <Input
+                        className="input-sm"
                         type="number"
                         value={ratio}
                         onChange={handleChange}

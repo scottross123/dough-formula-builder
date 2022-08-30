@@ -1,8 +1,9 @@
-import Table from "../Table";
-import { useAppSelector } from "../../../../store/hooks";
-import { selectProcess } from "../../state/editRecipeSelectors";
-import { capitalize } from "../../../../utils/capitalize";
-import {BakeItem} from "../../types";
+import Table from "./Table";
+import { useAppSelector } from "../../../store/hooks";
+import { selectProcess } from "../state/editRecipeSelectors";
+import { capitalize } from "../../../utils/capitalize";
+import {BakeItem} from "../types";
+import EditableCell from "./EditableCell";
 
 const Process = () => {
     const {
@@ -25,11 +26,21 @@ const Process = () => {
                 </tr>
                 <tr>
                     <td>DDT</td>
-                    <td>{ddt}°F</td>
+                    <EditableCell
+                        type="number"
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={ddt}
+                        symbol={'°F'}
+                    />
                 </tr>
                 <tr>
                     <td>Bulk Fermentation</td>
-                    <td>{bulkFermentationTime} minutes</td>
+                    <EditableCell
+                        type="number"
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={bulkFermentationTime}
+                        symbol=' minutes'
+                    />
                 </tr>
                 <tr>
                     <td>Preshape</td>
@@ -41,7 +52,12 @@ const Process = () => {
                 </tr>
                 <tr>
                     <td>Shape</td>
-                    <td>{capitalize(shape)}</td>
+                    <EditableCell
+                        type='text'
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={shape}
+                        formatFunction={capitalize}
+                    />
                 </tr>
                 { bake &&
                     <tr>

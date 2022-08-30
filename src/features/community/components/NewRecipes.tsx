@@ -1,5 +1,5 @@
 import brioche from "../../../assets/images/brioche.jpeg";
-import IconNavLink from "../../../components/IconNavLink/IconNavLink";
+import IconButton from "../../../components/IconButton";
 import {MdDeleteOutline, MdOutlineEdit, MdOutlineIosShare, MdOutlinePrint} from "react-icons/all";
 
 const NewRecipes = () =>{
