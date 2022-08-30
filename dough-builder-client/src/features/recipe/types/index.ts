@@ -26,7 +26,7 @@ export type Preferment = {
     formula: Formula,
 }
 
-interface BaseProcess {
+export type Process = {
     mix: {
         method: "short" | "improved" | "intensive",
         notes?: string,
@@ -41,7 +41,12 @@ interface BaseProcess {
         time: number,
         temp: number,
     },
-    shape: string,
+    shape: string, //TODO rename to finalshape
+    bake?: BakeItem[]
+    fry?: {
+        time: number,
+        temp: number,
+    }
 }
 
 export type BakeItem = {
@@ -49,20 +54,6 @@ export type BakeItem = {
     time: number,
     temp: number,
 };
-
-
-interface BakeProcess extends BaseProcess {
-    bake: BakeItem[]
-};
-
-interface FryProcess extends BaseProcess {
-    fry: {
-        time: number,
-        temp: number,
-    }
-};
-
-export type Process = BakeProcess | FryProcess;
 
 export type Recipe = {
     id: string,

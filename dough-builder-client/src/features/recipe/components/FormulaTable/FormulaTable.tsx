@@ -3,10 +3,10 @@ import { useContext } from "react";
 import Footer from "./Footer";
 import Body from "./Body";
 import Controls from "./Controls";
-import Table from "../Table";
+import TableContainer from "../TableContainer";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {RecipeContext} from "../../providers/RecipeProvider";
 import {selectPreferment} from "../../state/editRecipeSelectors";
+import { Table } from "react-daisyui";
 
 type FormulaTableProps = {
     title: string,
@@ -16,30 +16,27 @@ type FormulaTableProps = {
 
 const FormulaTable = (props: FormulaTableProps) => {
     const { title, finalDough, prefermentId } = props;
-    const recipeId: string = useContext(RecipeContext);
     const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, prefermentId))!.prefermentedFlourRatio : undefined;
     const additionalInfo: string | undefined = pffRatio ? `Pre-Fermented Flour: ${pffRatio * 100}%` : undefined;
 
 
     return (
-        <Table
+        <TableContainer
             title={title}
             controls={finalDough ? undefined : <Controls />}
             additionalInfo={additionalInfo}
         >
-            <>
-                <thead>
-                    <tr>
-                        <th>Ingredients</th>
-                        <th>U.S.</th>
-                        <th>Metric</th>
-                        <th>Baker's %</th>
-                    </tr>
-                </thead>
-                <Body prefermentId={prefermentId} finalDough />
+            <Table className="card-body table table-compact w-full">
+                <Table.Head>
+                    <span>Ingredients</span>
+                    <span>U.S.</span>
+                    <span>Metric</span>
+                    <span>Baker's %</span>
+                </Table.Head>
+                <Body prefermentId={prefermentId} />
                 <Footer prefermentId={prefermentId} />
-            </>
-        </Table>
+            </Table>
+        </TableContainer>
     );
 
 }

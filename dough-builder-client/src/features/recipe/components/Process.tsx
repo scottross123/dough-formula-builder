@@ -1,4 +1,4 @@
-import Table from "./Table";
+import TableContainer from "./TableContainer";
 import { useAppSelector } from "../../../store/hooks";
 import { selectProcess } from "../state/editRecipeSelectors";
 import { capitalize } from "../../../utils/capitalize";
@@ -18,7 +18,7 @@ const Process = () => {
     } = useAppSelector(state => selectProcess(state))!
 
     return (
-        <Table title="Process">
+        <TableContainer title="Process">
             <tbody>
                 <tr>
                     <td>Mix</td>
@@ -75,7 +75,7 @@ const Process = () => {
                     </tr>
                 }
             </tbody>
-        </Table>
+        </TableContainer>
     );
 }
 

@@ -40,6 +40,38 @@ const editRecipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
+        updateProcessMix: (state, action: PayloadAction<{ method: 'short' | 'improved' | 'intensive', notes: string }>) => {
+            const newMix = action.payload;
+            state.process.mix = newMix;
+        },
+        updateProcessDdt: (state, action: PayloadAction<number>) => {
+            const newDdt = action.payload;
+            state.process.ddt = newDdt;
+        },
+        updateProcessBulkFermentationTime: (state, action: PayloadAction<number>) => {
+            const newBulkFermentationTime = action.payload;
+            state.process.bulkFermentationTime = newBulkFermentationTime;
+        },
+        updateProcessPreshape: (state, action: PayloadAction<{ time: number, shape: string }>) => {
+            const newPreShape = action.payload;
+            state.process.preshape = newPreShape;
+        },
+        updateProcessFinalProof: (state, action: PayloadAction<{ time: number, temp: number }>) => {
+            const newFinalProof = action.payload;
+            state.process.finalProof = newFinalProof;
+        },
+        updateProcessShape: (state, action: PayloadAction<string>) => {
+            const newShape = action.payload;
+            state.process.shape = newShape;
+        },
+        updateProcessBake: (state, action: PayloadAction<{ id: string, time: number, temp: number }[]>) => {
+            const newBake = action.payload;
+            state.process.bake = newBake;
+        },
+        updateProcessFry: (state, action: PayloadAction<{ time: number, temp: number }>) => {
+            const newFry = action.payload;
+            state.process.fry = newFry;
+        },
         setEditRecipe: (state, action: PayloadAction<Recipe | undefined>) => {
             const recipe = action.payload;
             Object.assign(state, recipe);

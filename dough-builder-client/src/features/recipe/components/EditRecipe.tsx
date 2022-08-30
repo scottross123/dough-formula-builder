@@ -1,5 +1,4 @@
 import { Heading, Yields, FormulaTable } from "./index";
-import RecipeProvider from "../providers/RecipeProvider";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import { selectPreferments } from "../state/editRecipeSelectors";
 import { useParams } from "react-router-dom";
@@ -22,7 +21,6 @@ const EditRecipe = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <RecipeProvider recipeId={recipeId!}>
             <div className="w-full">
                 <div className="w-full mb-8 pb-8 flex text-primary justify-between">
                     <h1 className="text-6xl">{recipe?.title}</h1>
@@ -75,7 +73,6 @@ const EditRecipe = () => {
                     </div>
                 </section>
             </div>
-        </RecipeProvider>
     );
 }
 

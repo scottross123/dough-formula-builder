@@ -5,7 +5,7 @@ type TableProps = {
     controls?: JSX.Element,
 }
 
-const Table = (props: TableProps ) => {
+const TableContainer = (props: TableProps ) => {
     const { title, children, controls, additionalInfo } = props;
 
     return (
@@ -15,12 +15,10 @@ const Table = (props: TableProps ) => {
                 {additionalInfo && <span className="italic whitespace-nowrap align-text-bottom text-sm">{additionalInfo}</span>}
                 {/*TODO figure out how to fix this so the text stays on the bottom*/}
             </span>
-            <table className="card-body table table-compact w-full">
-                {children}
-            </table>
+            {children}
             {controls}
         </div>
     );
 }
 
-export default Table;
+export default TableContainer;
