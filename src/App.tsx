@@ -1,13 +1,13 @@
 import AppRoutes from "./routes/AppRoutes";
-import Layout from "./components/Layout";
+import AppLayout from "./components/AppLayout";
 import AppModals from "./components/AppModals";
 
 const App = () => {
     return (
         <>
-            <Layout>
+            <AppLayout>
                 <AppRoutes />
-            </Layout>
+            </AppLayout>
 
             <AppModals />
         </>

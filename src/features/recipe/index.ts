@@ -1,2 +1,2 @@
-import EditRecipe from "./components/EditRecipe/EditRecipe";
+import EditRecipe from "./components/EditRecipe";
 export default EditRecipe;

@@ -26,7 +26,7 @@ const IconButton = (props: IconNavLinkProps) => {
     } = props;
 
     return (
-        <Tooltip className="font-" position={tooltipPosition} message={tooltipText}>
+        <Tooltip position={tooltipPosition} message={tooltipText}>
             { link ?
                 <NavLink
                 to={link}

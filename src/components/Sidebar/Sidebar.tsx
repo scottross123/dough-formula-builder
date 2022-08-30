@@ -1,5 +1,5 @@
 import SidebarItem from "./SidebarItem";
-import { useGetRecipesQuery } from "../../features/recipe/api/recipesApi";
+import { useGetRecipesQuery } from "../../api/recipesApi";
 import Loading from "../Loading";
 
 const Sidebar = () => {

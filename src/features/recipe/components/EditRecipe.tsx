@@ -1,16 +1,16 @@
-import { Heading, Yields, FormulaTable } from "../index";
-import RecipeProvider from "../../providers/RecipeProvider";
-import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import { selectPreferments } from "../../state/editRecipeSelectors";
+import { Heading, Yields, FormulaTable } from "./index";
+import RecipeProvider from "../providers/RecipeProvider";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
+import { selectPreferments } from "../state/editRecipeSelectors";
 import { useParams } from "react-router-dom";
-import Process from "../Process";
-import {Preferment, Recipe} from "../../types";
-import {setEditRecipe} from "../../state/editRecipeSlice";
-import {useGetRecipeQuery} from "../../api/recipesApi";
-import Loading from "../../../../components/Loading";
-import IconButton from "../../../../components/IconButton";
+import Process from "./Process";
+import {Preferment, Recipe} from "../types";
+import {setEditRecipe} from "../state/editRecipeSlice";
+import {useGetRecipeQuery} from "../../../api/recipesApi";
+import Loading from "../../../components/Loading";
+import IconButton from "../../../components/IconButton";
 import {MdSaveAlt, MdDeleteOutline, MdEdit, MdOutlineEdit, MdOutlineIosShare, MdOutlinePrint} from "react-icons/all";
-import {setDeleteRecipeId} from "../../../../components/AppModals/modalSlice";
+import {setDeleteRecipeId} from "../../../components/AppModals/modalSlice";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();

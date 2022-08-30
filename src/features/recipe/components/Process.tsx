@@ -28,8 +28,8 @@ const Process = () => {
                     <td>DDT</td>
                     <EditableCell
                         type="number"
-                        handleChange={() => console.log("changed")}
-                        value={ddt}
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={ddt}
                         symbol={'°F'}
                     />
                 </tr>
@@ -37,9 +37,9 @@ const Process = () => {
                     <td>Bulk Fermentation</td>
                     <EditableCell
                         type="number"
-                        handleChange={() => console.log("changed")}
-                        value={bulkFermentationTime}
-                        symbol={' minutes'}
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={bulkFermentationTime}
+                        symbol=' minutes'
                     />
                 </tr>
                 <tr>
@@ -54,9 +54,9 @@ const Process = () => {
                     <td>Shape</td>
                     <EditableCell
                         type='text'
-                        handleChange={() => console.log("changed")}
-                        value={shape}
-                        formatValueFunction={capitalize}
+                        onChangeFn={() => console.log("changed")}
+                        initialValue={shape}
+                        formatFunction={capitalize}
                     />
                 </tr>
                 { bake &&

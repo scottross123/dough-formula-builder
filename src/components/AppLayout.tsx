@@ -1,4 +1,4 @@
-import Navbar from "./Navbar/Navbar";
+import Navbar from "./Navbar";
 import Topbar from "./Topbar";
 import AppModals from "./AppModals";
 
@@ -6,7 +6,7 @@ type LayoutProps = {
     children: JSX.Element;
 }
 
-const Layout = (props: LayoutProps) => {
+const AppLayout = (props: LayoutProps) => {
     const { children } = props;
 
     return (
@@ -20,4 +20,4 @@ const Layout = (props: LayoutProps) => {
     )
 }
 
-export default Layout;
+export default AppLayout;

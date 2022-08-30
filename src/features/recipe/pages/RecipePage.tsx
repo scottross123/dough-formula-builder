@@ -1,5 +1,5 @@
 import Sidebar from "../../../components/Sidebar";
-import EditRecipe from "../components/EditRecipe/EditRecipe";
+import EditRecipe from "../components/EditRecipe";
 
 const RecipePage = () => {
     return (

@@ -4,7 +4,7 @@ import { selectIsCreateVisible, toggleCreateRecipeModal } from "./modalSlice";
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import { Recipe } from "../../features/recipe/types";
 import { v4 as uuidv4 } from "uuid";
-import { useAddRecipeMutation } from "../../features/recipe/api/recipesApi";
+import { useAddRecipeMutation } from "../../api/recipesApi";
 import {useNavigate} from "react-router";
 
 const CreateRecipeModal = () => {

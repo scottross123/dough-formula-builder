@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import editRecipeReducer from '../features/recipe/state/editRecipeSlice';
-import {recipesApi} from "../features/recipe/api/recipesApi";
+import {recipesApi} from "../api/recipesApi";
 import modalReducer from "../components/AppModals/modalSlice"
 
 export const store = configureStore({

@@ -1,4 +1,4 @@
-import { useGetRecipesQuery, useGetRecipesTagsQuery } from "../api/recipesApi";
+import { useGetRecipesQuery, useGetRecipesTagsQuery } from "../../../api/recipesApi";
 import { Recipe } from "../types";
 import brioche from "../../../assets/images/brioche.jpeg"
 import { MdOutlineEdit, MdOutlineIosShare, MdDeleteOutline, MdOutlinePrint } from "react-icons/all";
@@ -53,6 +53,7 @@ const RecipeListPage = () => {
                                     <IconButton
                                         icon={<MdOutlineEdit />}
                                         tooltipText='Edit'
+                                        link={`${id}`}
                                         size='md'
                                     />
                                     <IconButton

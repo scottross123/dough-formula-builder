@@ -1,5 +1,7 @@
 import { GiWheat, GiMasonJar, GiBread, GiBookshelf } from "react-icons/gi";
-import IconButton from "../IconButton";
+import IconButton from "./IconButton";
+import {Menu} from "react-daisyui";
+import MenuItem from "react-daisyui/dist/Menu/MenuItem";
 
 type NavItem = {
     key: string,
@@ -38,18 +40,20 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="h-screen sticky top-0 w-20 flex flex-col border-r-2 justify-evenly items-center bg-base-100 z-50">
+        <Menu className="h-screen sticky top-0 w-20 border-r-2 justify-evenly items-center bg-base-100 z-50">
             { navItems.map(({ key, icon, text, link}: NavItem) =>
-                <IconButton
-                    key={key}
-                    icon={icon}
-                    tooltipText={text}
-                    link={link}
-                    size='sm'
-                    color='ghost'
-                />
+                <Menu.Item className="hover-none">
+                    <IconButton
+                        key={key}
+                        icon={icon}
+                        tooltipText={text}
+                        link={link}
+                        size='sm'
+                        color='ghost'
+                    />
+                </Menu.Item>
             )}
-        </nav>
+        </Menu>
     );
 }
 
