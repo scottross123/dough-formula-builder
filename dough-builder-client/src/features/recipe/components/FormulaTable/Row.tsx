@@ -9,6 +9,7 @@ import RatioCell from "./Cell/RatioCell";
 import EditableCell from "../EditableCell";
 import {percentFormat} from "../../utils/numberFormats";
 import {gramsToOunces} from "../../utils/weightConversions";
+import EditableRatioCell from "./EditableRatioCell";
 
 type RowProps = {
     ingredient: Ingredient,
@@ -31,24 +32,17 @@ const Row = (props: RowProps) => {
             <td key="metric">{metric}g</td>,
             isFlour ? <td key="ratio">100%</td> : <td>{ratio * 100}%</td>,
         ] : [
-            <EditableCell
+            /*<EditableCell
                 id={id}
                 key="name"
                 type="text"
                 dispatchType={isFlour ? 'flourName' : 'ingredientName'}
                 initialValue={name}
-            />,
+            />,*/<td>bruh</td>,
             <td key="us">{gramsToOunces(metric)}</td>,
             <td key="metric">{metric}g</td>,
             isFlour ? <td key="ratio">100%</td> :
-                <EditableCell
-                    id={id}
-                    key="ratio"
-                    type="number"
-                    dispatchType='ingredientRatio'
-                    initialValue={ratio}
-                    formatFunction={percentFormat}
-                />,
+                <EditableRatioCell id={id} initialRatioValue={ratio} />
         ];
 
     return (

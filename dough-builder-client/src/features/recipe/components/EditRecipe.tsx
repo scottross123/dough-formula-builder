@@ -55,11 +55,11 @@ const EditRecipe = () => {
                     </div>
                 </div>
                 <section className="flex gap-8 w-full">
-                    <div className="w-1/2 flex flex-col gap-8">
+                    {/*<div className="w-1/2 flex flex-col gap-8">
                         <Heading />
                         <Yields />
                         <Process />
-                    </div>
+                    </div>*/}
 
                     <div className="w-1/2">
                     <FormulaTable title="Overall Formula" />

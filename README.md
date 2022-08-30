@@ -13,9 +13,9 @@ Most dough calculators I find online are either too simple to be useful or ugly 
 - React + TypeScript
 - Vite
 - TailwindCSS + DaisyUI
-- Redux Toolkit
+- Redux Toolkits
 - React Router v6
 
 ### Backend (to-do)
-- Go + Gin
+- Java + Spring Boot
 - MongoDB

@@ -27,11 +27,12 @@ const editRecipeSlice = createSlice({
         },
         updateIngredientRatio: (state, action: PayloadAction<{ id: string, newRatio: number }>) => {
             const { id, newRatio } = action.payload;
-            const totalFlourWeight = 1454;
+            const totalRatio = state.formula.ingredients.reduce((totalRatio: number, ingredient: Ingredient) => totalRatio + ingredient.ratio, 1)
+            const totalFlourWeight = (state.yields.unitWeight * state.yields.unitQuantity * state.yields.wasteFactor) / totalRatio;
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             const unitQuantity = state.yields.unitQuantity;
             const additionalUnitWeight = ((newRatio - ingredient!.ratio) * totalFlourWeight) / unitQuantity;
-            ingredient!.ratio = parseFloat(newRatio.toFixed(3));
+            ingredient!.ratio = newRatio;
             state.yields.unitWeight += Math.round(additionalUnitWeight);
         },
         updateIngredientName: (state, action: PayloadAction<{ id: string, newName: string}>) => {

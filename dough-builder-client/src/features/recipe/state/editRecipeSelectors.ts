@@ -46,7 +46,7 @@ export const selectTotals = createStructuredSelector({
     totalWeight: selectTotalWeight,
 });
 
-export const selectTotalFlourWeight = createDraftSafeSelector(
+export const selectTotalFlourWeight = createSelector(
     selectTotalWeight,
     selectTotalRatio,
     (totalWeight, totalRatio) =>
