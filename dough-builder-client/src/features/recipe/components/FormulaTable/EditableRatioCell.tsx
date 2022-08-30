@@ -18,7 +18,7 @@ const EditableRatioCell = (props: EditableRatioCellProps) => {
     const dispatch = useAppDispatch();
 
     const updateRatioValue = (newRatioValue: number): void => {
-        setRatioValue((newRatioValue))
+        setRatioValue(newRatioValue);
     }
 
     useEffect(() => {
