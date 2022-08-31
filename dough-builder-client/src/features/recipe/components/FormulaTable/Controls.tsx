@@ -1,6 +1,7 @@
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {addIngredient, } from "../../state/editRecipeSlice";
 import { v4 as uuidv4 } from 'uuid';
+import {Button} from "react-daisyui";
 
 const Controls = () => {
     const dispatch = useAppDispatch();
@@ -21,11 +22,10 @@ const Controls = () => {
     }
 
     return (
-        <div className="card-actions btn-group">
-            <button className={buttonStyle} onClick={handleClickIngredient}>Add ingredient</button>
-            {/*<button className={buttonStyle} onClick={handleClickFlour}>Add flour</button>*/}
-        </div>
+        <Button color="primary" size='sm' onClick={handleClickIngredient}>Add ingredient</Button>
     );
 }
 
 export default Controls;
+
+/*<button className={buttonStyle} onClick={handleClickFlour}>Add flour</button>*/

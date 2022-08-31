@@ -10,11 +10,10 @@ type EditableCellProps = {
     initialValue: number | string,
     callbackFn: ((newValue: string) => void) | ((newValue: number) => void),
     formatFn?: ((arg: string) => string) | ((arg: number) => any),
-    symbol?: string,
 }
 
 const EditableCell = (props: EditableCellProps) => {
-    const { type, initialValue, callbackFn, formatFn, symbol } = props;
+    const { type, initialValue, callbackFn, formatFn } = props;
     const [value, setValue] = useState<typeof initialValue>(initialValue);
     const [isEdit, setIsEdit] = useState<boolean>(false);
     const ref = useRef<HTMLTableCellElement>(null);
@@ -43,14 +42,14 @@ const EditableCell = (props: EditableCellProps) => {
                         value={value}
                         onChange={handleChange}
                     />
-                </OutsideClickProvider>{symbol}
+                </OutsideClickProvider>
             </span>
         );
     }
 
     return (
         <span onClick={() => setIsEdit(true)}>
-            {formatFn ? formatFn(value as never) : value}{symbol}
+            {formatFn ? formatFn(value as never) : value}
         </span>
     );
 }

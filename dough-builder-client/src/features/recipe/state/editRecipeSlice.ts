@@ -40,6 +40,18 @@ const editRecipeSlice = createSlice({
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
             ingredient!.name = newName;
         },
+        updateUnitQuantity: (state, action: PayloadAction<number>) => {
+            const newUnitQuantity = action.payload;
+            state.yields.unitQuantity = newUnitQuantity;
+        },
+        updateUnitWeight: (state, action: PayloadAction<number>) => {
+            const newUnitWeight = action.payload;
+            state.yields.unitWeight = newUnitWeight;
+        },
+        updateWasteFactor: (state, action: PayloadAction<number>) => {
+            const newWasteFactor = action.payload;
+            state.yields.wasteFactor = newWasteFactor;
+        },
         updateProcessMix: (state, action: PayloadAction<{ method: 'short' | 'improved' | 'intensive', notes: string }>) => {
             const newMix = action.payload;
             state.process.mix = newMix;
@@ -85,6 +97,17 @@ export const {
     updateFlourName,
     updateIngredientRatio,
     updateIngredientName,
+    updateUnitQuantity,
+    updateUnitWeight,
+    updateWasteFactor,
+    updateProcessBulkFermentationTime,
+    updateProcessFinalProof,
+    updateProcessDdt,
+    updateProcessFry,
+    updateProcessBake,
+    updateProcessShape,
+    updateProcessPreshape,
+    updateProcessMix,
     setEditRecipe,
 } = editRecipeSlice.actions;
 export default editRecipeSlice.reducer;

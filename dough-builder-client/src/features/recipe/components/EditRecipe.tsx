@@ -7,9 +7,9 @@ import {Preferment, Recipe} from "../types";
 import {setEditRecipe} from "../state/editRecipeSlice";
 import {useGetRecipeQuery} from "../../../api/recipesApi";
 import Loading from "../../../components/Loading";
-import IconButton from "../../../components/IconButton";
-import {MdSaveAlt, MdDeleteOutline, MdEdit, MdOutlineEdit, MdOutlineIosShare, MdOutlinePrint} from "react-icons/all";
-import {setDeleteRecipeId} from "../../../components/AppModals/modalSlice";
+import Notes from "./Notes";
+import Header from "./Header";
+import Description from "./Description";
 
 const EditRecipe = () => {
     const { recipeId } = useParams();
@@ -22,44 +22,16 @@ const EditRecipe = () => {
 
     return (
             <div className="w-full">
-                <div className="w-full mb-8 pb-8 flex text-primary justify-between">
-                    <h1 className="text-6xl">{recipe?.title}</h1>
-
-                    <div className="flex gap-4 items-end">
-                        <IconButton
-                            icon={<MdSaveAlt />}
-                            tooltipText='Save'
-                            link={`save`}
-                            size='md'
-                        />
-                        <IconButton
-                            icon={<MdOutlineIosShare />}
-                            tooltipText='Share'
-                            link={`share`}
-                            size='md'
-                        />
-                        <IconButton
-                            icon={<MdOutlinePrint />}
-                            tooltipText='Print'
-                            link={`print`}
-                            size='md'
-                        />
-                        <IconButton
-                            icon={<MdDeleteOutline />}
-                            tooltipText='Delete'
-                            handleClick={() => dispatch(setDeleteRecipeId(recipeId))}
-                            size='md'
-                        />
-                    </div>
-                </div>
+                    <Header />
                 <section className="flex gap-8 w-full">
-                    {/*<div className="w-1/2 flex flex-col gap-8">
-                        <Heading />
+                    <div className="w-1/2 flex flex-col gap-8">
+                        <Description />
                         <Yields />
                         <Process />
-                    </div>*/}
+                        <Notes />
+                    </div>
 
-                    <div className="w-1/2">
+                    <div className="w-1/2 flex flex-col gap-8">
                     <FormulaTable title="Overall Formula" />
                     {
                         preferments ?

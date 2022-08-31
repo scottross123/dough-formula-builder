@@ -1,12 +1,9 @@
-import styles from './table.module.css';
-import { useContext } from "react";
 import Footer from "./Footer";
 import Body from "./Body";
 import Controls from "./Controls";
-import TableContainer from "../TableContainer";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {selectPreferment} from "../../state/editRecipeSelectors";
-import { Table } from "react-daisyui";
+import {Card, Table} from "react-daisyui";
 
 type FormulaTableProps = {
     title: string,
@@ -21,22 +18,25 @@ const FormulaTable = (props: FormulaTableProps) => {
 
 
     return (
-        <TableContainer
-            title={title}
-            controls={finalDough ? undefined : <Controls />}
-            additionalInfo={additionalInfo}
-        >
-            <Table className="card-body table table-compact w-full">
-                <Table.Head>
-                    <span>Ingredients</span>
-                    <span>U.S.</span>
-                    <span>Metric</span>
-                    <span>Baker's %</span>
-                </Table.Head>
-                <Body prefermentId={prefermentId} />
-                <Footer prefermentId={prefermentId} />
-            </Table>
-        </TableContainer>
+        <Card>
+            <Card.Body>
+                <Card.Title>{title}</Card.Title>
+                {prefermentId && <p>{additionalInfo}</p>}
+                <Table className="card-body table table-compact w-full">
+                    <Table.Head>
+                        <span>Ingredients</span>
+                        <span>U.S.</span>
+                        <span>Metric</span>
+                        <span>Baker's %</span>
+                    </Table.Head>
+                    <Body prefermentId={prefermentId} />
+                    <Footer prefermentId={prefermentId} />
+                </Table>
+                <Card.Actions>
+                    { !finalDough && <Controls />}
+                </Card.Actions>
+            </Card.Body>
+        </Card>
     );
 
 }

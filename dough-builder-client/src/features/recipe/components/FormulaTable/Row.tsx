@@ -24,7 +24,10 @@ const Row = (props: RowProps) => {
     const metric: number = Math.round(ratio * totalFlourWeight);
     const dispatch = useAppDispatch();
 
-    const columns: JSX.Element[] = [
+
+    const columns: JSX.Element[] =
+        prefermentId ?
+            [
         <EditableCell
             type='text'
             initialValue={name}
@@ -44,7 +47,27 @@ const Row = (props: RowProps) => {
                 callbackFn={(newRatio: number) => dispatch(updateIngredientRatio({ id: id, newRatio: newRatio}))}
                 formatFn={percentFormat}
             />
-    ];
+    ] : [
+                <EditableCell
+                    type='text'
+                    initialValue={name}
+                    callbackFn={
+                        isFlour ?
+                            (newName: string) => dispatch(updateFlourName({ id: id, newName: newName}))
+                            :
+                            (newName: string) => dispatch(updateIngredientName({ id: id, newName: newName}))
+                    }
+                />,
+                <span key="us">{gramsToOunces(metric)}</span>,
+                <span key="metric">{metric}g</span>,
+                isFlour ? <span key="ratio">100%</span> :
+                    <EditableCell
+                        type='number'
+                        initialValue={ratio}
+                        callbackFn={(newRatio: number) => dispatch(updateIngredientRatio({ id: id, newRatio: newRatio}))}
+                        formatFn={percentFormat}
+                    />
+            ]
 
     return (
       <Table.Row>
