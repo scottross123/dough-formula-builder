@@ -17,5 +17,5 @@ Most dough calculators I find online are either too simple to be useful or ugly 
 - React Router v6
 
 ### Backend (to-do)
-- Go + Gin
+- Java + Spring Boot
 - MongoDB
