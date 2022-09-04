@@ -36,6 +36,7 @@ const IconButton = (props: IconNavLinkProps) => {
                         variant={variant}
                         size={size}
                         className="rounded w-fit"
+                        onClick={handleClick}
                     >
                         {icon}
                     </Button>

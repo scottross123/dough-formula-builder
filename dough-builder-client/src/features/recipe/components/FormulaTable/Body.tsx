@@ -14,9 +14,11 @@ const Body = (props: BodyProps) => {
             useAppSelector(state => selectPreferment(state, prefermentId))!.formula :
             useAppSelector(state => selectFormula(state));
 
+    console.log("flours nggredients", flours, ingredients)
     return (
         <Table.Body>
-            { flours.map((flour: Ingredient) =>
+            {
+                flours.map((flour: Ingredient) =>
                 <Row
                     key={flour.id}
                     ingredient={flour}
@@ -25,7 +27,8 @@ const Body = (props: BodyProps) => {
                 />
             )}
 
-            { ingredients.map((ingredient: Ingredient) =>
+            {
+                ingredients.map((ingredient: Ingredient) =>
                 <Row
                     key={ingredient.id}
                     ingredient={ingredient}

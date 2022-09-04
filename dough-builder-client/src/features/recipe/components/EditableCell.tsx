@@ -1,9 +1,7 @@
 import OutsideClickProvider from "../providers/OutsideClickProvider";
 import {FormEvent, useEffect, useRef, useState} from "react";
 import { Input } from "react-daisyui";
-import {useAppDispatch} from "../../../store/hooks";
-import {Dispatch} from "@reduxjs/toolkit";
-import {updateFlourName, updateIngredientName, updateIngredientRatio} from "../state/editRecipeSlice";
+import useDidMountEffect from "../../../hooks/useDidMountEffect";
 
 type EditableCellProps = {
     type: 'text' | 'number',
@@ -18,12 +16,13 @@ const EditableCell = (props: EditableCellProps) => {
     const [isEdit, setIsEdit] = useState<boolean>(false);
     const ref = useRef<HTMLTableCellElement>(null);
 
-    useEffect(() => {
+    useDidMountEffect(() => {
         callbackFn(value as never);
     }, [isEdit])
 
+
     const handleClickOutside = () => {
-        setIsEdit(false)
+        setIsEdit(false);
     }
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {

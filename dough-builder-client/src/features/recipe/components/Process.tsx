@@ -1,4 +1,3 @@
-import TableContainer from "./TableContainer";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import { selectProcess } from "../state/editRecipeSelectors";
 import { capitalize } from "../../../utils/capitalize";

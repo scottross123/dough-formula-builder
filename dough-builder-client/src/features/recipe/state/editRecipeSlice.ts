@@ -86,7 +86,7 @@ const editRecipeSlice = createSlice({
         },
         setEditRecipe: (state, action: PayloadAction<Recipe | undefined>) => {
             const recipe = action.payload;
-            Object.assign(state, recipe);
+            return recipe;
         }
     }
 });

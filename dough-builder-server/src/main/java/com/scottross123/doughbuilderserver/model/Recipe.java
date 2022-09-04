@@ -1,4 +1,4 @@
-public record Recipe {
+public class Recipe {
 
     @Id
     private String id;
@@ -6,5 +6,9 @@ public record Recipe {
     private String title;
     private String description;
     private String author;
+    private List<String> tags;
+    private Yields yields;
+    private Process process;
+    private formula Formula;
 
 }

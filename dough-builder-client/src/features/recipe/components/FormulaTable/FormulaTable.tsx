@@ -4,15 +4,15 @@ import Controls from "./Controls";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {selectPreferment} from "../../state/editRecipeSelectors";
 import {Card, Table} from "react-daisyui";
+import FinalDoughBody from "../FinalDoughTable/FinalDoughBody";
 
 type FormulaTableProps = {
     title: string,
-    finalDough?: boolean,
     prefermentId?: string,
 }
 
 const FormulaTable = (props: FormulaTableProps) => {
-    const { title, finalDough, prefermentId } = props;
+    const { title, prefermentId } = props;
     const pffRatio: number | undefined = prefermentId ? useAppSelector(state => selectPreferment(state, prefermentId))!.prefermentedFlourRatio : undefined;
     const additionalInfo: string | undefined = pffRatio ? `Pre-Fermented Flour: ${pffRatio * 100}%` : undefined;
 
@@ -33,7 +33,7 @@ const FormulaTable = (props: FormulaTableProps) => {
                     <Footer prefermentId={prefermentId} />
                 </Table>
                 <Card.Actions>
-                    { !finalDough && <Controls />}
+                    <Controls />
                 </Card.Actions>
             </Card.Body>
         </Card>
