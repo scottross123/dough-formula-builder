@@ -1,7 +1,8 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./initialRecipesState";
 import { selectTotalFlourWeight } from "./editRecipeSelectors";
-import { Ingredient, Recipe } from "../types";
+import {Ingredient, Preferment, Recipe} from "../types";
+import newRecipes from "../../community/components/NewRecipes";
 
 const editRecipeSlice = createSlice({
     name: 'editRecipe',
@@ -13,7 +14,31 @@ const editRecipeSlice = createSlice({
         },
         removeIngredient: (state, action: PayloadAction<string>) => {
             const id = action.payload;
-            state.formula.ingredients = state.formula.ingredients.filter((ingredient: Ingredient) => ingredient.id == id);
+            state.formula.ingredients = state.formula.ingredients.filter((ingredient: Ingredient) => ingredient.id === id);
+            if (state.preferments)
+                state.preferments.map((preferment: Preferment) =>
+                    preferment.formula.ingredients.filter((ingredient: Ingredient) => ingredient.id === id)
+                );
+        },
+        addPreferment: (state, action: PayloadAction<Preferment>) => {
+          const newPreferment = action.payload;
+          state.preferments?.push(newPreferment);
+        },
+        removePreferment: (state, action: PayloadAction<string>) => {
+            const id = action.payload;
+            state.preferments = state.preferments!.filter((preferment: Preferment) => preferment.id === id);
+        },
+        addPrefermentIngredient: (state, action: PayloadAction<{ id: string, newIngredient: Ingredient}>) => {
+            const { id, newIngredient } = action.payload;
+            state.preferments!.find((preferment: Preferment) => preferment.id === id)
+                ?.formula.ingredients.push(newIngredient);
+            if (state.formula.ingredients.filter((ingredient: Ingredient) => ingredient.id === id))
+                state.formula.ingredients.push(newIngredient);
+        },
+        removePrefermentIngredient: (state, action: PayloadAction<{ prefermentId: string, ingredientId: string}>) => {
+            const { prefermentId, ingredientId } = action.payload;
+            const preferment = state.preferments!.find((preferment: Preferment) => preferment.id === prefermentId);
+            preferment!.formula.ingredients = preferment!.formula.ingredients.filter((ingredient: Ingredient) => ingredient.id === ingredientId);
         },
         /*updateFlourRatio: (state, action: PayloadAction<{ recipeIndex: number, id: string, newRatio: number }>) => {
             const { recipeIndex, id, newRatio } = action.payload;
@@ -38,6 +63,25 @@ const editRecipeSlice = createSlice({
         updateIngredientName: (state, action: PayloadAction<{ id: string, newName: string}>) => {
             const { id, newName } = action.payload;
             const ingredient = state.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === id);
+            ingredient!.name = newName;
+        },
+        updatePrefermentFlourName: (state, action: PayloadAction<{ prefermentId: string, ingredientId: string, newName: string }>) => {
+            const { prefermentId, ingredientId, newName } = action.payload;
+            const preferment = state.preferments!.find((preferment: Preferment) => preferment.id === prefermentId);
+            const flour = preferment!.formula.flours.find((flour: Ingredient) => flour.id === ingredientId);
+            flour!.name = newName;
+        },
+        updatePrefermentIngredientRatio: (state, action: PayloadAction<{ prefermentId: string, ingredientId: string, newRatio: number }>) => {
+            const { prefermentId, ingredientId, newRatio } = action.payload;
+            const preferment = state.preferments!.find((preferment: Preferment) => preferment.id === prefermentId);
+            const ingredient = preferment!.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === ingredientId);
+            ingredient!.ratio = newRatio;
+            // TODO add check to prevent user from adding more ingredient to preferment than available in overall formula.
+        },
+        updatePrefermentIngredientName: (state, action: PayloadAction<{ prefermentId: string, ingredientId: string, newName: string }>) => {
+            const { prefermentId, ingredientId, newName } = action.payload;
+            const preferment = state.preferments!.find((preferment: Preferment) => preferment.id === prefermentId);
+            const ingredient = preferment!.formula.ingredients.find((ingredient: Ingredient) => ingredient.id === ingredientId);
             ingredient!.name = newName;
         },
         updateUnitQuantity: (state, action: PayloadAction<number>) => {

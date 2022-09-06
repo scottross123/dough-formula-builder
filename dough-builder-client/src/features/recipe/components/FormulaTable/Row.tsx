@@ -22,7 +22,6 @@ const Row = (props: RowProps) => {
         useAppSelector(state => selectPffWeight(state, prefermentId)) :
         useAppSelector(state => selectTotalFlourWeight(state));
     const metric: number = Math.round(ratio * totalFlourWeight);
-    console.log('tt', totalFlourWeight, ratio)
     const dispatch = useAppDispatch();
 
     const columns: JSX.Element[] =

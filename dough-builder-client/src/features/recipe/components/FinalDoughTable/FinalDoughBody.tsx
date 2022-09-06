@@ -2,10 +2,7 @@ import { Table } from "react-daisyui"
 import { useAppSelector } from "../../../../store/hooks";
 import {
     selectFinalDoughIngredients,
-    selectFormula, selectPffWeight,
-    selectPreferments,
-    selectPrefermentWeight, selectPrefermentWeights,
-    selectTotalFlourWeight,
+    selectFormula, selectPrefermentWeights,
     selectTotalNonPff
 } from "../../state/editRecipeSelectors";
 import {Ingredient, Preferment} from "../../types";
@@ -20,15 +17,14 @@ type FinalDoughRow = {
 
 const FinalDoughBody = () => {
     const { flours, ingredients }: { flours: Ingredient[], ingredients: Ingredient[] } = useAppSelector(state => selectFormula(state));
-    const preferments: Preferment[] | undefined = useAppSelector(selectPreferments);
     const totalNonPff: number = useAppSelector(selectTotalNonPff);
-    const totalFlourWeight: number = useAppSelector(selectTotalFlourWeight);
     const prefermentRows: FinalDoughRow[] = useAppSelector(selectPrefermentWeights);
     const finalDoughIngredients: FinalDoughRow[] = useAppSelector(selectFinalDoughIngredients);
-
-    const finalDoughRows: FinalDoughRow[] = [...finalDoughIngredients, ...prefermentRows].filter((finalDoughRow: FinalDoughRow) => finalDoughRow.metric != 0);
+    const finalDoughRows: FinalDoughRow[] = [...finalDoughIngredients, ...prefermentRows]
+        .filter((finalDoughRow: FinalDoughRow) => finalDoughRow.metric != 0);
 
     // TODO add support for multiple flours
+    // TODO prevent negative values
     return (
         <Table.Body>
             {

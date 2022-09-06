@@ -14,7 +14,6 @@ const Body = (props: BodyProps) => {
             useAppSelector(state => selectPreferment(state, prefermentId))!.formula :
             useAppSelector(state => selectFormula(state));
 
-    console.log("flours nggredients", flours, ingredients)
     return (
         <Table.Body>
             {
