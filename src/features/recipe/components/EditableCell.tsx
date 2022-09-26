@@ -1,54 +1,48 @@
 import OutsideClickProvider from "../providers/OutsideClickProvider";
-import {FormEvent, useRef, useState} from "react";
+import {FormEvent, useEffect, useRef, useState} from "react";
 import { Input } from "react-daisyui";
+import useDidMountEffect from "../../../hooks/useDidMountEffect";
 import {useAppDispatch} from "../../../store/hooks";
-import {Dispatch} from "@reduxjs/toolkit";
-import {updateFlourName, updateIngredientName, updateIngredientRatio} from "../state/editRecipeSlice";
+import {updateFlourName} from "../state/editRecipeSlice";
 
 type EditableCellProps = {
     type: 'text' | 'number',
-    dispatchType?: 'flourName' | 'ingredientName' | 'ingredientRatio',
-    id?: string,
-    initialValue: string | number,
-    formatFunction?: ((arg: string) => string) | ((arg: number) => string),
-    symbol?: string,
+    initialValue: number | string,
+    callbackFn: ((newValue: string) => void) | ((newValue: number) => void),
+    formatFn?: ((arg: string) => string) | ((arg: number) => any),
 }
 
 const EditableCell = (props: EditableCellProps) => {
-    const { type, dispatchType, initialValue, formatFunction, symbol, id } = props;
-    const [editable, setEditable] = useState<boolean>(false);
+    const { type, initialValue, callbackFn, formatFn } = props;
     const [value, setValue] = useState<typeof initialValue>(initialValue);
+    const [isEdit, setIsEdit] = useState<boolean>(false);
     const ref = useRef<HTMLTableCellElement>(null);
     const dispatch = useAppDispatch();
 
+    useDidMountEffect(() => {
+        //callbackFn(value as never);
+        try {
+            dispatch(updateFlourName({ id: '2', newName: 'durr'}))
+            console.log("dispatched")
+        } catch (error) {
+            console.log("nada")
+        }
+    }, [isEdit])
+
+
     const handleClickOutside = () => {
-        setEditable(false);
+        setIsEdit(false);
     }
 
     const handleChange = (e: FormEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value);
-        console.log('handling change')
-        if (id) {
-            console.log('id is true')
-            switch (dispatchType) {
-                case 'flourName':
-                    dispatch(updateFlourName({ id: id, newName: value as string }));
-                    break;
-                case 'ingredientName':
-                    dispatch(updateIngredientName({ id: id, newName: value as string }));
-                    break;
-                case 'ingredientRatio':
-                    dispatch(updateIngredientRatio({ id: id, newRatio: value as number }));
-                    break;
-                default:
-                    break;
-            }
-        }
+        // TODO validate input so you cant enter NaN or values below zero
+        const newValue = typeof value === 'number' ? parseFloat(e.currentTarget.value) : e.currentTarget.value;
+        setValue(newValue);
     }
 
-    if (editable) {
+    if (isEdit) {
         return (
-            <td className="" ref={ref}>
+            <span className="" ref={ref}>
                 <OutsideClickProvider parentRef={ref} handleClickOutside={handleClickOutside}>
                     <Input
                         size="sm"
@@ -56,15 +50,15 @@ const EditableCell = (props: EditableCellProps) => {
                         value={value}
                         onChange={handleChange}
                     />
-                </OutsideClickProvider>{symbol}
-            </td>
+                </OutsideClickProvider>
+            </span>
         );
     }
 
     return (
-        <td onClick={() => setEditable(true)}>
-            {formatFunction ? formatFunction(value) : value}{symbol}
-        </td>
+        <span onClick={() => setIsEdit(true)}>
+            {formatFn ? formatFn(value as never) : value}
+        </span>
     );
 }
 

@@ -65,103 +65,6 @@
       }
     },
     {
-      "id": "bread2",
-      "title": "Sourdough Country Bread",
-      "description": "A San Francisco style sourdough bread made with stiff levain and bread flour.",
-      "image": "sourdough",
-      "author": "Chad",
-      "tags": [
-        "Sourdough",
-        "Crusty"
-      ],
-      "yields": {
-        "unitWeight": 950,
-        "unitQuantity": 3,
-        "wasteFactor": 0.02
-      },
-      "process": {
-        "mix": {
-          "method": "improved"
-        },
-        "ddt": 78,
-        "bulkFermentationTime": 240,
-        "preshape": {
-          "time": 30,
-          "shape": "ball"
-        },
-        "finalProof": {
-          "time": 120,
-          "temp": 75
-        },
-        "shape": "batard",
-        "bake": [
-          {
-            "id": "1",
-            "time": 15,
-            "temp": 475
-          },
-          {
-            "id": "2",
-            "time": 30,
-            "temp": 450
-          }
-        ]
-      },
-      "formula": {
-        "flours": [
-          {
-            "id": "3",
-            "name": "Bread Flour",
-            "ratio": 1
-          }
-        ],
-        "ingredients": [
-          {
-            "id": "5",
-            "name": "Water",
-            "ratio": 0.8
-          },
-          {
-            "id": "4",
-            "name": "Salt",
-            "ratio": 0.2
-          }
-        ]
-      },
-      "preferments": [
-        {
-          "id": "1",
-          "name": "Stiff Levain",
-          "prefermentedFlourRatio": 0.1,
-          "fermentation": {
-            "time": 720,
-            "temperature": 70
-          },
-          "formula": {
-            "flours": [
-              {
-                "id": "1",
-                "name": "Bread Flour",
-                "ratio": 1
-              }
-            ],
-            "ingredients": [
-              {
-                "id": "2",
-                "name": "Water",
-                "ratio": 0.65
-              },
-              {
-                "id": "3",
-                "name": "Starter",
-                "ratio": 0.2
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
       "id": "bread3",
       "title": "Rich Man's Brioche",
       "description": "A French bread and Viennoiserie made with a high proportion of egg and butter.",
@@ -278,39 +181,44 @@
       "formula": {
         "flours": [
           {
-            "id": "2",
+            "id": "2897",
             "name": "Bread Flour",
             "ratio": 1
           }
         ],
         "ingredients": [
           {
-            "id": "1",
+            "id": "190",
             "name": "Egg",
             "ratio": 0.333
           },
           {
-            "id": "2",
+            "id": "52",
             "name": "Butter",
             "ratio": 0.3
           },
           {
-            "id": "3",
+            "id": "3ui6",
             "name": "Milk",
             "ratio": 0.3
           },
           {
-            "id": "4",
+            "id": "3324324",
+            "name": "Water",
+            "ratio": 0.15
+          },
+          {
+            "id": "4jhkgjh",
             "name": "Sugar",
             "ratio": 0.084
           },
           {
-            "id": "5",
+            "id": "5kjh",
             "name": "Salt",
             "ratio": 0.017
           },
           {
-            "id": "6",
+            "id": "6jkghjh",
             "name": "Vanilla Extract",
             "ratio": 0.017
           }
@@ -318,9 +226,9 @@
       },
       "preferments": [
         {
-          "id": "",
+          "id": "187896879",
           "name": "Sweet Liquid Starter",
-          "prefermentedFlourRatio": 0.15,
+          "prefermentedFlourRatio": 0.1,
           "fermentation": {
             "time": 720,
             "temperature": 70
@@ -335,17 +243,42 @@
             ],
             "ingredients": [
               {
-                "id": "1",
+                "id": "987897971",
                 "name": "Water",
                 "ratio": 1
               },
               {
-                "id": "2",
-                "name": "Starter",
-                "ratio": 0.4
+                "id": "3899877876876",
+                "name": "Sugar",
+                "ratio": 0.2
+              }
+            ]
+          }
+        },
+        {
+          "id": "2878989",
+          "name": "Sweet Liquid Starter 2",
+          "prefermentedFlourRatio": 0.05,
+          "fermentation": {
+            "time": 720,
+            "temperature": 70
+          },
+          "formula": {
+            "flours": [
+              {
+                "id": "276567856575",
+                "name": "Bread Flour",
+                "ratio": 1
+              }
+            ],
+            "ingredients": [
+              {
+                "id": "186867987",
+                "name": "Water",
+                "ratio": 1
               },
               {
-                "id": "3",
+                "id": "38768765",
                 "name": "Sugar",
                 "ratio": 0.2
               }

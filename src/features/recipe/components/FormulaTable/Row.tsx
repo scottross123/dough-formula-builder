@@ -4,58 +4,77 @@ import {
     selectPffWeight,
     selectTotalFlourWeight
 } from "../../state/editRecipeSelectors";
-import NameCell from "./Cell/NameCell";
-import RatioCell from "./Cell/RatioCell";
+import { gramsToOunces } from "../../utils/weightConversions";
+import { Table } from "react-daisyui";
+import {updateFlourName, updateIngredientName, updateIngredientRatio} from "../../state/editRecipeSlice";
 import EditableCell from "../EditableCell";
 import {percentFormat} from "../../utils/numberFormats";
-import {gramsToOunces} from "../../utils/weightConversions";
 
 type RowProps = {
     ingredient: Ingredient,
     isFlour?: boolean,
     prefermentId?: string,
-    finalDough?: boolean,
 }
 
 const Row = (props: RowProps) => {
-    const { ingredient: { id, name, ratio }, isFlour, prefermentId, finalDough } = props;
+    const { ingredient: { id, name, ratio }, isFlour, prefermentId } = props;
     const totalFlourWeight: number = prefermentId ?
         useAppSelector(state => selectPffWeight(state, prefermentId)) :
         useAppSelector(state => selectTotalFlourWeight(state));
     const metric: number = Math.round(ratio * totalFlourWeight);
+    const dispatch = useAppDispatch();
 
-    const columns: JSX.Element[] = !finalDough ?
-        [
-            <td key="name">{name}</td>,
-            <td key="us">{gramsToOunces(metric)}</td>,
-            <td key="metric">{metric}g</td>,
-            isFlour ? <td key="ratio">100%</td> : <td>{ratio * 100}%</td>,
-        ] : [
+    const columns: JSX.Element[] =
+        prefermentId ?
+            [
+        <EditableCell
+            type='text'
+            initialValue={name}
+            callbackFn={
+            isFlour ?
+                (newName: string) => dispatch(updateFlourName({ id: id, newName: newName}))
+                :
+                (newName: string) => dispatch(updateIngredientName({ id: id, newName: newName}))
+            }
+        />,
+        <span key="us">{gramsToOunces(metric)}</span>,
+        <span key="metric">{metric}g</span>,
+        isFlour ? <span key="ratio">100%</span> :
             <EditableCell
-                id={id}
-                key="name"
-                type="text"
-                dispatchType={isFlour ? 'flourName' : 'ingredientName'}
-                initialValue={name}
-            />,
-            <td key="us">{gramsToOunces(metric)}</td>,
-            <td key="metric">{metric}g</td>,
-            isFlour ? <td key="ratio">100%</td> :
+                type='number'
+                initialValue={ratio}
+                callbackFn={(newRatio: number) => dispatch(updateIngredientRatio({ id: id, newRatio: newRatio}))}
+                formatFn={percentFormat}
+            />
+    ] : [
                 <EditableCell
-                    id={id}
-                    key="ratio"
-                    type="number"
-                    dispatchType='ingredientRatio'
-                    initialValue={ratio}
-                    formatFunction={percentFormat}
+                    type='text'
+                    initialValue={name}
+                    callbackFn={
+                        isFlour ?
+                            (newName: string) => dispatch(updateFlourName({ id: id, newName: newName}))
+                            :
+                            (newName: string) => dispatch(updateIngredientName({ id: id, newName: newName}))
+                    }
                 />,
-        ];
+                <span key="us">{gramsToOunces(metric)}</span>,
+                <span key="metric">{metric}g</span>,
+                isFlour ? <span key="ratio">100%</span> :
+                    <EditableCell
+                        type='number'
+                        initialValue={ratio}
+                        callbackFn={(newRatio: number) => dispatch(updateIngredientRatio({ id: id, newRatio: newRatio}))}
+                        formatFn={percentFormat}
+                    />
+            ]
 
     return (
-      <tr className="hover">
+      <Table.Row>
           { columns.map((column) => column ) }
-      </tr>
+      </Table.Row>
     );
 }
 
 export default Row;
+
+

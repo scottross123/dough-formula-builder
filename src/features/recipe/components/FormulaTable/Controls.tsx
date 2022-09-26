@@ -1,23 +1,28 @@
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {addIngredient, } from "../../state/editRecipeSlice";
-import { selectFormula} from "../../state/editRecipeSelectors";
+import {addIngredient, addPrefermentIngredient,} from "../../state/editRecipeSlice";
 import { v4 as uuidv4 } from 'uuid';
-import {useContext} from "react";
-import {RecipeContext} from "../../providers/RecipeProvider";
+import {Button} from "react-daisyui";
+import {Ingredient} from "../../types";
 
-const Controls = () => {
+type ControlsProps = {
+    prefermentId?: string,
+}
+
+const Controls = (props: ControlsProps) => {
+    const { prefermentId } = props;
     const dispatch = useAppDispatch();
-    const recipeId = useContext(RecipeContext);
-    const buttonStyle = "btn btn-primary btn-outline btn-sm";
 
     const handleClickIngredient = () => {
-        dispatch(addIngredient(
-             {
-                id: uuidv4(),
-                name: "New Ingredient",
-                ratio: 0,
-            },
-        ));
+        const newIngredient: Ingredient = {
+            id: uuidv4(),
+            name: "New Ingredient",
+            ratio: 0,
+        };
+
+        prefermentId ?
+            dispatch(addPrefermentIngredient({id: prefermentId, newIngredient: newIngredient})) :
+            dispatch(addIngredient(newIngredient))
+
     };
 
     const handleClickFlour = () => {
@@ -25,11 +30,10 @@ const Controls = () => {
     }
 
     return (
-        <div className="card-actions btn-group">
-            <button className={buttonStyle} onClick={handleClickIngredient}>Add ingredient</button>
-            <button className={buttonStyle} onClick={handleClickFlour}>Add flour</button>
-        </div>
+        <Button color="primary" size='sm' onClick={handleClickIngredient}>Add ingredient</Button>
     );
 }
 
 export default Controls;
+
+/*<button className={buttonStyle} onClick={handleClickFlour}>Add flour</button>*/
