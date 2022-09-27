@@ -14,14 +14,32 @@ const Sidebar = () => {
         return <div>something went wrong</div>;
     }
 
+    //const actions =
+
     return (
-        <aside className="drawer-side h-screen top-0 right-0 sticky overflow-y-hidden w-1/4 flex flex-col p-4 border-l-2
+        <aside className="h-screen top-0 right-0 sticky overflow-y-hidden flex flex-col p-4 gap-4 border-r-2
         justify-items-center bg-base-100">
-            <h1 className="mb-2 text-center font-bold text-red text-xl">Your Recipes</h1>
-            <hr />
+            {/*<div className="flex w-full items-center">
+                <IconButton
+                    size='sm'
+                    color='ghost'
+                    icon={<MdAdd className="text-primary" fontSize="1rem" />}
+                    tooltipText="Add a new recipe!"
+                    tooltipPosition='bottom'
+                />
+            </div> } */}
+
+            <h1 className="text-4xl bold">Recipes</h1>
+            <input type="text" placeholder="Search…" className="input input-bordered input-sm"/>
+
             <div className="flex flex-col ">
                 { recipes?.map(({ id, title, description }) =>
-                    <SidebarItem key={id} title={title} description={description} link={id} />
+                    <SidebarItem
+                        key={id}
+                        title={title}
+                        description={description}
+                        link={id}
+                    />
                 )}
             </div>
         </aside>

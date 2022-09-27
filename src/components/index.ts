@@ -1,5 +1,5 @@
 import AppModals from "./AppModals";
-import Navbar from "./Navbar";
+import SideNavbar from "./SideNavbar";
 import AppLayout from "./AppLayout";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
@@ -8,7 +8,7 @@ import IconButton from "./IconButton";
 
 export {
     AppModals,
-    Navbar,
+    SideNavbar,
     AppLayout,
     Loading,
     NotFound,

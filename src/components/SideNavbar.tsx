@@ -1,7 +1,7 @@
 import { GiWheat, GiMasonJar, GiBread, GiBookshelf } from "react-icons/gi";
 import IconButton from "./IconButton";
-import {Menu} from "react-daisyui";
-import MenuItem from "react-daisyui/dist/Menu/MenuItem";
+import { Navbar } from "react-daisyui";
+
 
 type NavItem = {
     key: string,
@@ -10,51 +10,57 @@ type NavItem = {
     link: string,
 }
 
+const SideNavbar = () => {
+    const navbarSectionClass: string = "flex flex-col gap-16";
 
-const Navbar = () => {
     const navItems: NavItem[] = [
         {
             key: "recipes",
-            icon: <GiBread color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiBread className="text-primary" fontSize="1rem" />,
             text: "Recipes",
             link: `recipes`,
         },
         {
             key: "starters",
-            icon: <GiMasonJar color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiMasonJar className="text-primary" fontSize="1rem" />,
             text: "Starters",
             link: "starters",
         },
         {
             key: "community",
-            icon: <GiWheat color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiWheat className="text-primary" fontSize="1rem" />,
             text: "Community",
             link: "community",
         },
         {
             key: "resources",
-            icon: <GiBookshelf color="#8C001D" fontSize="1.5rem" />,
+            icon: <GiBookshelf className="text-primary" fontSize="1rem" />,
             text: "Resources",
             link: "resources",
         },
     ];
 
     return (
-        <Menu className="h-screen sticky top-0 w-20 border-r-2 justify-evenly items-center bg-base-100 z-50">
-            { navItems.map(({ key, icon, text, link}: NavItem) =>
-                <Menu.Item className="hover-none">
+        <Navbar className="flex flex-col h-screen sticky top-0 w-10 border-r-2 bg-base-100 z-50">
+            <Navbar.Start className={navbarSectionClass}>
+                { navItems.map(({ key, icon, text, link}: NavItem) =>
                     <IconButton
                         key={key}
                         icon={icon}
                         tooltipText={text}
+                        tooltipPosition='right'
                         link={link}
                         size='sm'
                         color='ghost'
                     />
-                </Menu.Item>
-            )}
-        </Menu>
+                )}
+            </Navbar.Start>
+
+            <Navbar.End className={navbarSectionClass}>
+
+            </Navbar.End>
+        </Navbar>
     );
 }
 
-export default Navbar;
+export default SideNavbar;

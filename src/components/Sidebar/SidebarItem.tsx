@@ -14,7 +14,7 @@ const SidebarItem = (props: SidebarItemProps) => {
 
     return (
         <NavLink to={'/recipes/' + link} >
-            <div className="flex my-2 p-1 rounded text-red hover:bg-gray-100">
+            <div className="flex my-2 p-1 rounded text-primary hover:bg-gray-100">
                 <p className="text-sm">{title}</p>
             </div>
         </NavLink>

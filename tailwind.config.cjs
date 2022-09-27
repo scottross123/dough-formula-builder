@@ -15,7 +15,7 @@ module.exports = {
     },
     daisyui: {
         themes: [ ,
-            {
+            /*{
                 bread: {
                     "primary": "#8C001D",
 
@@ -35,7 +35,8 @@ module.exports = {
 
                     "error": "#F87272",
                 },
-            },
+            }, */
+            "lofi"
         ],
     },
     plugins: [

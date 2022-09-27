@@ -8,7 +8,7 @@ import {setEditRecipe} from "../state/editRecipeSlice";
 import {useGetRecipeQuery} from "../../../api/recipesApi";
 import Loading from "../../../components/Loading";
 import Notes from "./Notes";
-import Header from "./Header";
+import RecipeHeader from "./RecipeHeader";
 import Description from "./Description";
 import FinalDoughTable from "./FinalDoughTable/FinalDoughTable";
 import FinalDoughBody from "./FinalDoughTable/FinalDoughBody";
@@ -24,7 +24,6 @@ const EditRecipe = () => {
 
     return (
             <div className="w-full">
-                <Header />
                 <section className="flex gap-8 w-full">
                     <div className="w-1/2 flex flex-col gap-8">
                         <Description />

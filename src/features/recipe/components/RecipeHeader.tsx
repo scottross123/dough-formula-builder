@@ -5,12 +5,12 @@ import {setDeleteRecipeId} from "../../../components/AppModals/modalSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {selectRecipe} from "../state/editRecipeSelectors";
 
-const Header = () => {
+const RecipeHeader = () => {
     const { title, id } = useAppSelector(state => selectRecipe(state))!;
     const dispatch = useAppDispatch();
 
     return (
-        <Hero className="mb-2">
+        <Hero className="mb-2 sticky top-0 z-50 bg-base-100">
             <Hero.Content className="w-full justify-between">
                 <h1 className="text-6xl text-primary">{title}</h1>
 
@@ -45,4 +45,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default RecipeHeader;
