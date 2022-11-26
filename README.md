@@ -1,6 +1,6 @@
 # Dough Formula Builder
 
-<b style="color:red;>THIS PROJECT IS DEAD AND I'M STARTING OVER</b>
+<b style="color:red;">THIS PROJECT IS DEAD AND I'M STARTING OVER</b>
 
 ## Formula App
 Web app to allow user to create, save, and share dough formulas. Also provide users with helpful resources for 
